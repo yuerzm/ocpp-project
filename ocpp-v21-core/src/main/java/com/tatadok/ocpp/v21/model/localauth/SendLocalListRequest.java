@@ -1,0 +1,16 @@
+package com.tatadok.ocpp.v21.model.localauth;
+
+import com.tatadok.ocpp.core.message.Request;
+import com.tatadok.ocpp.v21.model.common.datatypes.AuthorizationData;
+import com.tatadok.ocpp.v21.model.common.enumerations.UpdateEnumType;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class SendLocalListRequest implements Request {
+
+    private Integer versionNumber;
+    private UpdateEnumType updateType;
+    private List<AuthorizationData> localAuthorizationList;
+}

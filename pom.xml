@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.6</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.tatadok</groupId>
+    <artifactId>ocpp-build</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+    <name>OCPP Library Project</name>
+    <description>OCPP Library Project</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <revision>1.0.0-SNAPSHOT</revision>
+    </properties>
+
+    <scm>
+    </scm>
+
+    <modules>
+        <module>build-dependencies</module>
+        <module>build-parent</module>
+
+        <module>ocpp-core</module>
+        <module>ocpp-json</module>
+        <module>ocpp-server</module>
+
+        <module>ocpp-v16-core</module>
+        <module>ocpp-v16-json</module>
+        <module>ocpp-v16-api</module>
+        <module>ocpp-v16-server</module>
+
+        <module>ocpp-v20-core</module>
+        <module>ocpp-v20-json</module>
+        <module>ocpp-v20-server</module>
+        <module>ocpp-v20-api</module>
+
+        <module>ocpp-v21-core</module>
+
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <spring.profiles.active>docker</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <spring.profiles.active>test</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <spring.profiles.active>uat</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>maven-public</id>
+            <name>Aliyun Cloud Maven Public</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven-public</id>
+            <name>Aliyun Cloud Maven Public</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

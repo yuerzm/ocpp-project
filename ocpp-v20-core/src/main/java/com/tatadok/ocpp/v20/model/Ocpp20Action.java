@@ -1,0 +1,213 @@
+package com.tatadok.ocpp.v20.model;
+
+import com.tatadok.ocpp.core.message.Request;
+import com.tatadok.ocpp.core.message.Response;
+import com.tatadok.ocpp.v20.model.authorization.AuthorizeRequest;
+import com.tatadok.ocpp.v20.model.authorization.AuthorizeResponse;
+import com.tatadok.ocpp.v20.model.authorization.ClearCacheRequest;
+import com.tatadok.ocpp.v20.model.authorization.ClearCacheResponse;
+import com.tatadok.ocpp.v20.model.availability.ChangeAvailabilityRequest;
+import com.tatadok.ocpp.v20.model.availability.ChangeAvailabilityResponse;
+import com.tatadok.ocpp.v20.model.availability.HeartbeatRequest;
+import com.tatadok.ocpp.v20.model.availability.HeartbeatResponse;
+import com.tatadok.ocpp.v20.model.availability.NotifyEventRequest;
+import com.tatadok.ocpp.v20.model.availability.NotifyEventResponse;
+import com.tatadok.ocpp.v20.model.availability.StatusNotificationRequest;
+import com.tatadok.ocpp.v20.model.availability.StatusNotificationResponse;
+import com.tatadok.ocpp.v20.model.cost.CostUpdatedRequest;
+import com.tatadok.ocpp.v20.model.cost.CostUpdatedResponse;
+import com.tatadok.ocpp.v20.model.datatransfer.DataTransferRequest;
+import com.tatadok.ocpp.v20.model.datatransfer.DataTransferResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.ClearVariableMonitoringRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.ClearVariableMonitoringResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.CustomerInformationRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.CustomerInformationResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.GetLogRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.GetLogResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.GetMonitoringReportRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.GetMonitoringReportResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.LogStatusNotificationRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.LogStatusNotificationResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.NotifyCustomerInformationRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.NotifyCustomerInformationResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.NotifyMonitoringReportRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.NotifyMonitoringReportResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.SetMonitoringBaseRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.SetMonitoringBaseResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.SetMonitoringLevelRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.SetMonitoringLevelResponse;
+import com.tatadok.ocpp.v20.model.diagnostics.SetVariableMonitoringRequest;
+import com.tatadok.ocpp.v20.model.diagnostics.SetVariableMonitoringResponse;
+import com.tatadok.ocpp.v20.model.displaymessage.ClearDisplayMessageRequest;
+import com.tatadok.ocpp.v20.model.displaymessage.ClearDisplayMessageResponse;
+import com.tatadok.ocpp.v20.model.displaymessage.GetDisplayMessagesRequest;
+import com.tatadok.ocpp.v20.model.displaymessage.GetDisplayMessagesResponse;
+import com.tatadok.ocpp.v20.model.displaymessage.NotifyDisplayMessagesRequest;
+import com.tatadok.ocpp.v20.model.displaymessage.NotifyDisplayMessagesResponse;
+import com.tatadok.ocpp.v20.model.displaymessage.SetDisplayMessageRequest;
+import com.tatadok.ocpp.v20.model.displaymessage.SetDisplayMessageResponse;
+import com.tatadok.ocpp.v20.model.firmware.FirmwareStatusNotificationRequest;
+import com.tatadok.ocpp.v20.model.firmware.FirmwareStatusNotificationResponse;
+import com.tatadok.ocpp.v20.model.firmware.PublishFirmwareRequest;
+import com.tatadok.ocpp.v20.model.firmware.PublishFirmwareResponse;
+import com.tatadok.ocpp.v20.model.firmware.PublishFirmwareStatusNotificationRequest;
+import com.tatadok.ocpp.v20.model.firmware.PublishFirmwareStatusNotificationResponse;
+import com.tatadok.ocpp.v20.model.firmware.UnpublishFirmwareRequest;
+import com.tatadok.ocpp.v20.model.firmware.UnpublishFirmwareResponse;
+import com.tatadok.ocpp.v20.model.firmware.UpdateFirmwareRequest;
+import com.tatadok.ocpp.v20.model.firmware.UpdateFirmwareResponse;
+import com.tatadok.ocpp.v20.model.iso15118.DeleteCertificateRequest;
+import com.tatadok.ocpp.v20.model.iso15118.DeleteCertificateResponse;
+import com.tatadok.ocpp.v20.model.iso15118.Get15118EVCertificateRequest;
+import com.tatadok.ocpp.v20.model.iso15118.Get15118EVCertificateResponse;
+import com.tatadok.ocpp.v20.model.iso15118.GetCertificateStatusRequest;
+import com.tatadok.ocpp.v20.model.iso15118.GetCertificateStatusResponse;
+import com.tatadok.ocpp.v20.model.iso15118.GetInstalledCertificateIdsRequest;
+import com.tatadok.ocpp.v20.model.iso15118.GetInstalledCertificateIdsResponse;
+import com.tatadok.ocpp.v20.model.iso15118.InstallCertificateRequest;
+import com.tatadok.ocpp.v20.model.iso15118.InstallCertificateResponse;
+import com.tatadok.ocpp.v20.model.localauth.GetLocalListVersionRequest;
+import com.tatadok.ocpp.v20.model.localauth.GetLocalListVersionResponse;
+import com.tatadok.ocpp.v20.model.localauth.SendLocalListRequest;
+import com.tatadok.ocpp.v20.model.localauth.SendLocalListResponse;
+import com.tatadok.ocpp.v20.model.metervalues.MeterValuesRequest;
+import com.tatadok.ocpp.v20.model.metervalues.MeterValuesResponse;
+import com.tatadok.ocpp.v20.model.provisioning.BootNotificationRequest;
+import com.tatadok.ocpp.v20.model.provisioning.BootNotificationResponse;
+import com.tatadok.ocpp.v20.model.provisioning.GetBaseReportRequest;
+import com.tatadok.ocpp.v20.model.provisioning.GetBaseReportResponse;
+import com.tatadok.ocpp.v20.model.provisioning.GetReportRequest;
+import com.tatadok.ocpp.v20.model.provisioning.GetReportResponse;
+import com.tatadok.ocpp.v20.model.provisioning.GetVariablesRequest;
+import com.tatadok.ocpp.v20.model.provisioning.GetVariablesResponse;
+import com.tatadok.ocpp.v20.model.provisioning.NotifyReportRequest;
+import com.tatadok.ocpp.v20.model.provisioning.NotifyReportResponse;
+import com.tatadok.ocpp.v20.model.provisioning.ResetRequest;
+import com.tatadok.ocpp.v20.model.provisioning.ResetResponse;
+import com.tatadok.ocpp.v20.model.provisioning.SetNetworkProfileRequest;
+import com.tatadok.ocpp.v20.model.provisioning.SetNetworkProfileResponse;
+import com.tatadok.ocpp.v20.model.provisioning.SetVariablesRequest;
+import com.tatadok.ocpp.v20.model.provisioning.SetVariablesResponse;
+import com.tatadok.ocpp.v20.model.remote.RequestStartTransactionRequest;
+import com.tatadok.ocpp.v20.model.remote.RequestStartTransactionResponse;
+import com.tatadok.ocpp.v20.model.remote.RequestStopTransactionRequest;
+import com.tatadok.ocpp.v20.model.remote.RequestStopTransactionResponse;
+import com.tatadok.ocpp.v20.model.remote.TriggerMessageRequest;
+import com.tatadok.ocpp.v20.model.remote.TriggerMessageResponse;
+import com.tatadok.ocpp.v20.model.remote.UnlockConnectorRequest;
+import com.tatadok.ocpp.v20.model.remote.UnlockConnectorResponse;
+import com.tatadok.ocpp.v20.model.reservation.CancelReservationRequest;
+import com.tatadok.ocpp.v20.model.reservation.CancelReservationResponse;
+import com.tatadok.ocpp.v20.model.reservation.ReservationStatusUpdateRequest;
+import com.tatadok.ocpp.v20.model.reservation.ReservationStatusUpdateResponse;
+import com.tatadok.ocpp.v20.model.reservation.ReserveNowRequest;
+import com.tatadok.ocpp.v20.model.reservation.ReserveNowResponse;
+import com.tatadok.ocpp.v20.model.security.CertificateSignedRequest;
+import com.tatadok.ocpp.v20.model.security.CertificateSignedResponse;
+import com.tatadok.ocpp.v20.model.security.SecurityEventNotificationRequest;
+import com.tatadok.ocpp.v20.model.security.SecurityEventNotificationResponse;
+import com.tatadok.ocpp.v20.model.security.SignCertificateRequest;
+import com.tatadok.ocpp.v20.model.security.SignCertificateResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.ClearChargingProfileRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.ClearChargingProfileResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.ClearedChargingLimitRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.ClearedChargingLimitResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.GetChargingProfilesRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.GetChargingProfilesResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.GetCompositeScheduleRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.GetCompositeScheduleResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.NotifyChargingLimitRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.NotifyChargingLimitResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.NotifyEVChargingNeedsRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.NotifyEVChargingNeedsResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.NotifyEVChargingScheduleRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.NotifyEVChargingScheduleResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.ReportChargingProfilesRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.ReportChargingProfilesResponse;
+import com.tatadok.ocpp.v20.model.smartcharging.SetChargingProfileRequest;
+import com.tatadok.ocpp.v20.model.smartcharging.SetChargingProfileResponse;
+import com.tatadok.ocpp.v20.model.transactions.GetTransactionStatusRequest;
+import com.tatadok.ocpp.v20.model.transactions.GetTransactionStatusResponse;
+import com.tatadok.ocpp.v20.model.transactions.TransactionEventRequest;
+import com.tatadok.ocpp.v20.model.transactions.TransactionEventResponse;
+import lombok.Getter;
+
+@Getter
+public enum Ocpp20Action {
+
+    // core
+    Authorize(AuthorizeRequest.class, AuthorizeResponse.class),
+    ClearCache(ClearCacheRequest.class, ClearCacheResponse.class),
+    ChangeAvailability(ChangeAvailabilityRequest.class, ChangeAvailabilityResponse.class),
+    Heartbeat(HeartbeatRequest.class, HeartbeatResponse.class),
+    NotifyEvent(NotifyEventRequest.class, NotifyEventResponse.class),
+    StatusNotification(StatusNotificationRequest.class, StatusNotificationResponse.class),
+    CostUpdated(CostUpdatedRequest.class, CostUpdatedResponse.class),
+    DataTransfer(DataTransferRequest.class, DataTransferResponse.class),
+    ClearVariableMonitoring(ClearVariableMonitoringRequest.class, ClearVariableMonitoringResponse.class),
+    CustomerInformation(CustomerInformationRequest.class, CustomerInformationResponse.class),
+    GetLog(GetLogRequest.class, GetLogResponse.class),
+    GetMonitoringReport(GetMonitoringReportRequest.class, GetMonitoringReportResponse.class),
+    LogStatusNotification(LogStatusNotificationRequest.class, LogStatusNotificationResponse.class),
+    NotifyCustomerInformation(NotifyCustomerInformationRequest.class, NotifyCustomerInformationResponse.class),
+    NotifyMonitoringReport(NotifyMonitoringReportRequest.class, NotifyMonitoringReportResponse.class),
+    SetMonitoringBase(SetMonitoringBaseRequest.class, SetMonitoringBaseResponse.class),
+    SetMonitoringLevel(SetMonitoringLevelRequest.class, SetMonitoringLevelResponse.class),
+    SetVariableMonitoring(SetVariableMonitoringRequest.class, SetVariableMonitoringResponse.class),
+    ClearDisplayMessage(ClearDisplayMessageRequest.class, ClearDisplayMessageResponse.class),
+    GetDisplayMessages(GetDisplayMessagesRequest.class, GetDisplayMessagesResponse.class),
+    NotifyDisplayMessages(NotifyDisplayMessagesRequest.class, NotifyDisplayMessagesResponse.class),
+    SetDisplayMessage(SetDisplayMessageRequest.class, SetDisplayMessageResponse.class),
+    FirmwareStatusNotification(FirmwareStatusNotificationRequest.class, FirmwareStatusNotificationResponse.class),
+    PublishFirmware(PublishFirmwareRequest.class, PublishFirmwareResponse.class),
+    PublishFirmwareStatusNotification(PublishFirmwareStatusNotificationRequest.class,
+        PublishFirmwareStatusNotificationResponse.class),
+    UnpublishFirmware(UnpublishFirmwareRequest.class, UnpublishFirmwareResponse.class),
+    UpdateFirmware(UpdateFirmwareRequest.class, UpdateFirmwareResponse.class),
+    DeleteCertificate(DeleteCertificateRequest.class, DeleteCertificateResponse.class),
+    Get15118EVCertificate(Get15118EVCertificateRequest.class, Get15118EVCertificateResponse.class),
+    GetCertificateStatus(GetCertificateStatusRequest.class, GetCertificateStatusResponse.class),
+    GetInstalledCertificateIds(GetInstalledCertificateIdsRequest.class, GetInstalledCertificateIdsResponse.class),
+    InstallCertificate(InstallCertificateRequest.class, InstallCertificateResponse.class),
+    GetLocalListVersion(GetLocalListVersionRequest.class, GetLocalListVersionResponse.class),
+    SendLocalList(SendLocalListRequest.class, SendLocalListResponse.class),
+    MeterValues(MeterValuesRequest.class, MeterValuesResponse.class),
+    BootNotification(BootNotificationRequest.class, BootNotificationResponse.class),
+    GetBaseReport(GetBaseReportRequest.class, GetBaseReportResponse.class),
+    GetReport(GetReportRequest.class, GetReportResponse.class),
+    GetVariables(GetVariablesRequest.class, GetVariablesResponse.class),
+    NotifyReport(NotifyReportRequest.class, NotifyReportResponse.class),
+    Reset(ResetRequest.class, ResetResponse.class),
+    SetNetworkProfile(SetNetworkProfileRequest.class, SetNetworkProfileResponse.class),
+    SetVariables(SetVariablesRequest.class, SetVariablesResponse.class),
+    RequestStartTransaction(RequestStartTransactionRequest.class, RequestStartTransactionResponse.class),
+    RequestStopTransaction(RequestStopTransactionRequest.class, RequestStopTransactionResponse.class),
+    TriggerMessage(TriggerMessageRequest.class, TriggerMessageResponse.class),
+    UnlockConnector(UnlockConnectorRequest.class, UnlockConnectorResponse.class),
+    CancelReservation(CancelReservationRequest.class, CancelReservationResponse.class),
+    ReservationStatusUpdate(ReservationStatusUpdateRequest.class, ReservationStatusUpdateResponse.class),
+    ReserveNow(ReserveNowRequest.class, ReserveNowResponse.class),
+    CertificateSigned(CertificateSignedRequest.class, CertificateSignedResponse.class),
+    SecurityEventNotification(SecurityEventNotificationRequest.class, SecurityEventNotificationResponse.class),
+    SignCertificate(SignCertificateRequest.class, SignCertificateResponse.class),
+    ClearChargingProfile(ClearChargingProfileRequest.class, ClearChargingProfileResponse.class),
+    ClearedChargingLimit(ClearedChargingLimitRequest.class, ClearedChargingLimitResponse.class),
+    GetChargingProfiles(GetChargingProfilesRequest.class, GetChargingProfilesResponse.class),
+    GetCompositeSchedule(GetCompositeScheduleRequest.class, GetCompositeScheduleResponse.class),
+    NotifyChargingLimit(NotifyChargingLimitRequest.class, NotifyChargingLimitResponse.class),
+    NotifyEVChargingNeeds(NotifyEVChargingNeedsRequest.class, NotifyEVChargingNeedsResponse.class),
+    NotifyEVChargingSchedule(NotifyEVChargingScheduleRequest.class, NotifyEVChargingScheduleResponse.class),
+    ReportChargingProfiles(ReportChargingProfilesRequest.class, ReportChargingProfilesResponse.class),
+    SetChargingProfile(SetChargingProfileRequest.class, SetChargingProfileResponse.class),
+    GetTransactionStatus(GetTransactionStatusRequest.class, GetTransactionStatusResponse.class),
+    TransactionEvent(TransactionEventRequest.class, TransactionEventResponse.class),
+    ;
+
+    private final Class<? extends Request> requestClass;
+    private final Class<? extends Response> responseClass;
+
+    Ocpp20Action(Class<? extends Request> requestClass, Class<? extends Response> responseClass) {
+        this.requestClass = requestClass;
+        this.responseClass = responseClass;
+    }
+}

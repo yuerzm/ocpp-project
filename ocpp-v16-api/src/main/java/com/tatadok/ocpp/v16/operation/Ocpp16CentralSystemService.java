@@ -1,0 +1,80 @@
+package com.tatadok.ocpp.v16.operation;
+
+import com.tatadok.ocpp.core.message.OcppVersion;
+import com.tatadok.ocpp.core.message.Request;
+import com.tatadok.ocpp.core.message.Response;
+import com.tatadok.ocpp.core.service.CentralSystemService;
+import com.tatadok.ocpp.v16.handler.CentralSystemCoreEventHandler;
+import com.tatadok.ocpp.v16.handler.CentralSystemFirmwareEventHandler;
+import com.tatadok.ocpp.v16.model.core.AuthorizeRequest;
+import com.tatadok.ocpp.v16.model.core.BootNotificationRequest;
+import com.tatadok.ocpp.v16.model.core.DataTransferRequest;
+import com.tatadok.ocpp.v16.model.core.HeartbeatRequest;
+import com.tatadok.ocpp.v16.model.core.MeterValuesRequest;
+import com.tatadok.ocpp.v16.model.core.StartTransactionRequest;
+import com.tatadok.ocpp.v16.model.core.StatusNotificationRequest;
+import com.tatadok.ocpp.v16.model.core.StopTransactionRequest;
+import com.tatadok.ocpp.v16.model.firmware.DiagnosticsStatusNotificationRequest;
+import com.tatadok.ocpp.v16.model.firmware.FirmwareStatusNotificationRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Ocpp16CentralSystemService implements CentralSystemService {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    private final CentralSystemCoreEventHandler coreEventHandler;
+    private final CentralSystemFirmwareEventHandler firmwareEventHandler;
+
+    public Ocpp16CentralSystemService(CentralSystemCoreEventHandler coreEventHandler,
+                                      CentralSystemFirmwareEventHandler firmwareEventHandler) {
+        this.coreEventHandler = coreEventHandler;
+        this.firmwareEventHandler = firmwareEventHandler;
+    }
+
+    @Override
+    public Response handle(String sessionId, String identity, Request request) {
+
+        if (logger.isDebugEnabled()) {
+            logger.info("Handle session: {}, identity: {}, request: {}", sessionId, identity, request);
+        }
+
+        if (request instanceof AuthorizeRequest req) {
+            return coreEventHandler.handleAuthorize(sessionId, identity, req);
+
+        } else if (request instanceof BootNotificationRequest req) {
+            return coreEventHandler.handleBootNotification(sessionId, identity, req);
+
+        } else if (request instanceof DataTransferRequest req) {
+            return coreEventHandler.handleDataTransfer(sessionId, identity, req);
+
+        } else if (request instanceof HeartbeatRequest req) {
+            return coreEventHandler.handleHeartbeat(sessionId, identity, req);
+
+        } else if (request instanceof MeterValuesRequest req) {
+            return coreEventHandler.handleMeterValues(sessionId, identity, req);
+
+        } else if (request instanceof StartTransactionRequest req) {
+            return coreEventHandler.handleStartTransaction(sessionId, identity, req);
+
+        } else if (request instanceof StatusNotificationRequest req) {
+            return coreEventHandler.handleStatusNotification(sessionId, identity, req);
+
+        } else if (request instanceof StopTransactionRequest req) {
+            return coreEventHandler.handleStopTransaction(sessionId, identity, req);
+
+        } else if (request instanceof DiagnosticsStatusNotificationRequest req) {
+            return firmwareEventHandler.handleDiagnosticsStatusNotification(sessionId, identity, req);
+
+        } else if (request instanceof FirmwareStatusNotificationRequest req) {
+            return firmwareEventHandler.handleFirmwareStatusNotification(sessionId, identity, req);
+
+        } else {
+            throw new UnsupportedOperationException("Unsupported request type: " + request.getClass());
+        }
+    }
+
+    @Override
+    public OcppVersion getVersion() {
+        return OcppVersion.V_16;
+    }
+}
