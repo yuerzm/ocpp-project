@@ -12,9 +12,4 @@ public class ErrorDetail {
         this.code = code;
         this.detail = detail;
     }
-
-    public ErrorDetail(MessageErrorCode errorCode) {
-        this.code = errorCode.name();
-        this.detail = errorCode.toString();
-    }
 }

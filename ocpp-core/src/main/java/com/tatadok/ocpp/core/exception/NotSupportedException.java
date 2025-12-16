@@ -5,7 +5,7 @@ import java.io.Serial;
 public class NotSupportedException extends OcppException {
 
     @Serial
-    private static final long serialVersionUID = 6500521039135501462L;
+    private static final long serialVersionUID = 1L;
 
     public NotSupportedException(String message) {
         super(message, null, MessageErrorCode.NotSupported, null, null, null);

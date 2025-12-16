@@ -13,7 +13,7 @@ import java.util.TimeZone;
 public class OcppJsonMapper extends ObjectMapper {
 
     @Serial
-    private static final long serialVersionUID = 786082789576052026L;
+    private static final long serialVersionUID = 1L;
 
     public OcppJsonMapper(ObjectMapper src) {
         super(src);

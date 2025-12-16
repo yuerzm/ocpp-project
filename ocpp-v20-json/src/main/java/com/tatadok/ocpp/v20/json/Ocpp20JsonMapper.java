@@ -8,7 +8,7 @@ import java.io.Serial;
 public class Ocpp20JsonMapper extends OcppJsonMapper {
 
     @Serial
-    private static final long serialVersionUID = -1827862967457755302L;
+    private static final long serialVersionUID = 1L;
 
     public Ocpp20JsonMapper(ObjectMapper objectMapper) {
         super(objectMapper);

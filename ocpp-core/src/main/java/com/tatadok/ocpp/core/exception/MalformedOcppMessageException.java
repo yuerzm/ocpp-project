@@ -6,7 +6,7 @@ import java.util.List;
 public class MalformedOcppMessageException extends OcppParserException {
 
     @Serial
-    private static final long serialVersionUID = -2040936966916274092L;
+    private static final long serialVersionUID = 1L;
 
     public MalformedOcppMessageException(String message, List<ErrorDetail> errorDetails) {
         super(message, null, MessageErrorCode.FormatViolation, errorDetails);

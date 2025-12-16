@@ -9,7 +9,7 @@ import java.util.Objects;
 public class OcppException extends RuntimeException {
 
     @Serial
-    private static final long serialVersionUID = -107646464990592344L;
+    private static final long serialVersionUID = 1L;
 
     private String uniqueId;
     private MessageErrorCode code;

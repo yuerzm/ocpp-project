@@ -5,7 +5,7 @@ import java.io.Serial;
 public class GenericErrorException extends OcppException {
 
     @Serial
-    private static final long serialVersionUID = -2221208302873863724L;
+    private static final long serialVersionUID = 1L;
 
     public GenericErrorException(String message, String uniqueId, MessageErrorCode code, String description,
                                  Object details, Throwable cause) {

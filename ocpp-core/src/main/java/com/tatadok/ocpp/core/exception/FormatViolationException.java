@@ -6,7 +6,7 @@ import java.util.List;
 public class FormatViolationException extends OcppParserException {
 
     @Serial
-    private static final long serialVersionUID = -8367536859820376233L;
+    private static final long serialVersionUID = 1L;
 
     public FormatViolationException(String message, String uniqueId) {
         super(message, uniqueId, MessageErrorCode.FormationViolation, null);

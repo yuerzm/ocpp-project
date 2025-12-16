@@ -6,7 +6,7 @@ import java.util.List;
 public class MessageTypeException extends OcppParserException {
 
     @Serial
-    private static final long serialVersionUID = -4452404932984022479L;
+    private static final long serialVersionUID = 1L;
 
     public MessageTypeException(String message, String uniqueId) {
         super(message, uniqueId, MessageErrorCode.MessageTypeNotSupported, null);

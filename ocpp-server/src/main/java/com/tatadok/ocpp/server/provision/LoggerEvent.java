@@ -13,7 +13,7 @@ import java.time.Instant;
 public class LoggerEvent extends ApplicationEvent implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 7546758134214805155L;
+    private static final long serialVersionUID = 1L;
 
     private Object identity;
     private Object protocol;
