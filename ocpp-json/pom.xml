@@ -13,7 +13,6 @@
 
     <artifactId>ocpp-json</artifactId>
     <packaging>jar</packaging>
-    <version>${revision}</version>
 
     <name>OCPP Library Json</name>
     <description>OCPP Library Json</description>
@@ -45,10 +44,20 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

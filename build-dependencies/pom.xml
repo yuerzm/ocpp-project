@@ -4,27 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.tatadok</groupId>
-        <artifactId>ocpp-build</artifactId>
-        <version>${revision}</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-
+    <groupId>com.tatadok</groupId>
     <artifactId>build-dependencies</artifactId>
+    <version>latest</version>
     <packaging>pom</packaging>
-    <version>${revision}</version>
 
     <name>OCPP Library Build Dependencies</name>
     <description>OCPP Library Build Dependencies</description>
 
     <properties>
         <spring-boot-dependencies.version>3.5.6</spring-boot-dependencies.version>
-        <bcprov-jdk18on.version>1.80</bcprov-jdk18on.version>
-        <bcpkix-jdk18on.version>1.80</bcpkix-jdk18on.version>
-        <bcuitl-jdk18on.version>1.80</bcuitl-jdk18on.version>
         <json-schema-validator.version>1.5.6</json-schema-validator.version>
-        <jackson-module-paranamer.version>2.16.2</jackson-module-paranamer.version>
+<!--        <json-schema-validator.version>3.0.0</json-schema-validator.version>-->
 
         <!-- Vulnerability fixed -->
         <commons-lang3.version>3.18.0</commons-lang3.version>
@@ -32,13 +23,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
             <dependency>
                 <groupId>org.springdoc</groupId>
@@ -51,22 +35,6 @@
                 <version>${springdoc.version}</version>
             </dependency>
 
-
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>${jackson-bom.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jdk8</artifactId>
-                <version>${jackson-bom.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-parameter-names</artifactId>
-                <version>${jackson-bom.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>json-schema-validator</artifactId>
@@ -75,25 +43,5 @@
 
         </dependencies>
     </dependencyManagement>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>3.0.0-M4</version>
-                    <configuration>
-                        <tagBase>${project.version}</tagBase>
-                        <tagNameFormat>@{project.version}</tagNameFormat>
-                        <autoVersionSubmodules>true</autoVersionSubmodules>
-                        <updateWorkingCopyVersions>true</updateWorkingCopyVersions>
-                        <updateDependencies>true</updateDependencies>
-                        <useReleaseProfile>true</useReleaseProfile>
-                        <releaseProfiles>prod</releaseProfiles>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
 
-    </build>
 </project>

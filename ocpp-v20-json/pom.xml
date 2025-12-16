@@ -13,7 +13,6 @@
 
     <artifactId>ocpp-v20-json</artifactId>
     <packaging>jar</packaging>
-    <version>${revision}</version>
 
     <name>OCPP Library v2.0.1 Json</name>
     <description>OCPP Library v2.0.1 Json</description>
@@ -42,6 +41,11 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>

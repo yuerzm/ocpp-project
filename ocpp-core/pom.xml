@@ -13,7 +13,6 @@
 
     <artifactId>ocpp-core</artifactId>
     <packaging>jar</packaging>
-    <version>${revision}</version>
 
     <name>OCPP Library Core</name>
     <description>OCPP Library Core</description>
@@ -30,6 +29,11 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
