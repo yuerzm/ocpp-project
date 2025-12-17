@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.tatadok</groupId>
+        <groupId>com.tatadok.ocpp</groupId>
         <artifactId>build-parent</artifactId>
         <version>${revision}</version>
         <relativePath>../build-parent</relativePath>
@@ -20,7 +20,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.tatadok</groupId>
+            <groupId>com.tatadok.ocpp</groupId>
             <artifactId>ocpp-core</artifactId>
             <version>${revision}</version>
         </dependency>
