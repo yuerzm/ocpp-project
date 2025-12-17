@@ -12,8 +12,8 @@
     <description>OCPP Library Project</description>
 
     <modules>
-        <module>build-dependencies</module>
-        <module>build-parent</module>
+        <module>ocpp-dependencies</module>
+        <module>ocpp-parent</module>
 
         <module>ocpp-core</module>
         <module>ocpp-json</module>

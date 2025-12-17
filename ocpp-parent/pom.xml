@@ -12,12 +12,12 @@
     </parent>
 
     <groupId>com.tatadok.ocpp</groupId>
-    <artifactId>build-parent</artifactId>
+    <artifactId>ocpp-parent</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
-    <name>OCPP Library Build Parent</name>
-    <description>OCPP Library Build Parent</description>
+    <name>OCPP Library Parent</name>
+    <description>OCPP Library Parent</description>
 
     <properties>
         <java.version>25</java.version>
@@ -29,7 +29,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.tatadok.ocpp</groupId>
-                <artifactId>build-dependencies</artifactId>
+                <artifactId>ocpp-dependencies</artifactId>
                 <version>latest</version>
                 <type>pom</type>
                 <scope>import</scope>

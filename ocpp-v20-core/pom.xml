@@ -6,9 +6,9 @@
 
     <parent>
         <groupId>com.tatadok.ocpp</groupId>
-        <artifactId>build-parent</artifactId>
+        <artifactId>ocpp-parent</artifactId>
         <version>${revision}</version>
-        <relativePath>../build-parent</relativePath>
+        <relativePath>../ocpp-parent</relativePath>
     </parent>
 
     <artifactId>ocpp-v20-core</artifactId>
