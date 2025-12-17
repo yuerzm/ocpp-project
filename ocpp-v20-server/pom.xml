@@ -20,11 +20,6 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.tatadok</groupId>
             <artifactId>ocpp-v20-core</artifactId>
             <version>${revision}</version>

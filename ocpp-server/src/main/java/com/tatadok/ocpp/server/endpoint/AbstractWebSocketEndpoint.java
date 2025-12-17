@@ -4,7 +4,7 @@ import com.tatadok.ocpp.core.message.OcppVersion;
 import com.tatadok.ocpp.server.ServerTransport;
 import com.tatadok.ocpp.server.SessionEventHandler;
 import com.tatadok.ocpp.server.concurrent.ConcurrentWebSocketHandler;
-import jakarta.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.BinaryMessage;
@@ -89,8 +89,7 @@ public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandl
     protected abstract Collection<OcppVersion> getSupportVersions();
 
     @Override
-    @Nonnull
-    public List<String> getSubProtocols() {
+    public @NonNull List<String> getSubProtocols() {
         return getSupportVersions().stream().map(OcppVersion::getValue).toList();
     }
 }

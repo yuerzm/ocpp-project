@@ -1,6 +1,6 @@
 package com.tatadok.ocpp.server.concurrent;
 
-import jakarta.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.CloseStatus;
@@ -23,7 +23,7 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
     private final Map<String, ConcurrentWebSocketSessionDecorator> sessions = new ConcurrentHashMap<>();
 
     @Override
-    public void afterConnectionEstablished(@Nonnull WebSocketSession session) throws Exception {
+    public void afterConnectionEstablished(@NonNull WebSocketSession session) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("After connection established session: {}", session.getId());
         }
@@ -31,7 +31,7 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
     }
 
     @Override
-    public void handleMessage(@Nonnull WebSocketSession session, @Nonnull WebSocketMessage<?> message)
+    public void handleMessage(@NonNull WebSocketSession session, @NonNull WebSocketMessage<?> message)
         throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("Handle session: {}, message: {}", session.getId(), message.getPayload());
@@ -40,7 +40,7 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
     }
 
     @Override
-    public void handleTransportError(@Nonnull WebSocketSession session, @Nonnull Throwable exception) throws Exception {
+    public void handleTransportError(@NonNull WebSocketSession session, @NonNull Throwable exception) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("Handle session {}, transport error: ", session.getId(), exception);
         }
@@ -48,7 +48,7 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
     }
 
     @Override
-    public void afterConnectionClosed(@Nonnull WebSocketSession session, @Nonnull CloseStatus closeStatus)
+    public void afterConnectionClosed(@NonNull WebSocketSession session, @NonNull CloseStatus closeStatus)
         throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("After connection closed session: {}, status: {}", session.getId(), closeStatus);
