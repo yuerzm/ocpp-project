@@ -1,9 +1,9 @@
 package com.tatadok.ocpp.json;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.tatadok.ocpp.core.exception.MessageErrorCode;
 import com.tatadok.ocpp.core.message.OcppMessageType;
 import lombok.Data;
+import tools.jackson.databind.JsonNode;
 
 import java.util.Objects;
 
@@ -19,7 +19,7 @@ public class JsonMessage<T> {
     private Object errorDetails;
 
     private JsonMessage(OcppMessageType messageType, String uniqueId, String action, T payload,
-                        MessageErrorCode errorCode, String errorDescription, Object errorDetails) {
+        MessageErrorCode errorCode, String errorDescription, Object errorDetails) {
         this.messageType = messageType;
         this.uniqueId = uniqueId;
         this.action = action;
@@ -38,7 +38,7 @@ public class JsonMessage<T> {
     }
 
     public static JsonMessage<JsonNode> error(String uniqueId, MessageErrorCode errorCode, String errorDescription,
-                                              JsonNode details) {
+        JsonNode details) {
         return new JsonMessage<>(OcppMessageType.CALL_ERROR, uniqueId, null, null, errorCode, errorDescription,
             details);
     }

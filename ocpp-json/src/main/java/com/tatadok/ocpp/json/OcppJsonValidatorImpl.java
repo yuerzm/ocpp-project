@@ -1,58 +1,30 @@
 package com.tatadok.ocpp.json;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.networknt.schema.JsonSchema;
-import com.networknt.schema.JsonSchemaFactory;
-import com.networknt.schema.SchemaValidatorsConfig;
-import com.networknt.schema.SpecVersion;
-import com.networknt.schema.ValidationMessage;
-import org.springframework.core.io.ClassPathResource;
+import com.networknt.schema.Error;
+import com.networknt.schema.Schema;
+import com.networknt.schema.SchemaLocation;
+import com.networknt.schema.SchemaRegistry;
+import com.networknt.schema.SpecificationVersion;
+import tools.jackson.databind.JsonNode;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
 
 public class OcppJsonValidatorImpl implements OcppJsonValidator {
 
     private final String classpath;
-    private final SpecVersion.VersionFlag specVersion;
-    private final Map<String, JsonSchema> jsonSchemas;
+    private final SpecificationVersion specificationVersion;
 
-    public OcppJsonValidatorImpl(String classpath, SpecVersion.VersionFlag specVersion) {
+    public OcppJsonValidatorImpl(String classpath, SpecificationVersion specificationVersion) {
         this.classpath = classpath;
-        this.specVersion = specVersion;
-        this.jsonSchemas = new HashMap<>();
+        this.specificationVersion = specificationVersion;
     }
 
     @Override
-    public List<ValidationMessage> validate(String action, JsonNode payload) {
-        JsonSchema jsonSchema = this.jsonSchemas.get(action);
-        if (Objects.isNull(jsonSchema)) {
-            jsonSchema = getJsonSchema(action + ".json");
-            this.jsonSchemas.put(action, jsonSchema);
-        }
-        return jsonSchema.validate(payload).stream().toList();
-    }
-
-    private JsonSchema getJsonSchema(String file) {
-        JsonSchemaFactory factory = JsonSchemaFactory.getInstance(this.specVersion);
-        SchemaValidatorsConfig validatorsConfig = SchemaValidatorsConfig.builder()
-            .failFast(true)
-            .locale(Locale.ENGLISH)
-            .build();
-        return factory.getSchema(getInputStream(file), validatorsConfig);
-    }
-
-    protected InputStream getInputStream(String file) {
-        ClassPathResource classPathResource = new ClassPathResource(classpath + file);
-        try {
-            return classPathResource.getInputStream();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public List<Error> validate(String action, JsonNode payload) {
+        SchemaRegistry schemaRegistry = SchemaRegistry.withDefaultDialect(this.specificationVersion);
+        String iri = "classpath:" + classpath + action + ".json";
+        Schema schema = schemaRegistry.getSchema(SchemaLocation.of(iri));
+        schema.initializeValidators();
+        return schema.validate(payload).stream().toList();
     }
 }

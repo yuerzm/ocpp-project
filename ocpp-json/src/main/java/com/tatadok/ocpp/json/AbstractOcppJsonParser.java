@@ -1,7 +1,6 @@
 package com.tatadok.ocpp.json;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.networknt.schema.ValidationMessage;
+import com.networknt.schema.Error;
 import com.tatadok.ocpp.core.exception.ActionRequestMalformedException;
 import com.tatadok.ocpp.core.exception.ActionResponseMalformedException;
 import com.tatadok.ocpp.core.exception.ErrorDetail;
@@ -20,8 +19,8 @@ import com.tatadok.ocpp.core.message.Request;
 import com.tatadok.ocpp.core.message.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tools.jackson.databind.JsonNode;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,12 +29,12 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final OcppJsonMapper objectMapper;
-    private final OcppJsonValidatorImpl jsonValidator;
+    private final OcppJsonMapper ocppJsonMapper;
+    private final OcppJsonValidatorImpl ocppJsonValidator;
 
-    public AbstractOcppJsonParser(OcppJsonMapper objectMapper, OcppJsonValidatorImpl jsonValidator) {
-        this.objectMapper = objectMapper;
-        this.jsonValidator = jsonValidator;
+    public AbstractOcppJsonParser(OcppJsonMapper ocppJsonMapper, OcppJsonValidatorImpl ocppJsonValidator) {
+        this.ocppJsonMapper = ocppJsonMapper;
+        this.ocppJsonValidator = ocppJsonValidator;
     }
 
     @Override
@@ -51,11 +50,11 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
             Class<? extends Request> requestClass = getRequestClass(jsonMessage.getUniqueId(), jsonMessage.getAction());
             validateJson(jsonMessage.getUniqueId(), requestClass.getSimpleName(), jsonMessage.getPayload());
             try {
-                Request request = objectMapper.readValue(jsonMessage.getPayload().traverse(), requestClass);
+                Request request = ocppJsonMapper.convertValue(jsonMessage.getPayload(), requestClass);
                 return new OcppCallMessage(jsonMessage.getUniqueId(), jsonMessage.getAction(), request);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 List<ErrorDetail> errorDetails = new ArrayList<>();
-                errorDetails.add(new ErrorDetail(ErrorDetailCode.PAYLOAD.name(), jsonMessage.getPayload().asText()));
+                errorDetails.add(new ErrorDetail(ErrorDetailCode.PAYLOAD.name(), jsonMessage.getPayload().asString()));
                 errorDetails.add(new ErrorDetail(ErrorDetailCode.ACTION.name(), jsonMessage.getAction()));
                 throw new ActionRequestMalformedException(e.getMessage(), jsonMessage.getUniqueId(), errorDetails);
             }
@@ -64,12 +63,12 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
             Class<? extends Response> responseClass = getResponseClass(jsonMessage.getUniqueId());
             validateJson(jsonMessage.getUniqueId(), responseClass.getSimpleName(), jsonMessage.getPayload());
             try {
-                Response response = objectMapper.readValue(jsonMessage.getPayload().traverse(), responseClass);
+                Response response = ocppJsonMapper.convertValue(jsonMessage.getPayload(), responseClass);
                 return new OcppCallResultMessage(jsonMessage.getUniqueId(), response);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 List<ErrorDetail> errorDetails = new ArrayList<>();
                 errorDetails.add(new ErrorDetail(ErrorDetailCode.ACTION.name(), getActionFromPayload(responseClass)));
-                errorDetails.add(new ErrorDetail(ErrorDetailCode.PAYLOAD.name(), jsonMessage.getPayload().asText()));
+                errorDetails.add(new ErrorDetail(ErrorDetailCode.PAYLOAD.name(), jsonMessage.getPayload().asString()));
                 throw new ActionResponseMalformedException(e.getMessage(), jsonMessage.getUniqueId(), errorDetails);
             }
 
@@ -85,8 +84,8 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
 
     private JsonNode readJsonNode(String message) {
         try {
-            return objectMapper.readTree(message);
-        } catch (IOException e) {
+            return ocppJsonMapper.readTree(message);
+        } catch (Exception e) {
             List<ErrorDetail> errorDetails = new ArrayList<>();
             errorDetails.add(new ErrorDetail(ErrorDetailCode.PAYLOAD.name(), message));
             throw new MalformedOcppMessageException("Cannot read OCPP JSON-RPC message to JsonNode.", errorDetails, e);
@@ -98,7 +97,7 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
         int messageTypeId;
 
         try {
-            uniqueId = jsonNode.get(OcppMessage.INDEX_MESSAGE_UNIQUE_ID).asText();
+            uniqueId = jsonNode.get(OcppMessage.INDEX_MESSAGE_UNIQUE_ID).asString();
             messageTypeId = jsonNode.get(OcppMessage.INDEX_MESSAGE_TYPE_ID).asInt();
         } catch (Exception e) {
             List<ErrorDetail> errorDetails = new ArrayList<>();
@@ -107,7 +106,7 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
         }
 
         if (messageTypeId == OcppMessageType.CALL.getCode()) {
-            String action = jsonNode.get(OcppMessage.INDEX_CALL_ACTION).asText();
+            String action = jsonNode.get(OcppMessage.INDEX_CALL_ACTION).asString();
             JsonNode payload = jsonNode.get(OcppMessage.INDEX_CALL_PAYLOAD);
             return JsonMessage.call(uniqueId, action, payload);
         }
@@ -118,20 +117,21 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
         }
 
         if (messageTypeId == OcppMessageType.CALL_ERROR.getCode()) {
-            MessageErrorCode errorCode = MessageErrorCode.fromName(jsonNode.get(OcppMessage.INDEX_ERROR_CODE).asText());
-            String errorDescription = jsonNode.get(OcppMessage.INDEX_ERROR_DESCRIPTION).asText();
+            MessageErrorCode errorCode = MessageErrorCode.fromName(
+                jsonNode.get(OcppMessage.INDEX_ERROR_CODE).asString());
+            String errorDescription = jsonNode.get(OcppMessage.INDEX_ERROR_DESCRIPTION).asString();
             JsonNode errorDetails = jsonNode.get(OcppMessage.INDEX_ERROR_DETAILS);
             return JsonMessage.error(uniqueId, errorCode, errorDescription, errorDetails);
         }
 
-        throw new MessageTypeException("Unknown messageType in json: " + jsonNode.asText(), uniqueId);
+        throw new MessageTypeException("Unknown messageType in json: " + jsonNode.asString(), uniqueId);
     }
 
     protected void validateJson(String uniqueId, String className, JsonNode payload) {
-        List<ValidationMessage> validate = jsonValidator.validate(className, payload);
+        List<Error> validate = ocppJsonValidator.validate(className, payload);
         if (!validate.isEmpty()) {
             List<ErrorDetail> errorDetails = validate.stream()
-                .map(x -> new ErrorDetail(x.getCode(),
+                .map(x -> new ErrorDetail(x.getKeyword(),
                     String.format("Validations error : message=%s, details=%s", x.getMessage(), x.getDetails())))
                 .toList();
             throw new FormatViolationException("Json Schema validate failed, json: " + payload, uniqueId, errorDetails);

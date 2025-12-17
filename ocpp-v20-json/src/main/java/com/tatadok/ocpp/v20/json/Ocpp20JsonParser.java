@@ -1,6 +1,6 @@
 package com.tatadok.ocpp.v20.json;
 
-import com.networknt.schema.SpecVersion;
+import com.networknt.schema.SpecificationVersion;
 import com.tatadok.ocpp.core.message.Request;
 import com.tatadok.ocpp.core.message.Response;
 import com.tatadok.ocpp.core.message.UniqueIdRepository;
@@ -14,8 +14,8 @@ public class Ocpp20JsonParser extends AbstractOcppJsonParser {
 
     private final UniqueIdRepository uniqueIdRepository;
 
-    public Ocpp20JsonParser(Ocpp20JsonMapper jsonMapper, UniqueIdRepository uniqueIdRepository) {
-        super(jsonMapper, new OcppJsonValidatorImpl("scheme/v20/", SpecVersion.VersionFlag.V202012));
+    public Ocpp20JsonParser(Ocpp20JsonMapper ocpp20JsonMapper, UniqueIdRepository uniqueIdRepository) {
+        super(ocpp20JsonMapper, new OcppJsonValidatorImpl("scheme/v20/", SpecificationVersion.DRAFT_2020_12));
         this.uniqueIdRepository = uniqueIdRepository;
     }
 

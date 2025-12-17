@@ -1,16 +1,10 @@
 package com.tatadok.ocpp.v16.json;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tatadok.ocpp.json.OcppJsonMapper;
+import com.tatadok.ocpp.json.OcppJacksonMapper;
 
-import java.io.Serial;
+public class Ocpp16JsonMapper extends OcppJacksonMapper {
 
-public class Ocpp16JsonMapper extends OcppJsonMapper {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-    public Ocpp16JsonMapper(ObjectMapper objectMapper) {
-        super(objectMapper);
+    public Ocpp16JsonMapper() {
+        super();
     }
 }

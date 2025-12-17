@@ -14,8 +14,7 @@
 
     <properties>
         <spring-boot-dependencies.version>3.5.6</spring-boot-dependencies.version>
-        <json-schema-validator.version>1.5.6</json-schema-validator.version>
-<!--        <json-schema-validator.version>3.0.0</json-schema-validator.version>-->
+        <json-schema-validator.version>3.0.0</json-schema-validator.version>
 
         <!-- Vulnerability fixed -->
         <commons-lang3.version>3.18.0</commons-lang3.version>

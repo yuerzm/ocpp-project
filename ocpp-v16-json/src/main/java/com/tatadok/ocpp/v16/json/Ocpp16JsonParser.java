@@ -1,6 +1,6 @@
 package com.tatadok.ocpp.v16.json;
 
-import com.networknt.schema.SpecVersion;
+import com.networknt.schema.SpecificationVersion;
 import com.tatadok.ocpp.core.message.Request;
 import com.tatadok.ocpp.core.message.Response;
 import com.tatadok.ocpp.core.message.UniqueIdRepository;
@@ -14,8 +14,8 @@ public class Ocpp16JsonParser extends AbstractOcppJsonParser {
 
     private final UniqueIdRepository uniqueIdRepository;
 
-    public Ocpp16JsonParser(Ocpp16JsonMapper jsonMapper, UniqueIdRepository uniqueIdRepository) {
-        super(jsonMapper, new OcppJsonValidatorImpl("scheme/v16/", SpecVersion.VersionFlag.V202012));
+    public Ocpp16JsonParser(Ocpp16JsonMapper ocpp16JsonMapper, UniqueIdRepository uniqueIdRepository) {
+        super(ocpp16JsonMapper, new OcppJsonValidatorImpl("scheme/v16/", SpecificationVersion.DRAFT_2020_12));
         this.uniqueIdRepository = uniqueIdRepository;
     }
 

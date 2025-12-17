@@ -1,6 +1,5 @@
 package com.tatadok.ocpp.json;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tatadok.ocpp.core.exception.OcppInternalException;
 import com.tatadok.ocpp.core.message.OcppCallErrorMessage;
 import com.tatadok.ocpp.core.message.OcppCallMessage;
@@ -12,10 +11,10 @@ import java.util.List;
 
 public class OcppJsonWriterImpl implements OcppJsonWriter {
 
-    private final OcppJsonMapper objectMapper;
+    private final OcppJsonMapper ocppJsonMapper;
 
-    public OcppJsonWriterImpl(OcppJsonMapper objectMapper) {
-        this.objectMapper = objectMapper;
+    public OcppJsonWriterImpl(OcppJsonMapper ocppJsonMapper) {
+        this.ocppJsonMapper = ocppJsonMapper;
     }
 
     @Override
@@ -37,8 +36,8 @@ public class OcppJsonWriterImpl implements OcppJsonWriter {
             objects.add(OcppMessage.INDEX_ERROR_DETAILS, callError.getErrorDetails());
         }
         try {
-            return objectMapper.writeValueAsString(objects);
-        } catch (JsonProcessingException e) {
+            return ocppJsonMapper.writeValueAsString(objects);
+        } catch (Exception e) {
             throw new OcppInternalException("Cannot write OCPP JSON-RPC message to JSON.", e);
         }
     }
