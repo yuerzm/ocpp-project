@@ -13,7 +13,6 @@
 
     <artifactId>ocpp-bom</artifactId>
     <packaging>pom</packaging>
-    <version>latest</version>
 
     <name>OCPP Library BOM</name>
     <description>OCPP Library BOM</description>
