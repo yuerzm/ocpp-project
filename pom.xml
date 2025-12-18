@@ -14,7 +14,8 @@
     <modules>
         <module>ocpp-dependencies</module>
         <module>ocpp-parent</module>
-
+        <module>ocpp-bom</module>
+        
         <module>ocpp-core</module>
         <module>ocpp-json</module>
         <module>ocpp-server</module>

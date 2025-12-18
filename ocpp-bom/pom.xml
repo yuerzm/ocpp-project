@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.tatadok.ocpp</groupId>
+        <artifactId>ocpp-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../ocpp-parent</relativePath>
+    </parent>
+
+    <artifactId>ocpp-bom</artifactId>
+    <packaging>pom</packaging>
+    <version>latest</version>
+
+    <name>OCPP Library BOM</name>
+    <description>OCPP Library BOM</description>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-json</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-server</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v16-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v16-json</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v16-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v16-server</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v20-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v20-json</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v20-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v20-server</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tatadok.ocpp</groupId>
+                <artifactId>ocpp-v21-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
