@@ -13,8 +13,8 @@
 
     <groupId>com.tatadok.ocpp</groupId>
     <artifactId>ocpp-parent</artifactId>
-    <version>${revision}</version>
     <packaging>pom</packaging>
+    <version>${revision}</version>
 
     <name>OCPP Library Parent</name>
     <description>OCPP Library Parent</description>

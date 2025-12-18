@@ -5,8 +5,8 @@
 
     <groupId>com.tatadok.ocpp</groupId>
     <artifactId>ocpp-project</artifactId>
-    <version>latest</version>
     <packaging>pom</packaging>
+    <version>latest</version>
 
     <name>OCPP Library Project</name>
     <description>OCPP Library Project</description>

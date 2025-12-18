@@ -6,8 +6,8 @@
 
     <groupId>com.tatadok.ocpp</groupId>
     <artifactId>ocpp-dependencies</artifactId>
-    <version>latest</version>
     <packaging>pom</packaging>
+    <version>latest</version>
 
     <name>OCPP Library Dependencies</name>
     <description>OCPP Library Dependencies</description>
