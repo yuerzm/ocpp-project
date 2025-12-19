@@ -3,13 +3,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.0.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <groupId>com.tatadok.ocpp</groupId>
     <artifactId>ocpp-project</artifactId>
     <packaging>pom</packaging>
-    <version>latest</version>
+    <version>${revision}</version>
 
     <name>OCPP Library Project</name>
     <description>OCPP Library Project</description>
+
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+
+        <java.version>25</java.version>
+    </properties>
 
     <modules>
         <module>ocpp-dependencies</module>
@@ -36,6 +49,26 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <tagBase>${project.version}</tagBase>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <updateWorkingCopyVersions>true</updateWorkingCopyVersions>
+                    <updateDependencies>true</updateDependencies>
+                    <useReleaseProfile>true</useReleaseProfile>
+                    <releaseProfiles>prod</releaseProfiles>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>

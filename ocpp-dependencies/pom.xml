@@ -4,10 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tatadok.ocpp</groupId>
+    <parent>
+        <groupId>com.tatadok.ocpp</groupId>
+        <artifactId>ocpp-project</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
     <artifactId>ocpp-dependencies</artifactId>
     <packaging>pom</packaging>
-    <version>latest</version>
 
     <name>OCPP Library Dependencies</name>
     <description>OCPP Library Dependencies</description>
