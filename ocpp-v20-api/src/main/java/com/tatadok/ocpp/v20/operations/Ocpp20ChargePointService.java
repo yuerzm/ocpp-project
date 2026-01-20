@@ -6,6 +6,6 @@ import com.tatadok.ocpp.core.service.ChargePointService;
 public interface Ocpp20ChargePointService extends ChargePointService {
 
     default OcppVersion getVersion() {
-        return OcppVersion.V_20;
+        return OcppVersion.V_201;
     }
 }

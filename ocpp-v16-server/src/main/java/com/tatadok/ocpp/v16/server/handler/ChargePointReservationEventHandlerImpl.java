@@ -10,9 +10,7 @@ import com.tatadok.ocpp.v16.model.reservation.ReserveNowResponse;
 import com.tatadok.ocpp.v16.server.Ocpp16ServerTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ChargePointReservationEventHandlerImpl extends AbstractChargePointEventHandler implements
     ChargePointReservationEventHandler {
 
