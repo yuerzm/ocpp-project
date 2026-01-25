@@ -17,6 +17,6 @@ public class Ocpp20WebSocketEndpoint extends AbstractWebSocketEndpoint {
 
     @Override
     protected Collection<OcppVersion> getSupportVersions() {
-        return List.of(OcppVersion.V_20, OcppVersion.V_201);
+        return List.of(OcppVersion.V_201);
     }
 }

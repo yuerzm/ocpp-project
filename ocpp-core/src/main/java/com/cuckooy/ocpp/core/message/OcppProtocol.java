@@ -14,9 +14,6 @@ public enum OcppProtocol {
     V_16_SOAP(OcppVersion.V_16, OcppTransport.SOAP),
     V_16_JSON(OcppVersion.V_16, OcppTransport.JSON),
 
-    V_20_SOAP(OcppVersion.V_20, OcppTransport.SOAP),
-    V_20_JSON(OcppVersion.V_20, OcppTransport.JSON),
-
     V_201_SOAP(OcppVersion.V_201, OcppTransport.SOAP),
     V_201_JSON(OcppVersion.V_201, OcppTransport.JSON),
 

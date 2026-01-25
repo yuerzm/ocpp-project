@@ -1,6 +1,5 @@
 package com.cuckooy.ocpp.v16.server.operations;
 
-import com.cuckooy.ocpp.core.message.OcppVersion;
 import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.core.message.Response;
 import com.cuckooy.ocpp.v16.handler.CentralSystemCoreEventHandler;
@@ -72,10 +71,5 @@ public class Ocpp16CentralSystemServiceImpl implements Ocpp16CentralSystemServic
         } else {
             throw new UnsupportedOperationException("Unsupported request type: " + request.getClass());
         }
-    }
-
-    @Override
-    public OcppVersion getVersion() {
-        return OcppVersion.V_16;
     }
 }

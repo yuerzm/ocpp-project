@@ -8,7 +8,6 @@ public enum OcppVersion {
     V_12("ocpp1.2"),
     V_15("ocpp1.5"),
     V_16("ocpp1.6"),
-    V_20("ocpp2.0"),
     V_201("ocpp2.0.1"),
     V_21("ocpp2.1");
 
