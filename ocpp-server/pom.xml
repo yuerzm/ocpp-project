@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.tatadok.ocpp</groupId>
+        <groupId>com.cuckooy.ocpp</groupId>
         <artifactId>ocpp-parent</artifactId>
         <version>${revision}</version>
         <relativePath>../ocpp-parent</relativePath>
@@ -20,12 +20,12 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.tatadok.ocpp</groupId>
+            <groupId>com.cuckooy.ocpp</groupId>
             <artifactId>ocpp-core</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.tatadok.ocpp</groupId>
+            <groupId>com.cuckooy.ocpp</groupId>
             <artifactId>ocpp-json</artifactId>
             <version>${revision}</version>
         </dependency>

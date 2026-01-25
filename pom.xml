@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.tatadok.ocpp</groupId>
+    <groupId>com.cuckooy.ocpp</groupId>
     <artifactId>ocpp-project</artifactId>
     <packaging>pom</packaging>
     <version>${revision}</version>

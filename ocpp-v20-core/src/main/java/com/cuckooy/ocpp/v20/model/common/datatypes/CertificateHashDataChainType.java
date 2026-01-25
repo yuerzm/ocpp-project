@@ -1,0 +1,14 @@
+package com.cuckooy.ocpp.v20.model.common.datatypes;
+
+import com.cuckooy.ocpp.v20.model.common.enumerations.GetCertificateIdUseEnumType;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class CertificateHashDataChainType {
+
+    private GetCertificateIdUseEnumType certificateType;
+    private CertificateHashDataType certificateHashData;
+    private List<CertificateHashDataType> childCertificateHashData;
+}
