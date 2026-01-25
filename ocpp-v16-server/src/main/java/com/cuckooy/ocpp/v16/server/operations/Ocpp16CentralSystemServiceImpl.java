@@ -3,7 +3,6 @@ package com.cuckooy.ocpp.v16.server.operations;
 import com.cuckooy.ocpp.core.message.OcppVersion;
 import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.core.message.Response;
-import com.cuckooy.ocpp.core.service.CentralSystemService;
 import com.cuckooy.ocpp.v16.handler.CentralSystemCoreEventHandler;
 import com.cuckooy.ocpp.v16.handler.CentralSystemFirmwareEventHandler;
 import com.cuckooy.ocpp.v16.model.core.AuthorizeRequest;
@@ -16,10 +15,11 @@ import com.cuckooy.ocpp.v16.model.core.StatusNotificationRequest;
 import com.cuckooy.ocpp.v16.model.core.StopTransactionRequest;
 import com.cuckooy.ocpp.v16.model.firmware.DiagnosticsStatusNotificationRequest;
 import com.cuckooy.ocpp.v16.model.firmware.FirmwareStatusNotificationRequest;
+import com.cuckooy.ocpp.v16.operation.Ocpp16CentralSystemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Ocpp16CentralSystemServiceImpl implements CentralSystemService {
+public class Ocpp16CentralSystemServiceImpl implements Ocpp16CentralSystemService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
