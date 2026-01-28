@@ -2,35 +2,46 @@ package com.cuckooy.ocpp.v16.model.core;
 
 public enum ChargePointErrorCode {
 
-    ConnectorLockFailure,
+    ConnectorLockFailure("ConnectorLockFailure"),
 
-    EVCommunicationError,
+    EVCommunicationError("EVCommunicationError"),
 
-    GroundFailure,
+    GroundFailure("GroundFailure"),
 
-    HighTemperature,
+    HighTemperature("HighTemperature"),
 
-    InternalError,
+    InternalError("InternalError"),
 
-    LocalListConflict,
+    LocalListConflict("LocalListConflict"),
 
-    NoError,
+    NoError("NoError"),
 
-    OtherError,
+    OtherError("OtherError"),
 
-    OverCurrentFailure,
+    OverCurrentFailure("OverCurrentFailure"),
 
-    OverVoltage,
+    OverVoltage("OverVoltage"),
 
-    PowerMeterFailure,
+    PowerMeterFailure("PowerMeterFailure"),
 
-    PowerSwitchFailure,
+    PowerSwitchFailure("PowerSwitchFailure"),
 
-    ReaderFailure,
+    ReaderFailure("ReaderFailure"),
 
-    ResetFailure,
+    ResetFailure("ResetFailure"),
 
-    UnderVoltage,
+    UnderVoltage("UnderVoltage"),
 
-    WeakSignal
+    WeakSignal("WeakSignal");
+
+    private final String value;
+
+    ChargePointErrorCode(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return this.value;
+    }
 }
