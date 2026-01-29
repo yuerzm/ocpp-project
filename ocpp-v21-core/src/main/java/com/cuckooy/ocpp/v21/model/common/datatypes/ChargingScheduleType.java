@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.v21.model.common.enumerations.ChargingRateUnitEnumType;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -13,7 +13,7 @@ public class ChargingScheduleType {
     private Integer id;
     private ChargingRateUnitEnumType chargingRateUnit;
     private List<ChargingSchedulePeriodType> chargingSchedulePeriod;
-    private ZonedDateTime startSchedule;
+    private Instant startSchedule;
     private Integer duration;
     private Double minChargingRate;
     private SalesTariffType salesTariff;

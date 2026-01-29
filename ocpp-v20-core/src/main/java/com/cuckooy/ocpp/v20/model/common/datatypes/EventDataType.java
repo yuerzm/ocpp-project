@@ -4,13 +4,13 @@ import com.cuckooy.ocpp.v20.model.common.enumerations.EventNotificationEnumType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.EventTriggerEnumType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 public class EventDataType {
 
     private Integer eventId;
-    private ZonedDateTime timestamp;
+    private Instant timestamp;
     private EventTriggerEnumType trigger;
     private String actualValue;
     private EventNotificationEnumType eventNotificationType;

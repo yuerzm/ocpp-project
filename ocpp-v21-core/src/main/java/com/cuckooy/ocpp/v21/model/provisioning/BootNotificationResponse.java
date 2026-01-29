@@ -5,12 +5,12 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.RegistrationStatusEnumType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 public class BootNotificationResponse implements Response {
 
-    private ZonedDateTime currentTime;
+    private Instant currentTime;
     private Integer interval;
     private RegistrationStatusEnumType status;
     private StatusInfoType statusInfo;

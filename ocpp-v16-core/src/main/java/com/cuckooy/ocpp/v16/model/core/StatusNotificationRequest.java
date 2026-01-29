@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.core.message.Request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +17,7 @@ public class StatusNotificationRequest implements Request {
 
     private String info;
 
-    private ZonedDateTime timestamp;
+    private Instant timestamp;
 
     private String vendorId;
 

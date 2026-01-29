@@ -4,12 +4,12 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v21.model.common.datatypes.ChargingScheduleType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 public class NotifyEVChargingScheduleRequest implements Request {
 
-    private ZonedDateTime timeBase;
+    private Instant timeBase;
     private Integer evseId;
     private ChargingScheduleType chargingSchedule;
 }

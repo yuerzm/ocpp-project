@@ -5,13 +5,13 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.IdTokenType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.ConnectorEnumType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 public class ReserveNowRequest implements Request {
 
     private Integer id;
-    private ZonedDateTime expiryDateTime;
+    private Instant expiryDateTime;
     private ConnectorEnumType connectorType;
     private Integer evseId;
     private IdTokenType idToken;

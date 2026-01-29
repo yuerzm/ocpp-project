@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.core.message.Request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -14,11 +14,11 @@ public class UpdateFirmwareRequest implements Request {
 
     private Integer retries;
 
-    private ZonedDateTime retrieveDate;
+    private Instant retrieveDate;
 
     private Integer retryInterval;
 
-    public UpdateFirmwareRequest(String location, ZonedDateTime retrieveDate) {
+    public UpdateFirmwareRequest(String location, Instant retrieveDate) {
         this.location = location;
         this.retrieveDate = retrieveDate;
     }

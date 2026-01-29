@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.core.message.Request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -15,7 +15,7 @@ public class StopTransactionRequest implements Request {
 
     private Integer meterStop;
 
-    private ZonedDateTime timestamp;
+    private Instant timestamp;
 
     private Integer transactionId;
 

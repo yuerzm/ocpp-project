@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v21.model.common.datatypes.MonitoringDataType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -13,6 +13,6 @@ public class NotifyMonitoringReportRequest implements Request {
     private Integer requestId;
     private Boolean tbc = false;
     private Integer seqNo;
-    private ZonedDateTime generatedAt;
+    private Instant generatedAt;
     private List<MonitoringDataType> monitor = null;
 }

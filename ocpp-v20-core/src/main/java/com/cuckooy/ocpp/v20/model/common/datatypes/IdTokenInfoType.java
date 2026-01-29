@@ -3,14 +3,14 @@ package com.cuckooy.ocpp.v20.model.common.datatypes;
 import com.cuckooy.ocpp.v20.model.common.enumerations.AuthorizationStatusEnumType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
 public class IdTokenInfoType {
 
     private AuthorizationStatusEnumType status;
-    private ZonedDateTime cacheExpiryDateTime;
+    private Instant cacheExpiryDateTime;
     private Integer chargingPriority;
     private String language1;
     private List<Integer> evseId;

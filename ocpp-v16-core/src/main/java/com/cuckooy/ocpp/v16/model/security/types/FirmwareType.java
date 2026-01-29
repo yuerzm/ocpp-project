@@ -3,15 +3,15 @@ package com.cuckooy.ocpp.v16.model.security.types;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
 public class FirmwareType {
 
     private String location;
-    private ZonedDateTime retrieveDateTime;
-    private ZonedDateTime installDateTime;
+    private Instant retrieveDateTime;
+    private Instant installDateTime;
     private String signingCertificate;
     private String signature;
 }

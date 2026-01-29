@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.core.message.Request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -16,9 +16,9 @@ public class GetDiagnosticsRequest implements Request {
 
     private Integer retryInterval;
 
-    private ZonedDateTime startTime;
+    private Instant startTime;
 
-    private ZonedDateTime stopTime;
+    private Instant stopTime;
 
     public GetDiagnosticsRequest(String location) {
         this.location = location;

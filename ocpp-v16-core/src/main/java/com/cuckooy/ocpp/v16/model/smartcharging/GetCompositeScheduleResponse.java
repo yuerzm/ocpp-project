@@ -5,7 +5,7 @@ import com.cuckooy.ocpp.v16.model.core.ChargingSchedule;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +15,7 @@ public class GetCompositeScheduleResponse implements Response {
 
     private Integer connectorId;
 
-    private ZonedDateTime scheduleStart;
+    private Instant scheduleStart;
 
     private ChargingSchedule chargingSchedule;
 

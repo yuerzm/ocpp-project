@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v20.model.common.enumerations.ConnectorStatusEnumType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 public class StatusNotificationRequest implements Request {
@@ -12,5 +12,5 @@ public class StatusNotificationRequest implements Request {
     private Integer connectorId;
     private ConnectorStatusEnumType connectorStatus;
     private Integer evseId;
-    private ZonedDateTime timestamp;
+    private Instant timestamp;
 }

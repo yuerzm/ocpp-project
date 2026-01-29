@@ -3,14 +3,14 @@ package com.cuckooy.ocpp.v20.model.availability;
 import com.cuckooy.ocpp.core.message.Response;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 public class HeartbeatResponse implements Response {
 
-    private ZonedDateTime currentTime;
+    private Instant currentTime;
 
-    public HeartbeatResponse(ZonedDateTime currentTime) {
+    public HeartbeatResponse(Instant currentTime) {
         this.currentTime = currentTime;
     }
 }

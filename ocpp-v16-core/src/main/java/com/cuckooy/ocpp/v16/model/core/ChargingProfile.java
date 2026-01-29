@@ -3,7 +3,7 @@ package com.cuckooy.ocpp.v16.model.core;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -21,9 +21,9 @@ public class ChargingProfile {
 
     private RecurrencyKindType recurrencyKind;
 
-    private ZonedDateTime validFrom;
+    private Instant validFrom;
 
-    private ZonedDateTime validTo;
+    private Instant validTo;
 
     private ChargingSchedule chargingSchedule;
 

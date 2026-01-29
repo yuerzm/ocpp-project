@@ -4,14 +4,14 @@ import com.cuckooy.ocpp.core.message.Request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
 public class SecurityEventNotificationRequest implements Request {
 
     private String type;
-    private ZonedDateTime timestamp;
+    private Instant timestamp;
     private String techInfo;
 
 }

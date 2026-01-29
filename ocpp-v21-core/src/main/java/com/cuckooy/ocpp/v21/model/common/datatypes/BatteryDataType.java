@@ -3,7 +3,7 @@ package com.cuckooy.ocpp.v21.model.common.datatypes;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 public class BatteryDataType {
@@ -12,6 +12,6 @@ public class BatteryDataType {
     private String serialNumber;
     private BigDecimal soC;
     private BigDecimal soH;
-    private ZonedDateTime productionDate;
+    private Instant productionDate;
     private String vendorInfo;
 }

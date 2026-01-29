@@ -2,13 +2,13 @@ package com.cuckooy.ocpp.v21.model.common.datatypes;
 
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
 public class AbsolutePriceScheduleType {
 
-    private ZonedDateTime timeAnchor;
+    private Instant timeAnchor;
     private Integer priceScheduleID;
     private String priceScheduleDescription;
     private String currency;

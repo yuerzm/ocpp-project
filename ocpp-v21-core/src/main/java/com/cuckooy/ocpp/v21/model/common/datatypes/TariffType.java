@@ -2,13 +2,13 @@ package com.cuckooy.ocpp.v21.model.common.datatypes;
 
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 public class TariffType {
 
     private String tariffId;
     private String currency;
-    private ZonedDateTime validFrom;
+    private Instant validFrom;
     private MessageContentType description;
 }

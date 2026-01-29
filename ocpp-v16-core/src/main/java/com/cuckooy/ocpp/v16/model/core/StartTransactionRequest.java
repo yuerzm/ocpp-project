@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.core.message.Request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -18,6 +18,6 @@ public class StartTransactionRequest implements Request {
 
     private Integer reservationId;
 
-    private ZonedDateTime timestamp;
+    private Instant timestamp;
 
 }

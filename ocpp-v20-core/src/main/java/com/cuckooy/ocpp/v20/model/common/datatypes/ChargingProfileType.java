@@ -5,7 +5,7 @@ import com.cuckooy.ocpp.v20.model.common.enumerations.ChargingProfilePurposeEnum
 import com.cuckooy.ocpp.v20.model.common.enumerations.RecurrencyKindEnumType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -17,7 +17,7 @@ public class ChargingProfileType {
     private ChargingProfileKindEnumType chargingProfileKind;
     private List<ChargingScheduleType> chargingSchedule;
     private RecurrencyKindEnumType recurrencyKind;
-    private ZonedDateTime validFrom;
-    private ZonedDateTime validTo;
+    private Instant validFrom;
+    private Instant validTo;
     private String transactionId;
 }

@@ -9,14 +9,14 @@ import com.cuckooy.ocpp.v21.model.common.enumerations.TransactionEventEnumType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.TriggerReasonEnumType;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
 public class TransactionEventRequest implements Request {
 
     private TransactionEventEnumType eventType;
-    private ZonedDateTime timestamp;
+    private Instant timestamp;
     private TriggerReasonEnumType triggerReason;
     private Integer seqNo;
     private TransactionType transactionInfo;

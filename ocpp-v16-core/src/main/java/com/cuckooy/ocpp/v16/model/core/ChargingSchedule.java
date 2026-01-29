@@ -4,7 +4,7 @@ import com.cuckooy.ocpp.v16.model.smartcharging.ChargingRateUnitType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -13,7 +13,7 @@ public class ChargingSchedule {
 
     private Integer duration;
 
-    private ZonedDateTime startSchedule;
+    private Instant startSchedule;
 
     private ChargingRateUnitType chargingRateUnit;
 
