@@ -18,11 +18,20 @@
     <description>OCPP Library Dependencies</description>
 
     <properties>
+        <spring-boot-dependencies.version>4.0.2</spring-boot-dependencies.version>
         <json-schema-validator.version>3.0.0</json-schema-validator.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>json-schema-validator</artifactId>
