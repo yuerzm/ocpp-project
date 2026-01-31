@@ -65,8 +65,9 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
             return false;
         }
 
-        if (basicAuthenticateValidator.authenticate(identity, request, registry)) {
-            logger.error("ChargePoint identity '{}' is not recognized.", identity);
+        boolean authenticated = basicAuthenticateValidator.authenticate(identity, request, registry);
+        if (!authenticated) {
+            logger.error("ChargePoint identity '{}' is not authenticated.", identity);
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             return false;
         }

@@ -53,7 +53,9 @@ public abstract class AbstractServerTransport implements ServerTransport {
 
     @Override
     public void receive(WebSocketSession session, String message) {
-        logger.info("Recv message, session: {}, message: {}", session.getId(), message);
+        if (logger.isDebugEnabled()) {
+            logger.debug("Recv message, session: {}, message: {}", session.getId(), message);
+        }
 
         loggerOcppMessage(session, message);
 
@@ -99,7 +101,9 @@ public abstract class AbstractServerTransport implements ServerTransport {
 
         try {
             session.sendMessage(new TextMessage(serialized));
-            logger.info("Send message, session: {}, message: {}", session.getId(), serialized);
+            if (logger.isDebugEnabled()) {
+                logger.debug("Send message, session: {}, message: {}", session.getId(), serialized);
+            }
         } catch (IOException e) {
             logger.error("Send websocket text message failed.", e);
             promise.completeExceptionally(e);
@@ -164,7 +168,9 @@ public abstract class AbstractServerTransport implements ServerTransport {
 
     private void onSuccess(WebSocketSession session, OcppCallResultMessage message) {
         String serialized = ocppJsonWriter.writeJson(message);
-        logger.info("Send call result, session: {}, message: {}", session.getId(), serialized);
+        if (logger.isDebugEnabled()) {
+            logger.info("Send call result, session: {}, message: {}", session.getId(), serialized);
+        }
         try {
             loggerOcppMessage(session, serialized);
             session.sendMessage(new TextMessage(serialized));
@@ -175,7 +181,9 @@ public abstract class AbstractServerTransport implements ServerTransport {
 
     private void onFailure(WebSocketSession session, OcppCallErrorMessage message) {
         String serialized = ocppJsonWriter.writeJson(message);
-        logger.warn("Send call error, session: {}, message: {}", session.getId(), serialized);
+        if (logger.isDebugEnabled()) {
+            logger.debug("Send call error, session: {}, message: {}", session.getId(), serialized);
+        }
         try {
             loggerOcppMessage(session, serialized);
             session.sendMessage(new TextMessage(serialized));
