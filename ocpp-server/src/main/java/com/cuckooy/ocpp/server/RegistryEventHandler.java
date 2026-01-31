@@ -4,15 +4,8 @@ import com.cuckooy.ocpp.server.registry.ChargePointRegistry;
 
 public interface RegistryEventHandler {
 
-    default ChargePointRegistry retrieve(String identity) {
-        return null;
-    }
+    ChargePointRegistry retrieve(String identity);
 
-    default boolean validate(String identity) {
-        return true;
-    }
+    boolean validate(String identity);
 
-    default boolean check(String identity) {
-        return true;
-    }
 }
