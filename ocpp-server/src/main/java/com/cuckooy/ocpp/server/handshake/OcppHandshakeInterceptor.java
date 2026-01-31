@@ -1,6 +1,6 @@
 package com.cuckooy.ocpp.server.handshake;
 
-import com.cuckooy.ocpp.server.provision.ChargePointService;
+import com.cuckooy.ocpp.server.provision.RegistryEventHandler;
 import com.cuckooy.ocpp.server.provision.SessionAttributeHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.NonNull;
@@ -21,15 +21,15 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
     private static final String DEFAULT_PATH = "/websocket/";
 
     private String path = DEFAULT_PATH;
-    private final ChargePointService chargePointService;
+    private final RegistryEventHandler registryEventHandler;
 
-    public OcppHandshakeInterceptor(ChargePointService chargePointService) {
-        this.chargePointService = chargePointService;
+    public OcppHandshakeInterceptor(RegistryEventHandler registryEventHandler) {
+        this.registryEventHandler = registryEventHandler;
     }
 
-    public OcppHandshakeInterceptor(String path, ChargePointService chargePointService) {
+    public OcppHandshakeInterceptor(String path, RegistryEventHandler registryEventHandler) {
         this.path = path;
-        this.chargePointService = chargePointService;
+        this.registryEventHandler = registryEventHandler;
     }
 
     @Override
@@ -42,15 +42,15 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
 
         String identity = parseIdentity(request.getURI().getPath());
 
-        boolean valid = chargePointService.validate(identity);
-        if (!valid) {
+        boolean validated = registryEventHandler.validate(identity);
+        if (!validated) {
             logger.error("ChargePoint identity: '{}', violates the configured pattern.", identity);
             response.setStatusCode(HttpStatus.BAD_REQUEST);
             return false;
         }
 
-        boolean exists = chargePointService.checkChargePoint(identity);
-        if (!exists) {
+        boolean checked = registryEventHandler.check(identity);
+        if (!checked) {
             logger.error("ChargePoint identity '{}' is not recognized.", identity);
             response.setStatusCode(HttpStatus.NOT_FOUND);
             return false;
