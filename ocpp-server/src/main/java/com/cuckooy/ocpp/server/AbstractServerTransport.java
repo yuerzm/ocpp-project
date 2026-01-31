@@ -27,6 +27,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * The type Abstract server transport.
+ */
 public abstract class AbstractServerTransport implements ServerTransport {
 
     private static final String OCPP_LOGGER = "OCPP.Logger";
@@ -39,6 +42,14 @@ public abstract class AbstractServerTransport implements ServerTransport {
     private final UniqueIdRepository uniqueIdRepository;
     private final CentralSystemService centralSystemService;
 
+    /**
+     * Instantiates a new Abstract server transport.
+     *
+     * @param ocppJsonParser       the ocpp json parser
+     * @param ocppJsonWriter       the ocpp json writer
+     * @param uniqueIdRepository   the unique id repository
+     * @param centralSystemService the central system service
+     */
     public AbstractServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
                                    UniqueIdRepository uniqueIdRepository, CentralSystemService centralSystemService) {
         Assert.notNull(ocppJsonParser, "ocppJsonParser cannot be null");

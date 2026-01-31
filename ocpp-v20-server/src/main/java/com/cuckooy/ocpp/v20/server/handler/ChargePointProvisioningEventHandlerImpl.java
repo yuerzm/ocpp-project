@@ -1,7 +1,7 @@
 package com.cuckooy.ocpp.v20.server.handler;
 
-import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.v20.handler.ChargePointProvisioningEventHandler;
 import com.cuckooy.ocpp.v20.model.provisioning.GetBaseReportRequest;
 import com.cuckooy.ocpp.v20.model.provisioning.GetBaseReportResponse;
@@ -17,9 +17,18 @@ import com.cuckooy.ocpp.v20.model.provisioning.SetVariablesRequest;
 import com.cuckooy.ocpp.v20.model.provisioning.SetVariablesResponse;
 import com.cuckooy.ocpp.v20.server.Ocpp20ServerTransport;
 
+/**
+ * The type Charge point provisioning event handler.
+ */
 public class ChargePointProvisioningEventHandlerImpl extends AbstractChargePointEventHandler implements
     ChargePointProvisioningEventHandler {
 
+    /**
+     * Instantiates a new Charge point provisioning event handler.
+     *
+     * @param serverTransport   the server transport
+     * @param sessionRepository the session repository
+     */
     public ChargePointProvisioningEventHandlerImpl(Ocpp20ServerTransport serverTransport,
                                                    SessionRepository sessionRepository) {
         super(serverTransport, sessionRepository);

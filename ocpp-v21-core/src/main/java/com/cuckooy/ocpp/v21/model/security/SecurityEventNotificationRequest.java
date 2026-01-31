@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Security event notification request.
+ */
 @Data
 public class SecurityEventNotificationRequest implements Request {
 

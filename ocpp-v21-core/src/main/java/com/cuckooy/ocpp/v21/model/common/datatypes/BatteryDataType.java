@@ -5,6 +5,9 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.Instant;
 
+/**
+ * The type Battery data type.
+ */
 @Data
 public class BatteryDataType {
 

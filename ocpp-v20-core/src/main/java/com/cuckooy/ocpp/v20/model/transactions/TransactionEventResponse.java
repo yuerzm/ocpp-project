@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.IdTokenInfoType;
 import com.cuckooy.ocpp.v20.model.common.datatypes.MessageContentType;
 import lombok.Data;
 
+/**
+ * The type Transaction event response.
+ */
 @Data
 public class TransactionEventResponse implements Response {
 

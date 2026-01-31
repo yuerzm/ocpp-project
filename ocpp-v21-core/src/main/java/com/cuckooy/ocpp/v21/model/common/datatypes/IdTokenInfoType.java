@@ -6,6 +6,9 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Id token info type.
+ */
 @Data
 public class IdTokenInfoType {
 

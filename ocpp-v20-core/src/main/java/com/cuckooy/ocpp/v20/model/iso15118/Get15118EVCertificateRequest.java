@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v20.model.common.enumerations.CertificateActionEnumType;
 import lombok.Data;
 
+/**
+ * The type Get 15118 ev certificate request.
+ */
 @Data
 public class Get15118EVCertificateRequest implements Request {
 

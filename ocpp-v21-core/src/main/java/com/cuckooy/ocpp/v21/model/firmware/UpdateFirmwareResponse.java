@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.UpdateFirmwareStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Update firmware response.
+ */
 @Data
 public class UpdateFirmwareResponse implements Response {
 

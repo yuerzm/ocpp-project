@@ -5,6 +5,9 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Meter value type.
+ */
 @Data
 public class MeterValueType {
 

@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.GenericStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Sign certificate response.
+ */
 @Data
 public class SignCertificateResponse implements Response {
 

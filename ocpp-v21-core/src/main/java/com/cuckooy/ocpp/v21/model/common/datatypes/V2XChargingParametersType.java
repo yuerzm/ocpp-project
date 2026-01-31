@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The type V 2 x charging parameters type.
+ */
 @Data
 public class V2XChargingParametersType {
 

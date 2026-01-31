@@ -42,6 +42,9 @@ import org.springframework.web.socket.WebSocketSession;
 
 import java.util.Optional;
 
+/**
+ * The type Ocpp 16 charge point service.
+ */
 public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -54,6 +57,12 @@ public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
     private final ChargePointReservationEventHandler reservationEventHandler;
     private final ChargePointSmartChargingEventHandler smartChargingEventHandler;
 
+    /**
+     * Instantiates a new Ocpp 16 charge point service.
+     *
+     * @param serverTransport   the server transport
+     * @param sessionRepository the session repository
+     */
     public Ocpp16ChargePointServiceImpl(Ocpp16ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
         this.coreEventHandler = new ChargePointCoreEventHandlerImpl(serverTransport, sessionRepository);

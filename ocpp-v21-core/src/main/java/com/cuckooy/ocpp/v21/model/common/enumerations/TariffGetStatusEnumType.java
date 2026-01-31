@@ -1,9 +1,21 @@
 package com.cuckooy.ocpp.v21.model.common.enumerations;
 
+/**
+ * The enum Tariff get status enum type.
+ */
 public enum TariffGetStatusEnumType {
 
+    /**
+     * Accepted tariff get status enum type.
+     */
     Accepted("Accepted"),
+    /**
+     * Rejected tariff get status enum type.
+     */
     Rejected("Rejected"),
+    /**
+     * No tariff tariff get status enum type.
+     */
     NoTariff("NoTariff"),
     ;
 

@@ -2,10 +2,19 @@ package com.cuckooy.ocpp.core.message;
 
 import lombok.Getter;
 
+/**
+ * The enum Ocpp transport.
+ */
 @Getter
 public enum OcppTransport {
 
+    /**
+     * Soap ocpp transport.
+     */
     SOAP("S"),  // HTTP with SOAP payloads
+    /**
+     * Json ocpp transport.
+     */
     JSON("J");  // WebSocket with JSON payloads
 
     private final String value;
@@ -14,6 +23,12 @@ public enum OcppTransport {
         this.value = value;
     }
 
+    /**
+     * From value ocpp transport.
+     *
+     * @param value the value
+     * @return the ocpp transport
+     */
     public static OcppTransport fromValue(String value) {
         for (OcppTransport transport : OcppTransport.values()) {
             if (transport.getValue().equals(value)) {
@@ -23,6 +38,12 @@ public enum OcppTransport {
         throw new IllegalArgumentException(value);
     }
 
+    /**
+     * From name ocpp transport.
+     *
+     * @param name the name
+     * @return the ocpp transport
+     */
     public static OcppTransport fromName(String name) {
         for (OcppTransport transport : OcppTransport.values()) {
             if (transport.name().equals(name)) {

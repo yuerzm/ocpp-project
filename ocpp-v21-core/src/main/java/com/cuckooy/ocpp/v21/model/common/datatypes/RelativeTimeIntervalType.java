@@ -2,6 +2,9 @@ package com.cuckooy.ocpp.v21.model.common.datatypes;
 
 import lombok.Data;
 
+/**
+ * The type Relative time interval type.
+ */
 @Data
 public class RelativeTimeIntervalType {
 

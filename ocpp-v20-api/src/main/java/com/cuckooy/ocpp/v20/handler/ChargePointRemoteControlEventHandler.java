@@ -9,16 +9,51 @@ import com.cuckooy.ocpp.v20.model.remote.TriggerMessageResponse;
 import com.cuckooy.ocpp.v20.model.remote.UnlockConnectorRequest;
 import com.cuckooy.ocpp.v20.model.remote.UnlockConnectorResponse;
 
+/**
+ * The interface Charge point remote control event handler.
+ */
 public interface ChargePointRemoteControlEventHandler {
 
+    /**
+     * Handle request start transaction request start transaction response.
+     *
+     * @param sessionId the session id
+     * @param identity  the identity
+     * @param request   the request
+     * @return the request start transaction response
+     */
     RequestStartTransactionResponse handleRequestStartTransaction(String sessionId, String identity,
                                                                   RequestStartTransactionRequest request);
 
+    /**
+     * Handle request stop transaction request stop transaction response.
+     *
+     * @param sessionId the session id
+     * @param identity  the identity
+     * @param request   the request
+     * @return the request stop transaction response
+     */
     RequestStopTransactionResponse handleRequestStopTransaction(String sessionId, String identity,
                                                                 RequestStopTransactionRequest request);
 
+    /**
+     * Handle trigger message trigger message response.
+     *
+     * @param sessionId the session id
+     * @param identity  the identity
+     * @param request   the request
+     * @return the trigger message response
+     */
     TriggerMessageResponse handleTriggerMessage(String sessionId, String identity, TriggerMessageRequest request);
 
+    /**
+     * Handle unlock connector unlock connector response.
+     *
+     * @param sessionId the session id
+     * @param identity  the identity
+     * @param request   the request
+     * @return the unlock connector response
+     */
     UnlockConnectorResponse handleUnlockConnector(String sessionId, String identity, UnlockConnectorRequest request);
 
 }

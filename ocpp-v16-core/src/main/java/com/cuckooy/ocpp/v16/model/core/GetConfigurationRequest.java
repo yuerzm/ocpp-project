@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * The type Get configuration request.
+ */
 @Data
 @NoArgsConstructor
 public class GetConfigurationRequest implements Request {

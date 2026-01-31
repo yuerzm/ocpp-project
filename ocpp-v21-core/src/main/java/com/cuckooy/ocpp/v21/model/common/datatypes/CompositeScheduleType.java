@@ -6,6 +6,9 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Composite schedule type.
+ */
 @Data
 public class CompositeScheduleType {
 

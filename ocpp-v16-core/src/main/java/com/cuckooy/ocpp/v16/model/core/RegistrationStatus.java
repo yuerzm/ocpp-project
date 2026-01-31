@@ -1,11 +1,23 @@
 package com.cuckooy.ocpp.v16.model.core;
 
+/**
+ * The enum Registration status.
+ */
 public enum RegistrationStatus {
 
+    /**
+     * Accepted registration status.
+     */
     Accepted("Accepted"),
 
+    /**
+     * Pending registration status.
+     */
     Pending("Pending"),
 
+    /**
+     * Rejected registration status.
+     */
     Rejected("Rejected");
 
     private final String value;

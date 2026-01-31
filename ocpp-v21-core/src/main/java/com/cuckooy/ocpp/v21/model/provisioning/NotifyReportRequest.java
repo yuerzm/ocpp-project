@@ -7,6 +7,9 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Notify report request.
+ */
 @Data
 public class NotifyReportRequest implements Request {
 

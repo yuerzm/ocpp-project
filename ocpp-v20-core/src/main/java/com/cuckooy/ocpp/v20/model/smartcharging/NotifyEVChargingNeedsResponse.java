@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.NotifyEVChargingNeedsStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Notify ev charging needs response.
+ */
 @Data
 public class NotifyEVChargingNeedsResponse implements Response {
 

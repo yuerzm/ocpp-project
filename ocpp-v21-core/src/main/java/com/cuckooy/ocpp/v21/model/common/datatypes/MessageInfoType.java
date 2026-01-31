@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Message info type.
+ */
 @Data
 public class MessageInfoType {
 

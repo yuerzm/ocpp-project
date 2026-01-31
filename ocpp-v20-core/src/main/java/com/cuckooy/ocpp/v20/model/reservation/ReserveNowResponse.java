@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.ReserveNowStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Reserve now response.
+ */
 @Data
 public class ReserveNowResponse implements Response {
 

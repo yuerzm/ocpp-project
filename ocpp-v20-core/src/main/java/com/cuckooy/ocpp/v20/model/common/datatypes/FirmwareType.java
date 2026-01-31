@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Firmware type.
+ */
 @Data
 public class FirmwareType {
 

@@ -1,7 +1,7 @@
 package com.cuckooy.ocpp.v20.server.handler;
 
-import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.v20.handler.ChargePointSmartChargingEventHandler;
 import com.cuckooy.ocpp.v20.model.smartcharging.ClearChargingProfileRequest;
 import com.cuckooy.ocpp.v20.model.smartcharging.ClearChargingProfileResponse;
@@ -13,9 +13,18 @@ import com.cuckooy.ocpp.v20.model.smartcharging.SetChargingProfileRequest;
 import com.cuckooy.ocpp.v20.model.smartcharging.SetChargingProfileResponse;
 import com.cuckooy.ocpp.v20.server.Ocpp20ServerTransport;
 
+/**
+ * The type Charge point smart charging event handler.
+ */
 public class ChargePointSmartChargingEventHandlerImpl extends AbstractChargePointEventHandler implements
     ChargePointSmartChargingEventHandler {
 
+    /**
+     * Instantiates a new Charge point smart charging event handler.
+     *
+     * @param serverTransport   the server transport
+     * @param sessionRepository the session repository
+     */
     public ChargePointSmartChargingEventHandlerImpl(Ocpp20ServerTransport serverTransport,
                                                     SessionRepository sessionRepository) {
         super(serverTransport, sessionRepository);

@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Update firmware request.
+ */
 @Data
 @NoArgsConstructor
 public class UpdateFirmwareRequest implements Request {
@@ -18,6 +21,12 @@ public class UpdateFirmwareRequest implements Request {
 
     private Integer retryInterval;
 
+    /**
+     * Instantiates a new Update firmware request.
+     *
+     * @param location     the location
+     * @param retrieveDate the retrieve date
+     */
     public UpdateFirmwareRequest(String location, Instant retrieveDate) {
         this.location = location;
         this.retrieveDate = retrieveDate;

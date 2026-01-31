@@ -1,11 +1,29 @@
 package com.cuckooy.ocpp.v21.model.common.enumerations;
 
+/**
+ * The enum Install certificate use enum type.
+ */
 public enum InstallCertificateUseEnumType {
 
+    /**
+     * V 2 g root certificate install certificate use enum type.
+     */
     V2GRootCertificate("V2GRootCertificate"),
+    /**
+     * Mo root certificate install certificate use enum type.
+     */
     MORootCertificate("MORootCertificate"),
+    /**
+     * Csms root certificate install certificate use enum type.
+     */
     CSMSRootCertificate("CSMSRootCertificate"),
+    /**
+     * Manufacturer root certificate install certificate use enum type.
+     */
     ManufacturerRootCertificate("ManufacturerRootCertificate"),
+    /**
+     * Oem root certificate install certificate use enum type.
+     */
     OEMRootCertificate("OEMRootCertificate"),
     ;
 

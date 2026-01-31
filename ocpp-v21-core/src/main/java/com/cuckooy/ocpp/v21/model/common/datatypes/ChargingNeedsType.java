@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Charging needs type.
+ */
 @Data
 public class ChargingNeedsType {
 

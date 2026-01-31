@@ -1,9 +1,18 @@
 package com.cuckooy.ocpp.v21.model.common.enumerations;
 
+/**
+ * The enum Clear cache status enum type.
+ */
 public enum ClearCacheStatusEnumType {
 
+    /**
+     * Accepted clear cache status enum type.
+     */
     Accepted("Accepted"),
 
+    /**
+     * Rejected clear cache status enum type.
+     */
     Rejected("Rejected");
 
     private final String value;

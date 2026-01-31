@@ -5,6 +5,9 @@ import lombok.Data;
 import java.io.Serial;
 import java.io.Serializable;
 
+/**
+ * The type Charge point registry.
+ */
 @Data
 public class ChargePointRegistry implements Serializable {
 

@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Meter values request.
+ */
 @Data
 public class MeterValuesRequest implements Request {
 

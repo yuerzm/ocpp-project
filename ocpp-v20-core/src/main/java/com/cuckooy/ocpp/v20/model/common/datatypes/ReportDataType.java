@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Report data type.
+ */
 @Data
 public class ReportDataType {
 

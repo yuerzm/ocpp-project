@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Get report request.
+ */
 @Data
 public class GetReportRequest implements Request {
 

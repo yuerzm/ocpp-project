@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.GenericDeviceModelStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Set monitoring base response.
+ */
 @Data
 public class SetMonitoringBaseResponse implements Response {
 

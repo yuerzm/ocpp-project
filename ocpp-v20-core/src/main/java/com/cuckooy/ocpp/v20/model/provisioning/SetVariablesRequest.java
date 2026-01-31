@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Set variables request.
+ */
 @Data
 public class SetVariablesRequest implements Request {
 

@@ -3,6 +3,9 @@ package com.cuckooy.ocpp.v16.model.core;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Sampled value.
+ */
 @Data
 @NoArgsConstructor
 public class SampledValue {

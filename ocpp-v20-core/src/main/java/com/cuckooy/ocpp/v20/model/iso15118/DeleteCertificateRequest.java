@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v20.model.common.datatypes.CertificateHashDataType;
 import lombok.Data;
 
+/**
+ * The type Delete certificate request.
+ */
 @Data
 public class DeleteCertificateRequest implements Request {
 

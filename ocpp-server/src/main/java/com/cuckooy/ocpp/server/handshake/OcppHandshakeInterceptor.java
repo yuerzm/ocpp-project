@@ -18,6 +18,9 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * The type Ocpp handshake interceptor.
+ */
 public class OcppHandshakeInterceptor implements HandshakeInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -28,12 +31,23 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
     private final RegistryEventHandler registryEventHandler;
     private final BasicAuthenticateValidator basicAuthenticateValidator;
 
+    /**
+     * Instantiates a new Ocpp handshake interceptor.
+     *
+     * @param registryEventHandler the registry event handler
+     */
     public OcppHandshakeInterceptor(RegistryEventHandler registryEventHandler) {
         this.path = DEFAULT_PATH;
         this.registryEventHandler = registryEventHandler;
         this.basicAuthenticateValidator = new BasicAuthenticateValidatorImpl();
     }
 
+    /**
+     * Instantiates a new Ocpp handshake interceptor.
+     *
+     * @param path                 the path
+     * @param registryEventHandler the registry event handler
+     */
     public OcppHandshakeInterceptor(String path, RegistryEventHandler registryEventHandler) {
         this.path = path;
         this.registryEventHandler = registryEventHandler;

@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Authorize request.
+ */
 @Data
 public class AuthorizeRequest implements Request {
 

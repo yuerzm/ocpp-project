@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.v21.model.common.enumerations.ChargingStateEnumType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.ReasonEnumType;
 import lombok.Data;
 
+/**
+ * The type Transaction type.
+ */
 @Data
 public class TransactionType {
 

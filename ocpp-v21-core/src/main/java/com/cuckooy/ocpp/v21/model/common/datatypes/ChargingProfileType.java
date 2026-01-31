@@ -8,6 +8,9 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Charging profile type.
+ */
 @Data
 public class ChargingProfileType {
 

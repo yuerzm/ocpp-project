@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Charging schedule.
+ */
 @Data
 @NoArgsConstructor
 public class ChargingSchedule {

@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Set variables response.
+ */
 @Data
 public class SetVariablesResponse implements Response {
 

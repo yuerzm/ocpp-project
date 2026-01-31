@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Get composite schedule response.
+ */
 @Data
 @NoArgsConstructor
 public class GetCompositeScheduleResponse implements Response {

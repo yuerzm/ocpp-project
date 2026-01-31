@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Boot notification response.
+ */
 @Data
 public class BootNotificationResponse implements Response {
 

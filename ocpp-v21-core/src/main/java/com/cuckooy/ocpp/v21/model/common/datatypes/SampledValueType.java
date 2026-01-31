@@ -6,6 +6,9 @@ import com.cuckooy.ocpp.v21.model.common.enumerations.PhaseEnumType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.ReadingContextEnumType;
 import lombok.Data;
 
+/**
+ * The type Sampled value type.
+ */
 @Data
 public class SampledValueType {
 

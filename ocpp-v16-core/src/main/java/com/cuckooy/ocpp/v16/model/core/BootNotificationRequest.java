@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Boot notification request.
+ */
 @Data
 @NoArgsConstructor
 public class BootNotificationRequest implements Request {

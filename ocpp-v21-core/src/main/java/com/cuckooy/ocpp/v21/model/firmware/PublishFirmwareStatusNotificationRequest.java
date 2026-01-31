@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Publish firmware status notification request.
+ */
 @Data
 public class PublishFirmwareStatusNotificationRequest implements Request {
 

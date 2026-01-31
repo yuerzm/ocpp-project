@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Event data type.
+ */
 @Data
 public class EventDataType {
 

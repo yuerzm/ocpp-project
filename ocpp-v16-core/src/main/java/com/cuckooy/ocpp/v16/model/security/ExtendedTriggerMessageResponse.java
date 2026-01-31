@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v16.model.security.types.TriggerMessageStatusEnumType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Extended trigger message response.
+ */
 @Data
 @NoArgsConstructor
 public class ExtendedTriggerMessageResponse implements Response {

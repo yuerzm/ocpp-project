@@ -9,11 +9,20 @@ import tools.jackson.databind.JsonNode;
 
 import java.util.List;
 
+/**
+ * The type Ocpp json validator.
+ */
 public class OcppJsonValidatorImpl implements OcppJsonValidator {
 
     private final String classpath;
     private final SpecificationVersion specificationVersion;
 
+    /**
+     * Instantiates a new Ocpp json validator.
+     *
+     * @param classpath            the classpath
+     * @param specificationVersion the specification version
+     */
     public OcppJsonValidatorImpl(String classpath, SpecificationVersion specificationVersion) {
         this.classpath = classpath;
         this.specificationVersion = specificationVersion;

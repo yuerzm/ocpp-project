@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.EVSEType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.MessageTriggerEnumType;
 import lombok.Data;
 
+/**
+ * The type Trigger message request.
+ */
 @Data
 public class TriggerMessageRequest implements Request {
 

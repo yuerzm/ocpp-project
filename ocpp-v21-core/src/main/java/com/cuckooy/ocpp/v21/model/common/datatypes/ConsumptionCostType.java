@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Consumption cost type.
+ */
 @Data
 public class ConsumptionCostType {
 

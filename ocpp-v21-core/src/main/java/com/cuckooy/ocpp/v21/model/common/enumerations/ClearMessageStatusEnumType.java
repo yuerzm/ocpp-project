@@ -1,11 +1,23 @@
 package com.cuckooy.ocpp.v21.model.common.enumerations;
 
+/**
+ * The enum Clear message status enum type.
+ */
 public enum ClearMessageStatusEnumType {
 
+    /**
+     * Accepted clear message status enum type.
+     */
     Accepted("Accepted"),
 
+    /**
+     * Unknown clear message status enum type.
+     */
     Unknown("Unknown"),
 
+    /**
+     * Rejected clear message status enum type.
+     */
     Rejected("Rejected"),
     ;
 

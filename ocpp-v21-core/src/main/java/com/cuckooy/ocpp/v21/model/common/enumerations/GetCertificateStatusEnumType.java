@@ -1,9 +1,18 @@
 package com.cuckooy.ocpp.v21.model.common.enumerations;
 
+/**
+ * The enum Get certificate status enum type.
+ */
 public enum GetCertificateStatusEnumType {
 
+    /**
+     * Accepted get certificate status enum type.
+     */
     Accepted("Accepted"),
 
+    /**
+     * Failed get certificate status enum type.
+     */
     Failed("Failed");
 
     private final String value;

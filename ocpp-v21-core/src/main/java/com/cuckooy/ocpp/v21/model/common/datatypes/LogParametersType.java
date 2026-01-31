@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Log parameters type.
+ */
 @Data
 public class LogParametersType {
 

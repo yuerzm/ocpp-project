@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v16.model.security.types.CertificateSignedStatusEnumType
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Certificate signed response.
+ */
 @Data
 @NoArgsConstructor
 public class CertificateSignedResponse implements Response {

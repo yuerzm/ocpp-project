@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Report charging profiles request.
+ */
 @Data
 public class ReportChargingProfilesRequest implements Request {
 

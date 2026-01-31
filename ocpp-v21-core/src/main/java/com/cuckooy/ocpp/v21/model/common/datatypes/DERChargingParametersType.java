@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Der charging parameters type.
+ */
 @Data
 public class DERChargingParametersType {
 

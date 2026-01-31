@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Id token type.
+ */
 @Data
 public class IdTokenType {
 

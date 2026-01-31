@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Notify display messages request.
+ */
 @Data
 public class NotifyDisplayMessagesRequest implements Request {
 

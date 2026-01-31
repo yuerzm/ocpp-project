@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Set variable monitoring request.
+ */
 @Data
 public class SetVariableMonitoringRequest implements Request {
 

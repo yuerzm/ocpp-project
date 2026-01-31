@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.DeleteCertificateStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Delete certificate response.
+ */
 @Data
 public class DeleteCertificateResponse implements Response {
 

@@ -8,6 +8,9 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 
+/**
+ * The type Logger event.
+ */
 @Getter
 @ToString
 public class LoggerEvent extends ApplicationEvent implements Serializable {
@@ -23,6 +26,16 @@ public class LoggerEvent extends ApplicationEvent implements Serializable {
     private String message;
     private Instant occurAt;
 
+    /**
+     * Instantiates a new Logger event.
+     *
+     * @param identity  the identity
+     * @param protocol  the protocol
+     * @param sessionId the session id
+     * @param uniqueId  the unique id
+     * @param action    the action
+     * @param message   the message
+     */
     public LoggerEvent(Object identity, Object protocol, String sessionId, String uniqueId, String action,
                        String message) {
         super(identity);

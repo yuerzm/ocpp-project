@@ -3,6 +3,9 @@ package com.cuckooy.ocpp.v21.model.common.datatypes;
 import com.cuckooy.ocpp.v21.model.common.enumerations.MonitorEnumType;
 import lombok.Data;
 
+/**
+ * The type Set monitoring data type.
+ */
 @Data
 public class SetMonitoringDataType {
 

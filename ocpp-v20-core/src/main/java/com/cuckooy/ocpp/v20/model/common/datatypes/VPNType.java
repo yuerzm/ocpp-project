@@ -3,6 +3,9 @@ package com.cuckooy.ocpp.v20.model.common.datatypes;
 import com.cuckooy.ocpp.v20.model.common.enumerations.VPNEnumType;
 import lombok.Data;
 
+/**
+ * The type Vpn type.
+ */
 @Data
 public class VPNType {
 

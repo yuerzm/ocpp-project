@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.enumerations.OCPPTransportEnumType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.OCPPVersionEnumType;
 import lombok.Data;
 
+/**
+ * The type Network connection profile type.
+ */
 @Data
 public class NetworkConnectionProfileType {
 

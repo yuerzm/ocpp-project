@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.GenericStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Publish firmware response.
+ */
 @Data
 public class PublishFirmwareResponse implements Response {
 

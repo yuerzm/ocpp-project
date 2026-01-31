@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.RequestStartStopStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Request stop transaction response.
+ */
 @Data
 public class RequestStopTransactionResponse implements Response {
 

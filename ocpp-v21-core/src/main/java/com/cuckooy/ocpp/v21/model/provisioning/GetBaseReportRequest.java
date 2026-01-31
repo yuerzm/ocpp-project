@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v21.model.common.enumerations.ReportBaseEnumType;
 import lombok.Data;
 
+/**
+ * The type Get base report request.
+ */
 @Data
 public class GetBaseReportRequest implements Request {
 

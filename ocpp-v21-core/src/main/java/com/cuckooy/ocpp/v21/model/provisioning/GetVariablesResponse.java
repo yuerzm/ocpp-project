@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Get variables response.
+ */
 @Data
 public class GetVariablesResponse implements Response {
 

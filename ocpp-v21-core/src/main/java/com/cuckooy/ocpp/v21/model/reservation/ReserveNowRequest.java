@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Reserve now request.
+ */
 @Data
 public class ReserveNowRequest implements Request {
 

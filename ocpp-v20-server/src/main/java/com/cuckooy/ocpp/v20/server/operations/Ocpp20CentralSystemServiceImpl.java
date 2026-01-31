@@ -43,6 +43,9 @@ import com.cuckooy.ocpp.v20.operations.Ocpp20CentralSystemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The type Ocpp 20 central system service.
+ */
 public class Ocpp20CentralSystemServiceImpl implements Ocpp20CentralSystemService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -61,6 +64,23 @@ public class Ocpp20CentralSystemServiceImpl implements Ocpp20CentralSystemServic
     private final CentralSystemSmartChargingEventHandler smartChargingEventHandler;
     private final CentralSystemTransactionsEventHandler transactionsEventHandler;
 
+    /**
+     * Instantiates a new Ocpp 20 central system service.
+     *
+     * @param authorizationEventHandler the authorization event handler
+     * @param availabilityEventHandler  the availability event handler
+     * @param dataTransferEventHandler  the data transfer event handler
+     * @param diagnosticsEventHandler   the diagnostics event handler
+     * @param displayEventHandler       the display event handler
+     * @param firmwareEventHandler      the firmware event handler
+     * @param iso15118EventHandler      the iso 15118 event handler
+     * @param meterValuesEventHandler   the meter values event handler
+     * @param provisioningEventHandler  the provisioning event handler
+     * @param reservationEventHandler   the reservation event handler
+     * @param securityEventHandler      the security event handler
+     * @param smartChargingEventHandler the smart charging event handler
+     * @param transactionsEventHandler  the transactions event handler
+     */
     public Ocpp20CentralSystemServiceImpl(CentralSystemAuthorizationEventHandler authorizationEventHandler,
                                           CentralSystemAvailabilityEventHandler availabilityEventHandler,
                                           CentralSystemDataTransferEventHandler dataTransferEventHandler,

@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Certificate status type.
+ */
 @Data
 public class CertificateStatusType {
 

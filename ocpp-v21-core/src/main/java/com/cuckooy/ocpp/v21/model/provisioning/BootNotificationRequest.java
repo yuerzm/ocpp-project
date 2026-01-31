@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.ChargingStationType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.BootReasonEnumType;
 import lombok.Data;
 
+/**
+ * The type Boot notification request.
+ */
 @Data
 public class BootNotificationRequest implements Request {
 

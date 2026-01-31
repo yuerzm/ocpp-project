@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.TriggerMessageStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Trigger message response.
+ */
 @Data
 public class TriggerMessageResponse implements Response {
 

@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Monitoring data type.
+ */
 @Data
 public class MonitoringDataType {
 

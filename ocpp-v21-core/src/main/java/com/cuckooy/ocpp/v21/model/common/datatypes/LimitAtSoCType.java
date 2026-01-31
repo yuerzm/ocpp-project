@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Limit at so c type.
+ */
 @Data
 public class LimitAtSoCType {
 

@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.ChangeAvailabilityStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Change availability response.
+ */
 @Data
 public class ChangeAvailabilityResponse implements Response {
 

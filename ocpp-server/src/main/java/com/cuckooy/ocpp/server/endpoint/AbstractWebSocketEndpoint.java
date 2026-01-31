@@ -21,14 +21,27 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The type Abstract web socket endpoint.
+ */
 public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandler implements SubProtocolCapable {
 
+    /**
+     * The Logger.
+     */
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final ServerTransport serverTransport;
     private final SessionRepository sessionRepository;
     private final SessionEventHandler sessionEventHandler;
 
+    /**
+     * Instantiates a new Abstract web socket endpoint.
+     *
+     * @param serverTransport     the server transport
+     * @param sessionRepository   the session repository
+     * @param sessionEventHandler the session event handler
+     */
     public AbstractWebSocketEndpoint(ServerTransport serverTransport, SessionRepository sessionRepository,
                                      SessionEventHandler sessionEventHandler) {
         Assert.notNull(serverTransport, "serverTransport must not be null");
@@ -91,14 +104,32 @@ public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandl
         sessionEventHandler.exception(session, throwable);
     }
 
+    /**
+     * Handle pong message.
+     *
+     * @param session the session
+     * @param message the message
+     * @throws Exception the exception
+     */
     protected void handlePongMessage(WebSocketSession session, PongMessage message) throws Exception {
         logger.info("Handle pong message: {}", message);
     }
 
+    /**
+     * Support boolean.
+     *
+     * @param protocol the protocol
+     * @return the boolean
+     */
     public boolean support(String protocol) {
         return getSupportVersions().stream().map(OcppVersion::getValue).anyMatch(x -> Objects.equals(x, protocol));
     }
 
+    /**
+     * Gets support versions.
+     *
+     * @return the support versions
+     */
     protected abstract Collection<OcppVersion> getSupportVersions();
 
     @Override

@@ -3,6 +3,9 @@ package com.cuckooy.ocpp.v21.model.common.datatypes;
 import com.cuckooy.ocpp.v21.model.common.enumerations.AttributeEnumType;
 import lombok.Data;
 
+/**
+ * The type Set variable data type.
+ */
 @Data
 public class SetVariableDataType {
 

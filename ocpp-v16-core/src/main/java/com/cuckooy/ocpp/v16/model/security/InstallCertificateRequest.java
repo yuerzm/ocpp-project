@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v16.model.security.types.CertificateUseEnumType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Install certificate request.
+ */
 @Data
 @NoArgsConstructor
 public class InstallCertificateRequest implements Request {

@@ -1,7 +1,7 @@
 package com.cuckooy.ocpp.v20.server.handler;
 
-import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.v20.handler.ChargePointRemoteControlEventHandler;
 import com.cuckooy.ocpp.v20.model.remote.RequestStartTransactionRequest;
 import com.cuckooy.ocpp.v20.model.remote.RequestStartTransactionResponse;
@@ -13,9 +13,18 @@ import com.cuckooy.ocpp.v20.model.remote.UnlockConnectorRequest;
 import com.cuckooy.ocpp.v20.model.remote.UnlockConnectorResponse;
 import com.cuckooy.ocpp.v20.server.Ocpp20ServerTransport;
 
+/**
+ * The type Charge point remote control event handler.
+ */
 public class ChargePointRemoteControlEventHandlerImpl extends AbstractChargePointEventHandler implements
     ChargePointRemoteControlEventHandler {
 
+    /**
+     * Instantiates a new Charge point remote control event handler.
+     *
+     * @param serverTransport   the server transport
+     * @param sessionRepository the session repository
+     */
     public ChargePointRemoteControlEventHandlerImpl(Ocpp20ServerTransport serverTransport,
                                                     SessionRepository sessionRepository) {
         super(serverTransport, sessionRepository);

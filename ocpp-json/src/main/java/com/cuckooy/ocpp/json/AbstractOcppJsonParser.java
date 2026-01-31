@@ -1,6 +1,5 @@
 package com.cuckooy.ocpp.json;
 
-import com.networknt.schema.Error;
 import com.cuckooy.ocpp.core.exception.ActionRequestMalformedException;
 import com.cuckooy.ocpp.core.exception.ActionResponseMalformedException;
 import com.cuckooy.ocpp.core.exception.ErrorDetail;
@@ -17,6 +16,7 @@ import com.cuckooy.ocpp.core.message.OcppMessage;
 import com.cuckooy.ocpp.core.message.OcppMessageType;
 import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.core.message.Response;
+import com.networknt.schema.Error;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tools.jackson.databind.JsonNode;
@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The type Abstract ocpp json parser.
+ */
 public abstract class AbstractOcppJsonParser implements OcppJsonParser {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -32,6 +35,12 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
     private final OcppJsonMapper ocppJsonMapper;
     private final OcppJsonValidatorImpl ocppJsonValidator;
 
+    /**
+     * Instantiates a new Abstract ocpp json parser.
+     *
+     * @param ocppJsonMapper    the ocpp json mapper
+     * @param ocppJsonValidator the ocpp json validator
+     */
     public AbstractOcppJsonParser(OcppJsonMapper ocppJsonMapper, OcppJsonValidatorImpl ocppJsonValidator) {
         this.ocppJsonMapper = ocppJsonMapper;
         this.ocppJsonValidator = ocppJsonValidator;
@@ -127,6 +136,13 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
         throw new MessageTypeException("Unknown messageType in json: " + jsonNode.asString(), uniqueId);
     }
 
+    /**
+     * Validate json.
+     *
+     * @param uniqueId  the unique id
+     * @param className the class name
+     * @param payload   the payload
+     */
     protected void validateJson(String uniqueId, String className, JsonNode payload) {
         List<Error> validate = ocppJsonValidator.validate(className, payload);
         if (!validate.isEmpty()) {
@@ -138,6 +154,13 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
         }
     }
 
+    /**
+     * Gets request class.
+     *
+     * @param uniqueId the unique id
+     * @param action   the action
+     * @return the request class
+     */
     protected Class<? extends Request> getRequestClass(String uniqueId, String action) {
         Class<? extends Request> requestClass = retrieveRequestClass(action);
         if (Objects.isNull(requestClass)) {
@@ -146,6 +169,12 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
         return requestClass;
     }
 
+    /**
+     * Gets response class.
+     *
+     * @param uniqueId the unique id
+     * @return the response class
+     */
     protected Class<? extends Response> getResponseClass(String uniqueId) {
         Class<? extends Response> responseClass = retrieveResponseClass(uniqueId);
         if (Objects.isNull(responseClass)) {
@@ -154,12 +183,30 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
         return responseClass;
     }
 
+    /**
+     * Gets action from payload.
+     *
+     * @param clazz the clazz
+     * @return the action from payload
+     */
     protected String getActionFromPayload(Class<?> clazz) {
         return clazz.getSimpleName().replace("Request", "").replace("Response", "");
     }
 
+    /**
+     * Retrieve request class class.
+     *
+     * @param action the action
+     * @return the class
+     */
     protected abstract Class<? extends Request> retrieveRequestClass(String action);
 
+    /**
+     * Retrieve response class class.
+     *
+     * @param uniqueId the unique id
+     * @return the class
+     */
     protected abstract Class<? extends Response> retrieveResponseClass(String uniqueId);
 
 }

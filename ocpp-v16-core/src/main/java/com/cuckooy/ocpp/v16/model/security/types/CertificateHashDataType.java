@@ -3,6 +3,9 @@ package com.cuckooy.ocpp.v16.model.security.types;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Certificate hash data type.
+ */
 @Data
 @NoArgsConstructor
 public class CertificateHashDataType {

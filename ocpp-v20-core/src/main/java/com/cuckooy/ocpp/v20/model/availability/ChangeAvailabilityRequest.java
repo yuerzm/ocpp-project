@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.EVSEType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.OperationalStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Change availability request.
+ */
 @Data
 public class ChangeAvailabilityRequest implements Request {
 

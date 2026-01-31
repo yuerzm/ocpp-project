@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.v21.model.common.enumerations.AttributeEnumType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.GetVariableStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Get variable result type.
+ */
 @Data
 public class GetVariableResultType {
 

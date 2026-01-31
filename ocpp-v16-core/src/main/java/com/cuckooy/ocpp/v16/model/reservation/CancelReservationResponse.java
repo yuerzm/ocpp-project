@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Response;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Cancel reservation response.
+ */
 @Data
 @NoArgsConstructor
 public class CancelReservationResponse implements Response {

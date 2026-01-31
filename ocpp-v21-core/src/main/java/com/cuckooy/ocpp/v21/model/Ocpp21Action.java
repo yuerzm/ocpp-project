@@ -132,74 +132,269 @@ import com.cuckooy.ocpp.v21.model.transactions.TransactionEventRequest;
 import com.cuckooy.ocpp.v21.model.transactions.TransactionEventResponse;
 import lombok.Getter;
 
+/**
+ * The enum Ocpp 21 action.
+ */
 @Getter
 public enum Ocpp21Action {
 
+    /**
+     * Authorize ocpp 21 action.
+     */
     // core
     Authorize(AuthorizeRequest.class, AuthorizeResponse.class),
+    /**
+     * Clear cache ocpp 21 action.
+     */
     ClearCache(ClearCacheRequest.class, ClearCacheResponse.class),
+    /**
+     * Change availability ocpp 21 action.
+     */
     ChangeAvailability(ChangeAvailabilityRequest.class, ChangeAvailabilityResponse.class),
+    /**
+     * Heartbeat ocpp 21 action.
+     */
     Heartbeat(HeartbeatRequest.class, HeartbeatResponse.class),
+    /**
+     * Notify event ocpp 21 action.
+     */
     NotifyEvent(NotifyEventRequest.class, NotifyEventResponse.class),
+    /**
+     * Status notification ocpp 21 action.
+     */
     StatusNotification(StatusNotificationRequest.class, StatusNotificationResponse.class),
+    /**
+     * Cost updated ocpp 21 action.
+     */
     CostUpdated(CostUpdatedRequest.class, CostUpdatedResponse.class),
+    /**
+     * Data transfer ocpp 21 action.
+     */
     DataTransfer(DataTransferRequest.class, DataTransferResponse.class),
+    /**
+     * Clear variable monitoring ocpp 21 action.
+     */
     ClearVariableMonitoring(ClearVariableMonitoringRequest.class, ClearVariableMonitoringResponse.class),
+    /**
+     * Customer information ocpp 21 action.
+     */
     CustomerInformation(CustomerInformationRequest.class, CustomerInformationResponse.class),
+    /**
+     * Get log ocpp 21 action.
+     */
     GetLog(GetLogRequest.class, GetLogResponse.class),
+    /**
+     * Get monitoring report ocpp 21 action.
+     */
     GetMonitoringReport(GetMonitoringReportRequest.class, GetMonitoringReportResponse.class),
+    /**
+     * Log status notification ocpp 21 action.
+     */
     LogStatusNotification(LogStatusNotificationRequest.class, LogStatusNotificationResponse.class),
+    /**
+     * Notify customer information ocpp 21 action.
+     */
     NotifyCustomerInformation(NotifyCustomerInformationRequest.class, NotifyCustomerInformationResponse.class),
+    /**
+     * Notify monitoring report ocpp 21 action.
+     */
     NotifyMonitoringReport(NotifyMonitoringReportRequest.class, NotifyMonitoringReportResponse.class),
+    /**
+     * Set monitoring base ocpp 21 action.
+     */
     SetMonitoringBase(SetMonitoringBaseRequest.class, SetMonitoringBaseResponse.class),
+    /**
+     * Set monitoring level ocpp 21 action.
+     */
     SetMonitoringLevel(SetMonitoringLevelRequest.class, SetMonitoringLevelResponse.class),
+    /**
+     * Set variable monitoring ocpp 21 action.
+     */
     SetVariableMonitoring(SetVariableMonitoringRequest.class, SetVariableMonitoringResponse.class),
+    /**
+     * Clear display message ocpp 21 action.
+     */
     ClearDisplayMessage(ClearDisplayMessageRequest.class, ClearDisplayMessageResponse.class),
+    /**
+     * Get display messages ocpp 21 action.
+     */
     GetDisplayMessages(GetDisplayMessagesRequest.class, GetDisplayMessagesResponse.class),
+    /**
+     * Notify display messages ocpp 21 action.
+     */
     NotifyDisplayMessages(NotifyDisplayMessagesRequest.class, NotifyDisplayMessagesResponse.class),
+    /**
+     * Set display message ocpp 21 action.
+     */
     SetDisplayMessage(SetDisplayMessageRequest.class, SetDisplayMessageResponse.class),
+    /**
+     * Firmware status notification ocpp 21 action.
+     */
     FirmwareStatusNotification(FirmwareStatusNotificationRequest.class, FirmwareStatusNotificationResponse.class),
+    /**
+     * Publish firmware ocpp 21 action.
+     */
     PublishFirmware(PublishFirmwareRequest.class, PublishFirmwareResponse.class),
+    /**
+     * Publish firmware status notification ocpp 21 action.
+     */
     PublishFirmwareStatusNotification(PublishFirmwareStatusNotificationRequest.class,
         PublishFirmwareStatusNotificationResponse.class),
+    /**
+     * Unpublish firmware ocpp 21 action.
+     */
     UnpublishFirmware(UnpublishFirmwareRequest.class, UnpublishFirmwareResponse.class),
+    /**
+     * Update firmware ocpp 21 action.
+     */
     UpdateFirmware(UpdateFirmwareRequest.class, UpdateFirmwareResponse.class),
+    /**
+     * Delete certificate ocpp 21 action.
+     */
     DeleteCertificate(DeleteCertificateRequest.class, DeleteCertificateResponse.class),
+    /**
+     * Get 15118 ev certificate ocpp 21 action.
+     */
     Get15118EVCertificate(Get15118EVCertificateRequest.class, Get15118EVCertificateResponse.class),
+    /**
+     * Get certificate status ocpp 21 action.
+     */
     GetCertificateStatus(GetCertificateStatusRequest.class, GetCertificateStatusResponse.class),
+    /**
+     * Get installed certificate ids ocpp 21 action.
+     */
     GetInstalledCertificateIds(GetInstalledCertificateIdsRequest.class, GetInstalledCertificateIdsResponse.class),
+    /**
+     * Install certificate ocpp 21 action.
+     */
     InstallCertificate(InstallCertificateRequest.class, InstallCertificateResponse.class),
+    /**
+     * Get local list version ocpp 21 action.
+     */
     GetLocalListVersion(GetLocalListVersionRequest.class, GetLocalListVersionResponse.class),
+    /**
+     * Send local list ocpp 21 action.
+     */
     SendLocalList(SendLocalListRequest.class, SendLocalListResponse.class),
+    /**
+     * Meter values ocpp 21 action.
+     */
     MeterValues(MeterValuesRequest.class, MeterValuesResponse.class),
+    /**
+     * Boot notification ocpp 21 action.
+     */
     BootNotification(BootNotificationRequest.class, BootNotificationResponse.class),
+    /**
+     * Get base report ocpp 21 action.
+     */
     GetBaseReport(GetBaseReportRequest.class, GetBaseReportResponse.class),
+    /**
+     * Get report ocpp 21 action.
+     */
     GetReport(GetReportRequest.class, GetReportResponse.class),
+    /**
+     * Get variables ocpp 21 action.
+     */
     GetVariables(GetVariablesRequest.class, GetVariablesResponse.class),
+    /**
+     * Notify report ocpp 21 action.
+     */
     NotifyReport(NotifyReportRequest.class, NotifyReportResponse.class),
+    /**
+     * Reset ocpp 21 action.
+     */
     Reset(ResetRequest.class, ResetResponse.class),
+    /**
+     * Set network profile ocpp 21 action.
+     */
     SetNetworkProfile(SetNetworkProfileRequest.class, SetNetworkProfileResponse.class),
+    /**
+     * Set variables ocpp 21 action.
+     */
     SetVariables(SetVariablesRequest.class, SetVariablesResponse.class),
+    /**
+     * Request start transaction ocpp 21 action.
+     */
     RequestStartTransaction(RequestStartTransactionRequest.class, RequestStartTransactionResponse.class),
+    /**
+     * Request stop transaction ocpp 21 action.
+     */
     RequestStopTransaction(RequestStopTransactionRequest.class, RequestStopTransactionResponse.class),
+    /**
+     * Trigger message ocpp 21 action.
+     */
     TriggerMessage(TriggerMessageRequest.class, TriggerMessageResponse.class),
+    /**
+     * Unlock connector ocpp 21 action.
+     */
     UnlockConnector(UnlockConnectorRequest.class, UnlockConnectorResponse.class),
+    /**
+     * Cancel reservation ocpp 21 action.
+     */
     CancelReservation(CancelReservationRequest.class, CancelReservationResponse.class),
+    /**
+     * Reservation status update ocpp 21 action.
+     */
     ReservationStatusUpdate(ReservationStatusUpdateRequest.class, ReservationStatusUpdateResponse.class),
+    /**
+     * Reserve now ocpp 21 action.
+     */
     ReserveNow(ReserveNowRequest.class, ReserveNowResponse.class),
+    /**
+     * Certificate signed ocpp 21 action.
+     */
     CertificateSigned(CertificateSignedRequest.class, CertificateSignedResponse.class),
+    /**
+     * Security event notification ocpp 21 action.
+     */
     SecurityEventNotification(SecurityEventNotificationRequest.class, SecurityEventNotificationResponse.class),
+    /**
+     * Sign certificate ocpp 21 action.
+     */
     SignCertificate(SignCertificateRequest.class, SignCertificateResponse.class),
+    /**
+     * Clear charging profile ocpp 21 action.
+     */
     ClearChargingProfile(ClearChargingProfileRequest.class, ClearChargingProfileResponse.class),
+    /**
+     * Cleared charging limit ocpp 21 action.
+     */
     ClearedChargingLimit(ClearedChargingLimitRequest.class, ClearedChargingLimitResponse.class),
+    /**
+     * Get charging profiles ocpp 21 action.
+     */
     GetChargingProfiles(GetChargingProfilesRequest.class, GetChargingProfilesResponse.class),
+    /**
+     * Get composite schedule ocpp 21 action.
+     */
     GetCompositeSchedule(GetCompositeScheduleRequest.class, GetCompositeScheduleResponse.class),
+    /**
+     * Notify charging limit ocpp 21 action.
+     */
     NotifyChargingLimit(NotifyChargingLimitRequest.class, NotifyChargingLimitResponse.class),
+    /**
+     * Notify ev charging needs ocpp 21 action.
+     */
     NotifyEVChargingNeeds(NotifyEVChargingNeedsRequest.class, NotifyEVChargingNeedsResponse.class),
+    /**
+     * Notify ev charging schedule ocpp 21 action.
+     */
     NotifyEVChargingSchedule(NotifyEVChargingScheduleRequest.class, NotifyEVChargingScheduleResponse.class),
+    /**
+     * Report charging profiles ocpp 21 action.
+     */
     ReportChargingProfiles(ReportChargingProfilesRequest.class, ReportChargingProfilesResponse.class),
+    /**
+     * Set charging profile ocpp 21 action.
+     */
     SetChargingProfile(SetChargingProfileRequest.class, SetChargingProfileResponse.class),
+    /**
+     * Get transaction status ocpp 21 action.
+     */
     GetTransactionStatus(GetTransactionStatusRequest.class, GetTransactionStatusResponse.class),
+    /**
+     * Transaction event ocpp 21 action.
+     */
     TransactionEvent(TransactionEventRequest.class, TransactionEventResponse.class),
     ;
 

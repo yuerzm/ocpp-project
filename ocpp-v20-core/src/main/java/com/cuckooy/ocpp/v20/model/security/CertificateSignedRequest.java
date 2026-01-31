@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v20.model.common.enumerations.CertificateSigningUseEnumType;
 import lombok.Data;
 
+/**
+ * The type Certificate signed request.
+ */
 @Data
 public class CertificateSignedRequest implements Request {
 

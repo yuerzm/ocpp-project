@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Id tag info.
+ */
 @Data
 @NoArgsConstructor
 public class IdTagInfo {

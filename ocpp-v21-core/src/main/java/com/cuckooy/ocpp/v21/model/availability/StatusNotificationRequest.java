@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Status notification request.
+ */
 @Data
 public class StatusNotificationRequest implements Request {
 

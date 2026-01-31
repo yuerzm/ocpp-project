@@ -8,6 +8,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Get installed certificate ids response.
+ */
 @Data
 public class GetInstalledCertificateIdsResponse implements Response {
 

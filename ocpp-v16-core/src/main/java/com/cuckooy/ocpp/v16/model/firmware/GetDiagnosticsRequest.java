@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Get diagnostics request.
+ */
 @Data
 @NoArgsConstructor
 public class GetDiagnosticsRequest implements Request {
@@ -20,6 +23,11 @@ public class GetDiagnosticsRequest implements Request {
 
     private Instant stopTime;
 
+    /**
+     * Instantiates a new Get diagnostics request.
+     *
+     * @param location the location
+     */
     public GetDiagnosticsRequest(String location) {
         this.location = location;
     }

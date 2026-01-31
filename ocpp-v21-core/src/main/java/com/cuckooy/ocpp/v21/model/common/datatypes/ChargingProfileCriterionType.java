@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Charging profile criterion type.
+ */
 @Data
 public class ChargingProfileCriterionType {
 

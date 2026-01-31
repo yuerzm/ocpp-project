@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Price level schedule type.
+ */
 @Data
 public class PriceLevelScheduleType {
 

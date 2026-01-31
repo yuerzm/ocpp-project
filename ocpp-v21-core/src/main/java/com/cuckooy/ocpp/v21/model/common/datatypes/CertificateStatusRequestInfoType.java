@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Certificate status request info type.
+ */
 @Data
 public class CertificateStatusRequestInfoType {
 

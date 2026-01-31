@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Afrr signal request.
+ */
 @Data
 public class AFRRSignalRequest implements Request {
 

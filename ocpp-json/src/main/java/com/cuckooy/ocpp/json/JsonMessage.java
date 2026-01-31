@@ -7,6 +7,11 @@ import tools.jackson.databind.JsonNode;
 
 import java.util.Objects;
 
+/**
+ * The type Json message.
+ *
+ * @param <T> the type parameter
+ */
 @Data
 public class JsonMessage<T> {
 
@@ -29,14 +34,40 @@ public class JsonMessage<T> {
         this.errorDetails = Objects.nonNull(errorDetails) ? errorDetails : new Object();
     }
 
+    /**
+     * Call json message.
+     *
+     * @param <T>      the type parameter
+     * @param uniqueId the unique id
+     * @param action   the action
+     * @param payload  the payload
+     * @return the json message
+     */
     public static <T> JsonMessage<T> call(String uniqueId, String action, T payload) {
         return new JsonMessage<>(OcppMessageType.CALL, uniqueId, action, payload, null, null, null);
     }
 
+    /**
+     * Result json message.
+     *
+     * @param <T>      the type parameter
+     * @param uniqueId the unique id
+     * @param payload  the payload
+     * @return the json message
+     */
     public static <T> JsonMessage<T> result(String uniqueId, T payload) {
         return new JsonMessage<>(OcppMessageType.CALL_RESULT, uniqueId, null, payload, null, null, null);
     }
 
+    /**
+     * Error json message.
+     *
+     * @param uniqueId         the unique id
+     * @param errorCode        the error code
+     * @param errorDescription the error description
+     * @param details          the details
+     * @return the json message
+     */
     public static JsonMessage<JsonNode> error(String uniqueId, MessageErrorCode errorCode, String errorDescription,
                                               JsonNode details) {
         return new JsonMessage<>(OcppMessageType.CALL_ERROR, uniqueId, null, null, errorCode, errorDescription,

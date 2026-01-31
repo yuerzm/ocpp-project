@@ -8,10 +8,16 @@ import tools.jackson.databind.json.JsonMapper;
 import java.util.Locale;
 import java.util.TimeZone;
 
+/**
+ * The type Ocpp jackson mapper.
+ */
 public class OcppJacksonMapper implements OcppJsonMapper {
 
     private final JsonMapper jsonMapper;
 
+    /**
+     * Instantiates a new Ocpp jackson mapper.
+     */
     public OcppJacksonMapper() {
         jsonMapper = JsonMapper.builder()
             .defaultTimeZone(TimeZone.getTimeZone("UTC"))

@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Sales tariff entry type.
+ */
 @Data
 public class SalesTariffEntryType {
 

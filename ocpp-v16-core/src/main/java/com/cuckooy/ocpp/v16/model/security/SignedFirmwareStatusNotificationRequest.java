@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v16.model.security.types.FirmwareStatusEnumType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Signed firmware status notification request.
+ */
 @Data
 @NoArgsConstructor
 public class SignedFirmwareStatusNotificationRequest implements Request {

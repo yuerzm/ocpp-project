@@ -9,8 +9,18 @@ import com.cuckooy.ocpp.v16.server.Ocpp16ServerTransport;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The type Ocpp 16 web socket endpoint.
+ */
 public class Ocpp16WebSocketEndpoint extends AbstractWebSocketEndpoint {
 
+    /**
+     * Instantiates a new Ocpp 16 web socket endpoint.
+     *
+     * @param ocpp16ServerTransport the ocpp 16 server transport
+     * @param sessionRepository     the session repository
+     * @param sessionEventHandler   the session event handler
+     */
     public Ocpp16WebSocketEndpoint(Ocpp16ServerTransport ocpp16ServerTransport, SessionRepository sessionRepository,
                                    SessionEventHandler sessionEventHandler) {
         super(ocpp16ServerTransport, sessionRepository, sessionEventHandler);

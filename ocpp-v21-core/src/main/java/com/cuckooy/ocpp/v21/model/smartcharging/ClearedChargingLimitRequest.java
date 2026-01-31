@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v21.model.common.enumerations.ChargingLimitSourceEnumType;
 import lombok.Data;
 
+/**
+ * The type Cleared charging limit request.
+ */
 @Data
 public class ClearedChargingLimitRequest implements Request {
 

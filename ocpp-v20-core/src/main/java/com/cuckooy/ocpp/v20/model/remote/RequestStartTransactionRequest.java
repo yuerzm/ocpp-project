@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.ChargingProfileType;
 import com.cuckooy.ocpp.v20.model.common.datatypes.IdTokenType;
 import lombok.Data;
 
+/**
+ * The type Request start transaction request.
+ */
 @Data
 public class RequestStartTransactionRequest implements Request {
 

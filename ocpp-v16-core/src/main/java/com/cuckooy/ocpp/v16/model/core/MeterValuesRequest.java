@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * The type Meter values request.
+ */
 @Data
 @NoArgsConstructor
 public class MeterValuesRequest implements Request {

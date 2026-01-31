@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Ev price rule type.
+ */
 @Data
 public class EVPriceRuleType {
 

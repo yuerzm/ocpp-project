@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Security event notification request.
+ */
 @Data
 @NoArgsConstructor
 public class SecurityEventNotificationRequest implements Request {

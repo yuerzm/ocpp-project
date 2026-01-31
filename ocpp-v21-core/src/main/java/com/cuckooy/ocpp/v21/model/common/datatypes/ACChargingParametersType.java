@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Ac charging parameters type.
+ */
 @Data
 public class ACChargingParametersType {
 

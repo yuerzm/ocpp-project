@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v20.model.common.datatypes.ChargingProfileCriterionType;
 import lombok.Data;
 
+/**
+ * The type Get charging profiles request.
+ */
 @Data
 public class GetChargingProfilesRequest implements Request {
 

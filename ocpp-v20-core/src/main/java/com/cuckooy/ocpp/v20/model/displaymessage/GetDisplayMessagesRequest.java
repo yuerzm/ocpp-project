@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Get display messages request.
+ */
 @Data
 public class GetDisplayMessagesRequest implements Request {
 

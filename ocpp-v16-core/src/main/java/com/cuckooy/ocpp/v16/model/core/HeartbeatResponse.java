@@ -6,12 +6,20 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Heartbeat response.
+ */
 @Data
 @NoArgsConstructor
 public class HeartbeatResponse implements Response {
 
     private Instant currentTime;
 
+    /**
+     * Instantiates a new Heartbeat response.
+     *
+     * @param currentTime the current time
+     */
     public HeartbeatResponse(Instant currentTime) {
         this.currentTime = currentTime;
     }

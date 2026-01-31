@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * The type In memory unique id repository.
+ */
 public class InMemoryUniqueIdRepositoryImpl implements UniqueIdRepository {
 
     private final Map<String, String> map = new ConcurrentHashMap<>();

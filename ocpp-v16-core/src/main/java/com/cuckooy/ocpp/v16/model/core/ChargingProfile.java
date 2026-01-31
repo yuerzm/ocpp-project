@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Charging profile.
+ */
 @Data
 @NoArgsConstructor
 public class ChargingProfile {

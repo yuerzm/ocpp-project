@@ -5,6 +5,9 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Charging period type.
+ */
 @Data
 public class ChargingPeriodType {
 

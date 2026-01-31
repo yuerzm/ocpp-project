@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The type V 2 x freq watt point type.
+ */
 @Data
 public class V2XFreqWattPointType {
 

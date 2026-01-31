@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Notify ev charging schedule request.
+ */
 @Data
 public class NotifyEVChargingScheduleRequest implements Request {
 

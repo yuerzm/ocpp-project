@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.GetDisplayMessagesStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Get display messages response.
+ */
 @Data
 public class GetDisplayMessagesResponse implements Response {
 

@@ -18,6 +18,9 @@ import com.cuckooy.ocpp.v16.operation.Ocpp16CentralSystemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The type Ocpp 16 central system service.
+ */
 public class Ocpp16CentralSystemServiceImpl implements Ocpp16CentralSystemService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -25,6 +28,12 @@ public class Ocpp16CentralSystemServiceImpl implements Ocpp16CentralSystemServic
     private final CentralSystemCoreEventHandler coreEventHandler;
     private final CentralSystemFirmwareEventHandler firmwareEventHandler;
 
+    /**
+     * Instantiates a new Ocpp 16 central system service.
+     *
+     * @param coreEventHandler     the core event handler
+     * @param firmwareEventHandler the firmware event handler
+     */
     public Ocpp16CentralSystemServiceImpl(CentralSystemCoreEventHandler coreEventHandler,
                                           CentralSystemFirmwareEventHandler firmwareEventHandler) {
         this.coreEventHandler = coreEventHandler;

@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Stop transaction request.
+ */
 @Data
 @NoArgsConstructor
 public class StopTransactionRequest implements Request {

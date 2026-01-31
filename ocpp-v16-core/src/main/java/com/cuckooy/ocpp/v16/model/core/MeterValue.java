@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Meter value.
+ */
 @Data
 @NoArgsConstructor
 public class MeterValue {

@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.CertificateHashDataType;
 import com.cuckooy.ocpp.v21.model.common.datatypes.IdTokenType;
 import lombok.Data;
 
+/**
+ * The type Customer information request.
+ */
 @Data
 public class CustomerInformationRequest implements Request {
 

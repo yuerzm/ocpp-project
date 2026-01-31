@@ -1,10 +1,25 @@
 package com.cuckooy.ocpp.v20.model.common.enumerations;
 
+/**
+ * The enum Message format enum type.
+ */
 public enum MessageFormatEnumType {
 
+    /**
+     * Ascii message format enum type.
+     */
     ASCII("ASCII"),
+    /**
+     * Html message format enum type.
+     */
     HTML("HTML"),
+    /**
+     * Uri message format enum type.
+     */
     URI("URI"),
+    /**
+     * Utf 8 message format enum type.
+     */
     UTF8("UTF8");
 
     private final String value;

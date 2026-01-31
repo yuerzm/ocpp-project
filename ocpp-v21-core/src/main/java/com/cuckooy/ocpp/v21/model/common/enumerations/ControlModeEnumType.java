@@ -1,8 +1,17 @@
 package com.cuckooy.ocpp.v21.model.common.enumerations;
 
+/**
+ * The enum Control mode enum type.
+ */
 public enum ControlModeEnumType {
 
+    /**
+     * Scheduled control control mode enum type.
+     */
     ScheduledControl("ScheduledControl"),
+    /**
+     * Dynamic control control mode enum type.
+     */
     DynamicControl("DynamicControl"),
     ;
 

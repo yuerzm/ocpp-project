@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.CertificateSignedStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Certificate signed response.
+ */
 @Data
 public class CertificateSignedResponse implements Response {
 

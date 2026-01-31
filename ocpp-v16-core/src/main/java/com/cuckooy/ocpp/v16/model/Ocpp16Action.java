@@ -60,43 +60,130 @@ import com.cuckooy.ocpp.v16.model.smartcharging.SetChargingProfileRequest;
 import com.cuckooy.ocpp.v16.model.smartcharging.SetChargingProfileResponse;
 import lombok.Getter;
 
+/**
+ * The enum Ocpp 16 action.
+ */
 @Getter
 public enum Ocpp16Action {
 
+    /**
+     * Authorize ocpp 16 action.
+     */
     // core
     Authorize(AuthorizeRequest.class, AuthorizeResponse.class),
+    /**
+     * Boot notification ocpp 16 action.
+     */
     BootNotification(BootNotificationRequest.class, BootNotificationResponse.class),
+    /**
+     * Change availability ocpp 16 action.
+     */
     ChangeAvailability(ChangeAvailabilityRequest.class, ChangeAvailabilityResponse.class),
+    /**
+     * Change configuration ocpp 16 action.
+     */
     ChangeConfiguration(ChangeConfigurationRequest.class, ChangeConfigurationResponse.class),
+    /**
+     * Clear cache ocpp 16 action.
+     */
     ClearCache(ClearCacheRequest.class, ClearCacheResponse.class),
+    /**
+     * Data transfer ocpp 16 action.
+     */
     DataTransfer(DataTransferRequest.class, DataTransferResponse.class),
+    /**
+     * Get configuration ocpp 16 action.
+     */
     GetConfiguration(GetConfigurationRequest.class, GetConfigurationResponse.class),
+    /**
+     * Heartbeat ocpp 16 action.
+     */
     Heartbeat(HeartbeatRequest.class, HeartbeatResponse.class),
+    /**
+     * Meter values ocpp 16 action.
+     */
     MeterValues(MeterValuesRequest.class, MeterValuesResponse.class),
+    /**
+     * Remote start transaction ocpp 16 action.
+     */
     RemoteStartTransaction(RemoteStartTransactionRequest.class, RemoteStartTransactionResponse.class),
+    /**
+     * Remote stop transaction ocpp 16 action.
+     */
     RemoteStopTransaction(RemoteStopTransactionRequest.class, RemoteStopTransactionResponse.class),
+    /**
+     * Reset ocpp 16 action.
+     */
     Reset(ResetRequest.class, ResetResponse.class),
+    /**
+     * Start transaction ocpp 16 action.
+     */
     StartTransaction(StartTransactionRequest.class, StartTransactionResponse.class),
+    /**
+     * Status notification ocpp 16 action.
+     */
     StatusNotification(StatusNotificationRequest.class, StatusNotificationResponse.class),
+    /**
+     * Stop transaction ocpp 16 action.
+     */
     StopTransaction(StopTransactionRequest.class, StopTransactionResponse.class),
+    /**
+     * Unlock connector ocpp 16 action.
+     */
     UnlockConnector(UnlockConnectorRequest.class, UnlockConnectorResponse.class),
+    /**
+     * Diagnostics status notification ocpp 16 action.
+     */
     // firmware
     DiagnosticsStatusNotification(DiagnosticsStatusNotificationRequest.class,
         DiagnosticsStatusNotificationResponse.class),
+    /**
+     * Firmware status notification ocpp 16 action.
+     */
     FirmwareStatusNotification(FirmwareStatusNotificationRequest.class, FirmwareStatusNotificationResponse.class),
+    /**
+     * Get diagnostics ocpp 16 action.
+     */
     GetDiagnostics(GetDiagnosticsRequest.class, GetDiagnosticsResponse.class),
+    /**
+     * Update firmware ocpp 16 action.
+     */
     UpdateFirmware(UpdateFirmwareRequest.class, UpdateFirmwareResponse.class),
+    /**
+     * The Get local list version.
+     */
     // local auth list
     GetLocalListVersion(GetLocalListVersionRequest.class, GetLocalListVersionResponse.class),
+    /**
+     * Send local list ocpp 16 action.
+     */
     SendLocalList(SendLocalListRequest.class, SendLocalListResponse.class),
+    /**
+     * The Trigger message.
+     */
     // local auth list
     TriggerMessage(TriggerMessageRequest.class, TriggerMessageResponse.class),
+    /**
+     * Cancel reservation ocpp 16 action.
+     */
     // reservation
     CancelReservation(CancelReservationRequest.class, CancelReservationResponse.class),
+    /**
+     * Reserve now ocpp 16 action.
+     */
     ReserveNow(ReserveNowRequest.class, ReserveNowResponse.class),
+    /**
+     * Clear charging profile ocpp 16 action.
+     */
     // reservation
     ClearChargingProfile(ClearChargingProfileRequest.class, ClearChargingProfileResponse.class),
+    /**
+     * Get composite schedule ocpp 16 action.
+     */
     GetCompositeSchedule(GetCompositeScheduleRequest.class, GetCompositeScheduleResponse.class),
+    /**
+     * Set charging profile ocpp 16 action.
+     */
     SetChargingProfile(SetChargingProfileRequest.class, SetChargingProfileResponse.class),
     ;
 

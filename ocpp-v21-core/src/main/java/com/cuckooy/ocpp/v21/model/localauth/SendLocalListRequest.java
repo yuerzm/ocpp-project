@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Send local list request.
+ */
 @Data
 public class SendLocalListRequest implements Request {
 

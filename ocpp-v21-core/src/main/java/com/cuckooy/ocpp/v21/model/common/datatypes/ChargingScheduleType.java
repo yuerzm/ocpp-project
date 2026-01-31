@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Charging schedule type.
+ */
 @Data
 public class ChargingScheduleType {
 

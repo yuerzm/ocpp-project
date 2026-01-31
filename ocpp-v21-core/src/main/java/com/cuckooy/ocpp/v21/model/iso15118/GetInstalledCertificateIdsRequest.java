@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Get installed certificate ids request.
+ */
 @Data
 public class GetInstalledCertificateIdsRequest implements Request {
 

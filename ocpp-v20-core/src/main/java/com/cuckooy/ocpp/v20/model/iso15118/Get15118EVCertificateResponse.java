@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.Iso15118EVCertificateStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Get 15118 ev certificate response.
+ */
 @Data
 public class Get15118EVCertificateResponse implements Response {
 

@@ -2,6 +2,9 @@ package com.cuckooy.ocpp.v21.model.common.datatypes;
 
 import lombok.Data;
 
+/**
+ * The type Price rule type.
+ */
 @Data
 public class PriceRuleType {
 

@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Cost dimension type.
+ */
 @Data
 public class CostDimensionType {
 

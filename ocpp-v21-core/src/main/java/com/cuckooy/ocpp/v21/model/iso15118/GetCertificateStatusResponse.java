@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.GetCertificateStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Get certificate status response.
+ */
 @Data
 public class GetCertificateStatusResponse implements Response {
 

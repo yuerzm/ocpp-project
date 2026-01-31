@@ -82,6 +82,9 @@ import org.springframework.web.socket.WebSocketSession;
 
 import java.util.Optional;
 
+/**
+ * The type Ocpp 20 charge point service.
+ */
 public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -103,6 +106,12 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
     private final ChargePointSmartChargingEventHandler smartChargingEventHandler;
     private final ChargePointTransactionsEventHandler transactionsEventHandler;
 
+    /**
+     * Instantiates a new Ocpp 20 charge point service.
+     *
+     * @param serverTransport   the server transport
+     * @param sessionRepository the session repository
+     */
     public Ocpp20ChargePointServiceImpl(Ocpp20ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
         this.authorizationEventHandler = new ChargePointAuthorizationEventHandlerImpl(serverTransport,

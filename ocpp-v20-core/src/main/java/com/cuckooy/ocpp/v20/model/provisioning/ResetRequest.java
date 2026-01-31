@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.v20.model.common.enumerations.ResetEnumType;
 import lombok.Data;
 
+/**
+ * The type Reset request.
+ */
 @Data
 public class ResetRequest implements Request {
 

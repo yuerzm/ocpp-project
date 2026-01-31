@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Notify customer information request.
+ */
 @Data
 public class NotifyCustomerInformationRequest implements Request {
 

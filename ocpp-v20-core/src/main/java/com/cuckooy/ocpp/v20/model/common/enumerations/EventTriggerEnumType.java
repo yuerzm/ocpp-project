@@ -1,11 +1,23 @@
 package com.cuckooy.ocpp.v20.model.common.enumerations;
 
+/**
+ * The enum Event trigger enum type.
+ */
 public enum EventTriggerEnumType {
 
+    /**
+     * Alerting event trigger enum type.
+     */
     Alerting("Alerting"),
 
+    /**
+     * Delta event trigger enum type.
+     */
     Delta("Delta"),
 
+    /**
+     * Periodic event trigger enum type.
+     */
     Periodic("Periodic");
 
     private final String value;

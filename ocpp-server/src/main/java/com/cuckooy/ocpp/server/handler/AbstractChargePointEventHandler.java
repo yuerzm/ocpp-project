@@ -10,6 +10,9 @@ import org.springframework.web.socket.WebSocketSession;
 
 import java.util.Optional;
 
+/**
+ * The type Abstract charge point event handler.
+ */
 public class AbstractChargePointEventHandler {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -17,11 +20,25 @@ public class AbstractChargePointEventHandler {
     private final ServerTransport serverTransport;
     private final SessionRepository sessionRepository;
 
+    /**
+     * Instantiates a new Abstract charge point event handler.
+     *
+     * @param serverTransport   the server transport
+     * @param sessionRepository the session repository
+     */
     public AbstractChargePointEventHandler(ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.serverTransport = serverTransport;
         this.sessionRepository = sessionRepository;
     }
 
+    /**
+     * Invoke response.
+     *
+     * @param sessionId the session id
+     * @param identity  the identity
+     * @param request   the request
+     * @return the response
+     */
     public Response invoke(String sessionId, String identity, Request request) {
         Optional<WebSocketSession> optional = sessionRepository.get(sessionId, identity);
         if (optional.isEmpty()) {

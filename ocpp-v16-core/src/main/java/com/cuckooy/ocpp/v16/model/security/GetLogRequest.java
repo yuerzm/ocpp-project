@@ -6,6 +6,9 @@ import com.cuckooy.ocpp.v16.model.security.types.LogParametersType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Get log request.
+ */
 @Data
 @NoArgsConstructor
 public class GetLogRequest implements Request {

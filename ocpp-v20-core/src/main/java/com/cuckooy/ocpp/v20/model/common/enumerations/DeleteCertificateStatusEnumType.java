@@ -1,9 +1,21 @@
 package com.cuckooy.ocpp.v20.model.common.enumerations;
 
+/**
+ * The enum Delete certificate status enum type.
+ */
 public enum DeleteCertificateStatusEnumType {
 
+    /**
+     * Accepted delete certificate status enum type.
+     */
     Accepted("Accepted"),
+    /**
+     * Failed delete certificate status enum type.
+     */
     Failed("Failed"),
+    /**
+     * Not found delete certificate status enum type.
+     */
     NotFound("NotFound");
 
     private final String value;

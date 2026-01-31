@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.SendLocalListStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Send local list response.
+ */
 @Data
 public class SendLocalListResponse implements Response {
 

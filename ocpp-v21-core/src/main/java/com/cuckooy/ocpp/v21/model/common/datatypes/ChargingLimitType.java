@@ -2,6 +2,9 @@ package com.cuckooy.ocpp.v21.model.common.datatypes;
 
 import lombok.Data;
 
+/**
+ * The type Charging limit type.
+ */
 @Data
 public class ChargingLimitType {
 

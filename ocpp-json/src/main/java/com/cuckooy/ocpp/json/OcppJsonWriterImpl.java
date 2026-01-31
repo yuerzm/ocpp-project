@@ -9,10 +9,18 @@ import com.cuckooy.ocpp.core.message.OcppMessage;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Ocpp json writer.
+ */
 public class OcppJsonWriterImpl implements OcppJsonWriter {
 
     private final OcppJsonMapper ocppJsonMapper;
 
+    /**
+     * Instantiates a new Ocpp json writer.
+     *
+     * @param ocppJsonMapper the ocpp json mapper
+     */
     public OcppJsonWriterImpl(OcppJsonMapper ocppJsonMapper) {
         this.ocppJsonMapper = ocppJsonMapper;
     }

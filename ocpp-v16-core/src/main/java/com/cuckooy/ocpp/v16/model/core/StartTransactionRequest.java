@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Start transaction request.
+ */
 @Data
 @NoArgsConstructor
 public class StartTransactionRequest implements Request {

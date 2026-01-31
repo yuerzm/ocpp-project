@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * The type Tariff type.
+ */
 @Data
 public class TariffType {
 

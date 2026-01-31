@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * The type Ocpp handshake handler.
+ */
 public class OcppHandshakeHandler implements HandshakeHandler {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -26,6 +29,11 @@ public class OcppHandshakeHandler implements HandshakeHandler {
     private final HandshakeHandler delegate;
     private final List<AbstractWebSocketEndpoint> endpoints;
 
+    /**
+     * Instantiates a new Ocpp handshake handler.
+     *
+     * @param endpoints the endpoints
+     */
     public OcppHandshakeHandler(List<AbstractWebSocketEndpoint> endpoints) {
         this.delegate = new DefaultHandshakeHandler();
         this.endpoints = endpoints;

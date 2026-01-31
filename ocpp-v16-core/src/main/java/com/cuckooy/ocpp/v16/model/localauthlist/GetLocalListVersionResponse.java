@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.core.message.Response;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Get local list version response.
+ */
 @Data
 @NoArgsConstructor
 public class GetLocalListVersionResponse implements Response {

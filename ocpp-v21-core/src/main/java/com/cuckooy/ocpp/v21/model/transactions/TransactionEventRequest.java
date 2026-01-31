@@ -12,6 +12,9 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The type Transaction event request.
+ */
 @Data
 public class TransactionEventRequest implements Request {
 

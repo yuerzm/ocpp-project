@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v16.model.security.types.LogStatusEnumType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Get log response.
+ */
 @Data
 @NoArgsConstructor
 public class GetLogResponse implements Response {

@@ -1,10 +1,25 @@
 package com.cuckooy.ocpp.v21.model.common.enumerations;
 
+/**
+ * The enum Der control status enum type.
+ */
 public enum DERControlStatusEnumType {
 
+    /**
+     * Accepted der control status enum type.
+     */
     Accepted("Accepted"),
+    /**
+     * Rejected der control status enum type.
+     */
     Rejected("Rejected"),
+    /**
+     * Not supported der control status enum type.
+     */
     NotSupported("NotSupported"),
+    /**
+     * Not found der control status enum type.
+     */
     NotFound("NotFound"),
     ;
 

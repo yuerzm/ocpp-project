@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+/**
+ * The type Log parameters type.
+ */
 @Data
 @NoArgsConstructor
 public class LogParametersType {

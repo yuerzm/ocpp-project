@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.InstallCertificateStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Install certificate response.
+ */
 @Data
 public class InstallCertificateResponse implements Response {
 

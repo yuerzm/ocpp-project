@@ -13,6 +13,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The type Concurrent web socket handler.
+ */
 public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -66,12 +69,39 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
             sessionId -> new ConcurrentWebSocketSessionDecorator(session, SEND_TIME_LIMIT, BUFFER_SIZE_LIMIT));
     }
 
+    /**
+     * On connect.
+     *
+     * @param session the session
+     * @throws Exception the exception
+     */
     protected abstract void onConnect(WebSocketSession session) throws Exception;
 
+    /**
+     * On disconnect.
+     *
+     * @param session     the session
+     * @param closeStatus the close status
+     * @throws Exception the exception
+     */
     protected abstract void onDisconnect(WebSocketSession session, CloseStatus closeStatus) throws Exception;
 
+    /**
+     * On message.
+     *
+     * @param session the session
+     * @param message the message
+     * @throws Exception the exception
+     */
     protected abstract void onMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception;
 
+    /**
+     * On exception.
+     *
+     * @param session   the session
+     * @param throwable the throwable
+     * @throws Exception the exception
+     */
     protected abstract void onException(WebSocketSession session, Throwable throwable) throws Exception;
 
 }

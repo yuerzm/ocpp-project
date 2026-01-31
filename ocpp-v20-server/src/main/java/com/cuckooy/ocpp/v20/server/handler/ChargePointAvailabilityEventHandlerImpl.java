@@ -1,15 +1,24 @@
 package com.cuckooy.ocpp.v20.server.handler;
 
-import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.v20.handler.ChargePointAvailabilityEventHandler;
 import com.cuckooy.ocpp.v20.model.availability.ChangeAvailabilityRequest;
 import com.cuckooy.ocpp.v20.model.availability.ChangeAvailabilityResponse;
 import com.cuckooy.ocpp.v20.server.Ocpp20ServerTransport;
 
+/**
+ * The type Charge point availability event handler.
+ */
 public class ChargePointAvailabilityEventHandlerImpl extends AbstractChargePointEventHandler implements
     ChargePointAvailabilityEventHandler {
 
+    /**
+     * Instantiates a new Charge point availability event handler.
+     *
+     * @param serverTransport   the server transport
+     * @param sessionRepository the session repository
+     */
     public ChargePointAvailabilityEventHandlerImpl(Ocpp20ServerTransport serverTransport,
                                                    SessionRepository sessionRepository) {
         super(serverTransport, sessionRepository);

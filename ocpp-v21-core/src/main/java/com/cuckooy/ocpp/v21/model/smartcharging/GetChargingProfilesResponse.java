@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.GetChargingProfileStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Get charging profiles response.
+ */
 @Data
 public class GetChargingProfilesResponse implements Response {
 

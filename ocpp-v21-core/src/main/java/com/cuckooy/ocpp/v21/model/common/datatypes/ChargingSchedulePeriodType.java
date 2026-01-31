@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Charging schedule period type.
+ */
 @Data
 public class ChargingSchedulePeriodType {
 

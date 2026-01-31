@@ -8,6 +8,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Objects;
 
+/**
+ * The type Basic authenticate validator.
+ */
 public class BasicAuthenticateValidatorImpl implements BasicAuthenticateValidator {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

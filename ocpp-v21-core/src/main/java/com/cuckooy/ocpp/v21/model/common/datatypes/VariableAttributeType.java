@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.v21.model.common.enumerations.AttributeEnumType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.MutabilityEnumType;
 import lombok.Data;
 
+/**
+ * The type Variable attribute type.
+ */
 @Data
 public class VariableAttributeType {
 

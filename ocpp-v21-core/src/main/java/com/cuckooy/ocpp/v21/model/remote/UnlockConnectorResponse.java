@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.UnlockStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Unlock connector response.
+ */
 @Data
 public class UnlockConnectorResponse implements Response {
 

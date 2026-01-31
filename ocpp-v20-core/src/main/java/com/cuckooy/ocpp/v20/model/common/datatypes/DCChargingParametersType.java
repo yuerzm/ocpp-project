@@ -2,6 +2,9 @@ package com.cuckooy.ocpp.v20.model.common.datatypes;
 
 import lombok.Data;
 
+/**
+ * The type Dc charging parameters type.
+ */
 @Data
 public class DCChargingParametersType {
 

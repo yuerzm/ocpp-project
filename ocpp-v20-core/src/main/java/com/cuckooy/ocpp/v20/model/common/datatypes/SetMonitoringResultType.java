@@ -4,6 +4,9 @@ import com.cuckooy.ocpp.v20.model.common.enumerations.MonitorEnumType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.SetMonitoringStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Set monitoring result type.
+ */
 @Data
 public class SetMonitoringResultType {
 

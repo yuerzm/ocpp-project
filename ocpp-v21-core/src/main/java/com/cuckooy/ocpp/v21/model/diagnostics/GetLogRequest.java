@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v21.model.common.datatypes.LogParametersType;
 import com.cuckooy.ocpp.v21.model.common.enumerations.LogEnumType;
 import lombok.Data;
 
+/**
+ * The type Get log request.
+ */
 @Data
 public class GetLogRequest implements Request {
 

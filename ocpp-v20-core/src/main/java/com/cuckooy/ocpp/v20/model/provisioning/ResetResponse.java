@@ -5,6 +5,9 @@ import com.cuckooy.ocpp.v20.model.common.datatypes.StatusInfoType;
 import com.cuckooy.ocpp.v20.model.common.enumerations.ResetStatusEnumType;
 import lombok.Data;
 
+/**
+ * The type Reset response.
+ */
 @Data
 public class ResetResponse implements Response {
 

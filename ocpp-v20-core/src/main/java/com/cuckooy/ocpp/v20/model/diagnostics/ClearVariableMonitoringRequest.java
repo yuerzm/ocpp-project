@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Clear variable monitoring request.
+ */
 @Data
 public class ClearVariableMonitoringRequest implements Request {
 

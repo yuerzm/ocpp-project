@@ -10,10 +10,19 @@ import com.networknt.schema.SpecificationVersion;
 
 import java.util.Optional;
 
+/**
+ * The type Ocpp 20 json parser.
+ */
 public class Ocpp20JsonParser extends AbstractOcppJsonParser {
 
     private final UniqueIdRepository uniqueIdRepository;
 
+    /**
+     * Instantiates a new Ocpp 20 json parser.
+     *
+     * @param ocpp20JsonMapper   the ocpp 20 json mapper
+     * @param uniqueIdRepository the unique id repository
+     */
     public Ocpp20JsonParser(Ocpp20JsonMapper ocpp20JsonMapper, UniqueIdRepository uniqueIdRepository) {
         super(ocpp20JsonMapper, new OcppJsonValidatorImpl("scheme/v20/", SpecificationVersion.DRAFT_2020_12));
         this.uniqueIdRepository = uniqueIdRepository;

@@ -5,6 +5,9 @@ import lombok.Getter;
 import java.io.Serial;
 import java.util.Objects;
 
+/**
+ * The type Ocpp exception.
+ */
 @Getter
 public class OcppException extends RuntimeException {
 
@@ -16,6 +19,15 @@ public class OcppException extends RuntimeException {
     private String description;
     private Object details;
 
+    /**
+     * Instantiates a new Ocpp exception.
+     *
+     * @param message     the message
+     * @param uniqueId    the unique id
+     * @param code        the code
+     * @param description the description
+     * @param details     the details
+     */
     protected OcppException(String message, String uniqueId, MessageErrorCode code, String description,
                             Object details) {
         super(message);
@@ -25,6 +37,16 @@ public class OcppException extends RuntimeException {
         this.details = Objects.nonNull(details) ? details : new Object();
     }
 
+    /**
+     * Instantiates a new Ocpp exception.
+     *
+     * @param message     the message
+     * @param uniqueId    the unique id
+     * @param code        the code
+     * @param description the description
+     * @param details     the details
+     * @param throwable   the throwable
+     */
     protected OcppException(String message, String uniqueId, MessageErrorCode code, String description, Object details,
                             Throwable throwable) {
         super(message, throwable);
