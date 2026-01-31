@@ -1,9 +1,9 @@
-package com.cuckooy.ocpp.server.provision;
+package com.cuckooy.ocpp.server.handler;
 
 import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.core.message.Response;
 import com.cuckooy.ocpp.server.ServerTransport;
-import com.cuckooy.ocpp.server.SessionRepository;
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.WebSocketSession;

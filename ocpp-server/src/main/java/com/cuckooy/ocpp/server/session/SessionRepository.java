@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.server;
+package com.cuckooy.ocpp.server.session;
 
 import org.springframework.web.socket.WebSocketSession;
 

@@ -2,7 +2,7 @@ package com.cuckooy.ocpp.v20.server.operations;
 
 import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.core.message.Response;
-import com.cuckooy.ocpp.server.SessionRepository;
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.v20.handler.ChargePointAuthorizationEventHandler;
 import com.cuckooy.ocpp.v20.handler.ChargePointAvailabilityEventHandler;
 import com.cuckooy.ocpp.v20.handler.ChargePointDataTransferEventHandler;

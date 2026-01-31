@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.server.provision;
+package com.cuckooy.ocpp.server.logger;
 
 import lombok.Getter;
 import lombok.ToString;

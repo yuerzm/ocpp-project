@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.server.provision;
+package com.cuckooy.ocpp.server.promise;
 
 import com.cuckooy.ocpp.core.message.Response;
 

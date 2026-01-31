@@ -4,9 +4,11 @@ import com.cuckooy.ocpp.core.message.OcppVersion;
 import com.cuckooy.ocpp.server.ServerTransport;
 import com.cuckooy.ocpp.server.SessionEventHandler;
 import com.cuckooy.ocpp.server.concurrent.ConcurrentWebSocketHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.PongMessage;
@@ -24,20 +26,30 @@ public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandl
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final ServerTransport serverTransport;
+    private final SessionRepository sessionRepository;
     private final SessionEventHandler sessionEventHandler;
 
-    public AbstractWebSocketEndpoint(ServerTransport serverTransport, SessionEventHandler sessionEventHandler) {
+    public AbstractWebSocketEndpoint(ServerTransport serverTransport, SessionRepository sessionRepository,
+                                     SessionEventHandler sessionEventHandler) {
+        Assert.notNull(serverTransport, "serverTransport must not be null");
+        Assert.notNull(sessionRepository, "sessionRepository must not be null");
+        Assert.notNull(sessionEventHandler, "SessionEventHandler must not be null");
         this.serverTransport = serverTransport;
+        this.sessionRepository = sessionRepository;
         this.sessionEventHandler = sessionEventHandler;
     }
 
     @Override
     protected void onConnect(WebSocketSession session) throws Exception {
+        logger.info("Session {} connect", session.getId());
+        sessionRepository.put(session);
         sessionEventHandler.connect(session);
     }
 
     @Override
     protected void onDisconnect(WebSocketSession session, CloseStatus closeStatus) throws Exception {
+        logger.info("Session {} disconnect", session.getId());
+        sessionRepository.remove(session);
         sessionEventHandler.disconnect(session);
     }
 
@@ -76,6 +88,7 @@ public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandl
     @Override
     protected void onException(WebSocketSession session, Throwable throwable) throws Exception {
         logger.error("Occurred an exception: {}", throwable.getMessage(), throwable);
+        sessionEventHandler.exception(session, throwable);
     }
 
     protected void handlePongMessage(WebSocketSession session, PongMessage message) throws Exception {

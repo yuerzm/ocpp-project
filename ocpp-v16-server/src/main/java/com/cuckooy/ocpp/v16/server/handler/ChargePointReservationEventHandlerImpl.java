@@ -1,7 +1,7 @@
 package com.cuckooy.ocpp.v16.server.handler;
 
-import com.cuckooy.ocpp.server.SessionRepository;
-import com.cuckooy.ocpp.server.provision.AbstractChargePointEventHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
+import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointReservationEventHandler;
 import com.cuckooy.ocpp.v16.model.reservation.CancelReservationRequest;
 import com.cuckooy.ocpp.v16.model.reservation.CancelReservationResponse;

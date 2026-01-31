@@ -1,7 +1,10 @@
 package com.cuckooy.ocpp.server.handshake;
 
-import com.cuckooy.ocpp.server.provision.RegistryEventHandler;
-import com.cuckooy.ocpp.server.provision.SessionAttributeHelper;
+import com.cuckooy.ocpp.server.RegistryEventHandler;
+import com.cuckooy.ocpp.server.registry.BasicAuthenticateValidator;
+import com.cuckooy.ocpp.server.registry.BasicAuthenticateValidatorImpl;
+import com.cuckooy.ocpp.server.registry.ChargePointRegistry;
+import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
@@ -13,6 +16,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class OcppHandshakeInterceptor implements HandshakeInterceptor {
 
@@ -20,16 +24,20 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
 
     private static final String DEFAULT_PATH = "/websocket/";
 
-    private String path = DEFAULT_PATH;
+    private final String path;
     private final RegistryEventHandler registryEventHandler;
+    private final BasicAuthenticateValidator basicAuthenticateValidator;
 
     public OcppHandshakeInterceptor(RegistryEventHandler registryEventHandler) {
+        this.path = DEFAULT_PATH;
         this.registryEventHandler = registryEventHandler;
+        this.basicAuthenticateValidator = new BasicAuthenticateValidatorImpl();
     }
 
     public OcppHandshakeInterceptor(String path, RegistryEventHandler registryEventHandler) {
         this.path = path;
         this.registryEventHandler = registryEventHandler;
+        this.basicAuthenticateValidator = new BasicAuthenticateValidatorImpl();
     }
 
     @Override
@@ -49,15 +57,21 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
             return false;
         }
 
-        boolean checked = registryEventHandler.check(identity);
-        if (!checked) {
+        ChargePointRegistry registry = registryEventHandler.retrieve(identity);
+
+        if (Objects.isNull(registry) || !registry.isRecognized()) {
             logger.error("ChargePoint identity '{}' is not recognized.", identity);
             response.setStatusCode(HttpStatus.NOT_FOUND);
             return false;
         }
 
-        attributes.put(SessionAttributeHelper.CHARGE_POINT_IDENTITY, identity);
+        if (basicAuthenticateValidator.authenticate(identity, request, registry)) {
+            logger.error("ChargePoint identity '{}' is not recognized.", identity);
+            response.setStatusCode(HttpStatus.UNAUTHORIZED);
+            return false;
+        }
 
+        attributes.put(SessionAttributeHelper.CHARGE_POINT_IDENTITY, identity);
         return true;
     }
 

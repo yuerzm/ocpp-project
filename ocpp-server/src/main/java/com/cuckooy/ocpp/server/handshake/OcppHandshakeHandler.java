@@ -1,7 +1,7 @@
 package com.cuckooy.ocpp.server.handshake;
 
 import com.cuckooy.ocpp.server.endpoint.AbstractWebSocketEndpoint;
-import com.cuckooy.ocpp.server.provision.SessionAttributeHelper;
+import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

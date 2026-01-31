@@ -2,7 +2,7 @@ package com.cuckooy.ocpp.v16.server;
 
 import com.cuckooy.ocpp.core.message.UniqueIdRepository;
 import com.cuckooy.ocpp.json.OcppJsonWriter;
-import com.cuckooy.ocpp.server.provision.AbstractServerTransport;
+import com.cuckooy.ocpp.server.AbstractServerTransport;
 import com.cuckooy.ocpp.v16.json.Ocpp16JsonParser;
 import com.cuckooy.ocpp.v16.operation.Ocpp16CentralSystemService;
 

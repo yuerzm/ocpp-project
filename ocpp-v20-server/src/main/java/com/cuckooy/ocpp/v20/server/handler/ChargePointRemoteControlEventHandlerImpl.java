@@ -1,7 +1,7 @@
 package com.cuckooy.ocpp.v20.server.handler;
 
-import com.cuckooy.ocpp.server.SessionRepository;
-import com.cuckooy.ocpp.server.provision.AbstractChargePointEventHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
+import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
 import com.cuckooy.ocpp.v20.handler.ChargePointRemoteControlEventHandler;
 import com.cuckooy.ocpp.v20.model.remote.RequestStartTransactionRequest;
 import com.cuckooy.ocpp.v20.model.remote.RequestStartTransactionResponse;

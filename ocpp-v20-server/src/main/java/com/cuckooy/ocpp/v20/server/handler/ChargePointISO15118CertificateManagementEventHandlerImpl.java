@@ -1,7 +1,7 @@
 package com.cuckooy.ocpp.v20.server.handler;
 
-import com.cuckooy.ocpp.server.SessionRepository;
-import com.cuckooy.ocpp.server.provision.AbstractChargePointEventHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
+import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
 import com.cuckooy.ocpp.v20.handler.ChargePointISO15118CertificateManagementEventHandler;
 import com.cuckooy.ocpp.v20.model.iso15118.DeleteCertificateRequest;
 import com.cuckooy.ocpp.v20.model.iso15118.DeleteCertificateResponse;

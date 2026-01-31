@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.server.provision;
+package com.cuckooy.ocpp.server;
 
 import com.cuckooy.ocpp.core.exception.OcppException;
 import com.cuckooy.ocpp.core.message.OcppCallErrorMessage;
@@ -11,7 +11,8 @@ import com.cuckooy.ocpp.core.message.UniqueIdRepository;
 import com.cuckooy.ocpp.core.service.CentralSystemService;
 import com.cuckooy.ocpp.json.OcppJsonParser;
 import com.cuckooy.ocpp.json.OcppJsonWriter;
-import com.cuckooy.ocpp.server.ServerTransport;
+import com.cuckooy.ocpp.server.promise.PromiseContextHolder;
+import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -28,7 +29,7 @@ import java.util.concurrent.TimeoutException;
 
 public abstract class AbstractServerTransport implements ServerTransport {
 
-    private static final String OCPP_LOGGER = "OCPPLogger";
+    private static final String OCPP_LOGGER = "OCPP.Logger";
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final Logger ocppLogger = LoggerFactory.getLogger(OCPP_LOGGER);
@@ -42,7 +43,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
                                    UniqueIdRepository uniqueIdRepository, CentralSystemService centralSystemService) {
         Assert.notNull(ocppJsonParser, "ocppJsonParser cannot be null");
         Assert.notNull(ocppJsonWriter, "ocppJsonWriter cannot be null");
-        Assert.notNull(uniqueIdRepository, "uniqueIdActionRetriever cannot be null");
+        Assert.notNull(uniqueIdRepository, "uniqueIdRepository cannot be null");
         Assert.notNull(centralSystemService, "centralSystemService cannot be null");
         this.ocppJsonParser = ocppJsonParser;
         this.ocppJsonWriter = ocppJsonWriter;

@@ -1,7 +1,7 @@
 package com.cuckooy.ocpp.v20.server.handler;
 
-import com.cuckooy.ocpp.server.SessionRepository;
-import com.cuckooy.ocpp.server.provision.AbstractChargePointEventHandler;
+import com.cuckooy.ocpp.server.session.SessionRepository;
+import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
 import com.cuckooy.ocpp.v20.handler.ChargePointProvisioningEventHandler;
 import com.cuckooy.ocpp.v20.model.provisioning.GetBaseReportRequest;
 import com.cuckooy.ocpp.v20.model.provisioning.GetBaseReportResponse;

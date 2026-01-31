@@ -2,7 +2,7 @@ package com.cuckooy.ocpp.v16.server.operations;
 
 import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.core.message.Response;
-import com.cuckooy.ocpp.server.SessionRepository;
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.v16.handler.ChargePointCoreEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointFirmwareManagementEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointLocalAuthEventHandler;

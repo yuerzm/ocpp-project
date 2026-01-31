@@ -4,9 +4,9 @@ import org.springframework.web.socket.WebSocketSession;
 
 public interface SessionEventHandler {
 
-    boolean authenticate(WebSocketSession session, String username, String password);
-
     void connect(WebSocketSession session);
 
     void disconnect(WebSocketSession session);
+
+    void exception(WebSocketSession session, Throwable throwable);
 }
