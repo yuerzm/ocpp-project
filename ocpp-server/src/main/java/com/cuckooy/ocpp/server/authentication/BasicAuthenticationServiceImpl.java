@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.server.registry;
+package com.cuckooy.ocpp.server.authentication;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,16 +9,16 @@ import java.util.Base64;
 import java.util.Objects;
 
 /**
- * The type Basic authenticate validator.
+ * The type Basic authentication service.
  */
-public class BasicAuthenticateValidatorImpl implements BasicAuthenticateValidator {
+public class BasicAuthenticationServiceImpl implements BasicAuthenticationService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public boolean authenticate(String identity, ServerHttpRequest request, ChargePointRegistry authenticated) {
+    public boolean authenticate(String identity, ServerHttpRequest request, ChargePointRetrieveResponse retrieved) {
 
-        if (!authenticated.isRequired()) {
+        if (!retrieved.isRequired()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Charge Point {} Authentication is not required.", identity);
             }
@@ -37,7 +37,7 @@ public class BasicAuthenticateValidatorImpl implements BasicAuthenticateValidato
             return false;
         }
 
-        String plaintext = authenticated.getUsername() + ":" + authenticated.getPassword();
+        String plaintext = retrieved.getUsername() + ":" + retrieved.getPassword();
 
         byte[] decodedBytes = Base64.getEncoder().encode(plaintext.getBytes(StandardCharsets.UTF_8));
         String decodedString = new String(decodedBytes, StandardCharsets.UTF_8);

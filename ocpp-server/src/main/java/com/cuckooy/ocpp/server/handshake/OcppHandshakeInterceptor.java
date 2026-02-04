@@ -1,9 +1,10 @@
 package com.cuckooy.ocpp.server.handshake;
 
-import com.cuckooy.ocpp.server.RegistryEventHandler;
-import com.cuckooy.ocpp.server.registry.BasicAuthenticateValidator;
-import com.cuckooy.ocpp.server.registry.BasicAuthenticateValidatorImpl;
-import com.cuckooy.ocpp.server.registry.ChargePointRegistry;
+import com.cuckooy.ocpp.server.authentication.AuthenticationEventHandler;
+import com.cuckooy.ocpp.server.authentication.BasicAuthenticationService;
+import com.cuckooy.ocpp.server.authentication.BasicAuthenticationServiceImpl;
+import com.cuckooy.ocpp.server.authentication.ChargePointRetrieveRequest;
+import com.cuckooy.ocpp.server.authentication.ChargePointRetrieveResponse;
 import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.NonNull;
@@ -28,30 +29,30 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
     private static final String DEFAULT_PATH = "/websocket/";
 
     private final String path;
-    private final RegistryEventHandler registryEventHandler;
-    private final BasicAuthenticateValidator basicAuthenticateValidator;
+    private final AuthenticationEventHandler authenticationEventHandler;
+    private final BasicAuthenticationService basicAuthenticationService;
 
     /**
      * Instantiates a new Ocpp handshake interceptor.
      *
-     * @param registryEventHandler the registry event handler
+     * @param authenticationEventHandler the authentication event handler
      */
-    public OcppHandshakeInterceptor(RegistryEventHandler registryEventHandler) {
+    public OcppHandshakeInterceptor(AuthenticationEventHandler authenticationEventHandler) {
         this.path = DEFAULT_PATH;
-        this.registryEventHandler = registryEventHandler;
-        this.basicAuthenticateValidator = new BasicAuthenticateValidatorImpl();
+        this.authenticationEventHandler = authenticationEventHandler;
+        this.basicAuthenticationService = new BasicAuthenticationServiceImpl();
     }
 
     /**
      * Instantiates a new Ocpp handshake interceptor.
      *
-     * @param path                 the path
-     * @param registryEventHandler the registry event handler
+     * @param path                       the path
+     * @param authenticationEventHandler the authentication event handler
      */
-    public OcppHandshakeInterceptor(String path, RegistryEventHandler registryEventHandler) {
+    public OcppHandshakeInterceptor(String path, AuthenticationEventHandler authenticationEventHandler) {
         this.path = path;
-        this.registryEventHandler = registryEventHandler;
-        this.basicAuthenticateValidator = new BasicAuthenticateValidatorImpl();
+        this.authenticationEventHandler = authenticationEventHandler;
+        this.basicAuthenticationService = new BasicAuthenticationServiceImpl();
     }
 
     @Override
@@ -64,22 +65,16 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
 
         String identity = parseIdentity(request.getURI().getPath());
 
-        boolean validated = registryEventHandler.validate(identity);
-        if (!validated) {
-            logger.error("ChargePoint identity: '{}', violates the configured pattern.", identity);
-            response.setStatusCode(HttpStatus.BAD_REQUEST);
-            return false;
-        }
+        ChargePointRetrieveRequest authenticateRequest = new ChargePointRetrieveRequest(identity);
+        ChargePointRetrieveResponse authenticateResponse = authenticationEventHandler.retrieve(authenticateRequest);
 
-        ChargePointRegistry registry = registryEventHandler.retrieve(identity);
-
-        if (Objects.isNull(registry) || !registry.isRecognized()) {
+        if (Objects.isNull(authenticateResponse) || !authenticateResponse.isRecognized()) {
             logger.error("ChargePoint identity '{}' is not recognized.", identity);
             response.setStatusCode(HttpStatus.NOT_FOUND);
             return false;
         }
 
-        boolean authenticated = basicAuthenticateValidator.authenticate(identity, request, registry);
+        boolean authenticated = basicAuthenticationService.authenticate(identity, request, authenticateResponse);
         if (!authenticated) {
             logger.error("ChargePoint identity '{}' is not authenticated.", identity);
             response.setStatusCode(HttpStatus.UNAUTHORIZED);

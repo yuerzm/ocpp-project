@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.server.registry;
+package com.cuckooy.ocpp.server.authentication;
 
 import lombok.Data;
 
@@ -6,10 +6,10 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * The type Charge point registry.
+ * The type Charge point retrieve response.
  */
 @Data
-public class ChargePointRegistry implements Serializable {
+public class ChargePointRetrieveResponse implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
