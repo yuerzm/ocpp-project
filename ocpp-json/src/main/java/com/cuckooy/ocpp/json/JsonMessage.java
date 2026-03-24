@@ -70,7 +70,12 @@ public class JsonMessage<T> {
      */
     public static JsonMessage<JsonNode> error(String uniqueId, MessageErrorCode errorCode, String errorDescription,
                                               JsonNode details) {
-        return new JsonMessage<>(OcppMessageType.CALL_ERROR, uniqueId, null, null, errorCode, errorDescription,
+        return new JsonMessage<>(OcppMessageType.CALL_ERROR,
+            uniqueId,
+            null,
+            null,
+            errorCode,
+            errorDescription,
             details);
     }
 

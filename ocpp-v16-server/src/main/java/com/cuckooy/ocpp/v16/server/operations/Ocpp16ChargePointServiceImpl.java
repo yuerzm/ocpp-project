@@ -66,14 +66,14 @@ public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
     public Ocpp16ChargePointServiceImpl(Ocpp16ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
         this.coreEventHandler = new ChargePointCoreEventHandlerImpl(serverTransport, sessionRepository);
-        this.firmwareManagementEventHandler = new ChargePointFirmwareManagementEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.firmwareManagementEventHandler =
+            new ChargePointFirmwareManagementEventHandlerImpl(serverTransport, sessionRepository);
         this.localAuthEventHandler = new ChargePointLocalAuthEventHandlerImpl(serverTransport, sessionRepository);
-        this.remoteTriggerEventHandler = new ChargePointRemoteTriggerEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.remoteTriggerEventHandler =
+            new ChargePointRemoteTriggerEventHandlerImpl(serverTransport, sessionRepository);
         this.reservationEventHandler = new ChargePointReservationEventHandlerImpl(serverTransport, sessionRepository);
-        this.smartChargingEventHandler = new ChargePointSmartChargingEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.smartChargingEventHandler =
+            new ChargePointSmartChargingEventHandlerImpl(serverTransport, sessionRepository);
     }
 
     @Override
@@ -137,11 +137,13 @@ public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
             return smartChargingEventHandler.handleSetChargingProfile(sessionId, identity, setChargingProfileRequest);
 
         } else if (request instanceof ClearChargingProfileRequest clearChargingProfileRequest) {
-            return smartChargingEventHandler.handleClearChargingProfile(sessionId, identity,
+            return smartChargingEventHandler.handleClearChargingProfile(sessionId,
+                identity,
                 clearChargingProfileRequest);
 
         } else if (request instanceof GetCompositeScheduleRequest getCompositeScheduleRequest) {
-            return smartChargingEventHandler.handleGetCompositeSchedule(sessionId, identity,
+            return smartChargingEventHandler.handleGetCompositeSchedule(sessionId,
+                identity,
                 getCompositeScheduleRequest);
 
         } else {

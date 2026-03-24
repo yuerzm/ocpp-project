@@ -114,28 +114,28 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
      */
     public Ocpp20ChargePointServiceImpl(Ocpp20ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
-        this.authorizationEventHandler = new ChargePointAuthorizationEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.authorizationEventHandler =
+            new ChargePointAuthorizationEventHandlerImpl(serverTransport, sessionRepository);
         this.availabilityEventHandler = new ChargePointAvailabilityEventHandlerImpl(serverTransport, sessionRepository);
-        this.tariffAndCostEventHandler = new ChargePointTariffAndCostEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.tariffAndCostEventHandler =
+            new ChargePointTariffAndCostEventHandlerImpl(serverTransport, sessionRepository);
         this.dataTransferEventHandler = new ChargePointDataTransferEventHandlerImpl(serverTransport, sessionRepository);
         this.diagnosticsEventHandler = new ChargePointDiagnosticsEventHandlerImpl(serverTransport, sessionRepository);
-        this.displayMessageEventHandler = new ChargePointDisplayMessageEventHandlerImpl(serverTransport,
-            sessionRepository);
-        this.firmwareManagementEventHandler = new ChargePointFirmwareManagementManagementEventHandlerImpl(
-            serverTransport, sessionRepository);
-        this.iso15118CertificateManagementEventHandler = new ChargePointISO15118CertificateManagementEventHandlerImpl(
-            serverTransport, sessionRepository);
-        this.localAuthorizationListEventHandler = new ChargePointLocalAuthorizationListEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.displayMessageEventHandler =
+            new ChargePointDisplayMessageEventHandlerImpl(serverTransport, sessionRepository);
+        this.firmwareManagementEventHandler =
+            new ChargePointFirmwareManagementManagementEventHandlerImpl(serverTransport, sessionRepository);
+        this.iso15118CertificateManagementEventHandler =
+            new ChargePointISO15118CertificateManagementEventHandlerImpl(serverTransport, sessionRepository);
+        this.localAuthorizationListEventHandler =
+            new ChargePointLocalAuthorizationListEventHandlerImpl(serverTransport, sessionRepository);
         this.provisioningEventHandler = new ChargePointProvisioningEventHandlerImpl(serverTransport, sessionRepository);
-        this.remoteControlEventHandler = new ChargePointRemoteControlEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.remoteControlEventHandler =
+            new ChargePointRemoteControlEventHandlerImpl(serverTransport, sessionRepository);
         this.reservationEventHandler = new ChargePointReservationEventHandlerImpl(serverTransport, sessionRepository);
         this.securityEventHandler = new ChargePointSecurityEventHandlerImpl(serverTransport, sessionRepository);
-        this.smartChargingEventHandler = new ChargePointSmartChargingEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.smartChargingEventHandler =
+            new ChargePointSmartChargingEventHandlerImpl(serverTransport, sessionRepository);
         this.transactionsEventHandler = new ChargePointTransactionsEventHandlerImpl(serverTransport, sessionRepository);
     }
 
@@ -161,7 +161,8 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
             return dataTransferEventHandler.handleDataTransfer(sessionId, identity, dataTransferRequest);
 
         } else if (request instanceof ClearVariableMonitoringRequest clearVariableMonitoringRequest) {
-            return diagnosticsEventHandler.handleClearVariableMonitoring(sessionId, identity,
+            return diagnosticsEventHandler.handleClearVariableMonitoring(sessionId,
+                identity,
                 clearVariableMonitoringRequest);
 
         } else if (request instanceof CustomerInformationRequest customerInformationRequest) {
@@ -174,7 +175,8 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
             return diagnosticsEventHandler.handleGetMonitoringReport(sessionId, identity, getMonitoringReportRequest);
 
         } else if (request instanceof NotifyMonitoringReportRequest getMonitoringReportRequest) {
-            return diagnosticsEventHandler.handleNotifyMonitoringReport(sessionId, identity,
+            return diagnosticsEventHandler.handleNotifyMonitoringReport(sessionId,
+                identity,
                 getMonitoringReportRequest);
 
         } else if (request instanceof SetMonitoringBaseRequest setMonitoringBaseRequest) {
@@ -184,11 +186,13 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
             return diagnosticsEventHandler.handleSetMonitoringLevel(sessionId, identity, setMonitoringLevelRequest);
 
         } else if (request instanceof SetVariableMonitoringRequest setVariableMonitoringRequest) {
-            return diagnosticsEventHandler.handleSetVariableMonitoring(sessionId, identity,
+            return diagnosticsEventHandler.handleSetVariableMonitoring(sessionId,
+                identity,
                 setVariableMonitoringRequest);
 
         } else if (request instanceof ClearDisplayMessageRequest clearDisplayMessageRequest) {
-            return displayMessageEventHandler.handleClearDisplayMessage(sessionId, identity,
+            return displayMessageEventHandler.handleClearDisplayMessage(sessionId,
+                identity,
                 clearDisplayMessageRequest);
 
         } else if (request instanceof GetDisplayMessagesRequest getDisplayMessagesRequest) {
@@ -201,29 +205,34 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
             return firmwareManagementEventHandler.handlePublishFirmware(sessionId, identity, publishFirmwareRequest);
 
         } else if (request instanceof UnpublishFirmwareRequest unpublishFirmwareRequest) {
-            return firmwareManagementEventHandler.handleUnpublishFirmware(sessionId, identity,
+            return firmwareManagementEventHandler.handleUnpublishFirmware(sessionId,
+                identity,
                 unpublishFirmwareRequest);
 
         } else if (request instanceof UpdateFirmwareRequest updateFirmwareRequest) {
             return firmwareManagementEventHandler.handleUpdateFirmware(sessionId, identity, updateFirmwareRequest);
 
         } else if (request instanceof DeleteCertificateRequest deleteCertificateRequest) {
-            return iso15118CertificateManagementEventHandler.handleDeleteCertificate(sessionId, identity,
+            return iso15118CertificateManagementEventHandler.handleDeleteCertificate(sessionId,
+                identity,
                 deleteCertificateRequest);
 
         } else if (request instanceof InstallCertificateRequest installCertificateRequest) {
-            return iso15118CertificateManagementEventHandler.handleInstallCertificate(sessionId, identity,
+            return iso15118CertificateManagementEventHandler.handleInstallCertificate(sessionId,
+                identity,
                 installCertificateRequest);
 
         } else if (request instanceof GetInstalledCertificateIdsRequest getInstalledCertificateIdsRequest) {
-            return iso15118CertificateManagementEventHandler.handleGetInstalledCertificateIds(sessionId, identity,
+            return iso15118CertificateManagementEventHandler.handleGetInstalledCertificateIds(sessionId,
+                identity,
                 getInstalledCertificateIdsRequest);
 
         } else if (request instanceof SendLocalListRequest sendLocalListRequest) {
             return localAuthorizationListEventHandler.handleSendLocalList(sessionId, identity, sendLocalListRequest);
 
         } else if (request instanceof GetLocalListVersionRequest getLocalListVersionRequest) {
-            return localAuthorizationListEventHandler.handleGetLocalListVersion(sessionId, identity,
+            return localAuthorizationListEventHandler.handleGetLocalListVersion(sessionId,
+                identity,
                 getLocalListVersionRequest);
 
         } else if (request instanceof GetBaseReportRequest getBaseReportRequest) {
@@ -248,11 +257,13 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
             return provisioningEventHandler.handleSetNetworkProfile(sessionId, identity, setNetworkProfileRequest);
 
         } else if (request instanceof RequestStartTransactionRequest requestStartTransactionRequest) {
-            return remoteControlEventHandler.handleRequestStartTransaction(sessionId, identity,
+            return remoteControlEventHandler.handleRequestStartTransaction(sessionId,
+                identity,
                 requestStartTransactionRequest);
 
         } else if (request instanceof RequestStopTransactionRequest requestStopTransactionRequest) {
-            return remoteControlEventHandler.handleRequestStopTransaction(sessionId, identity,
+            return remoteControlEventHandler.handleRequestStopTransaction(sessionId,
+                identity,
                 requestStopTransactionRequest);
 
         } else if (request instanceof TriggerMessageRequest triggerMessageRequest) {
@@ -271,21 +282,24 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
             return securityEventHandler.handleCertificateSigned(sessionId, identity, certificateSignedRequest);
 
         } else if (request instanceof ClearChargingProfileRequest clearChargingProfileRequest) {
-            return smartChargingEventHandler.handleClearChargingProfile(sessionId, identity,
+            return smartChargingEventHandler.handleClearChargingProfile(sessionId,
+                identity,
                 clearChargingProfileRequest);
 
         } else if (request instanceof GetChargingProfilesRequest getChargingProfilesRequest) {
             return smartChargingEventHandler.handleGetChargingProfiles(sessionId, identity, getChargingProfilesRequest);
 
         } else if (request instanceof GetCompositeScheduleRequest getCompositeScheduleRequest) {
-            return smartChargingEventHandler.handleGetCompositeSchedule(sessionId, identity,
+            return smartChargingEventHandler.handleGetCompositeSchedule(sessionId,
+                identity,
                 getCompositeScheduleRequest);
 
         } else if (request instanceof SetChargingProfileRequest setChargingProfileRequest) {
             return smartChargingEventHandler.handleSetChargingProfile(sessionId, identity, setChargingProfileRequest);
 
         } else if (request instanceof GetTransactionStatusRequest getTransactionStatusRequest) {
-            return transactionsEventHandler.handleGetTransactionStatus(sessionId, identity,
+            return transactionsEventHandler.handleGetTransactionStatus(sessionId,
+                identity,
                 getTransactionStatusRequest);
 
         } else {

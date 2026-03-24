@@ -11,6 +11,8 @@ import com.cuckooy.ocpp.core.message.UniqueIdRepository;
 import com.cuckooy.ocpp.core.service.CentralSystemService;
 import com.cuckooy.ocpp.json.OcppJsonParser;
 import com.cuckooy.ocpp.json.OcppJsonWriter;
+import com.cuckooy.ocpp.server.bridge.MessageBridgingService;
+import com.cuckooy.ocpp.server.bridge.NoopMessageBridgingService;
 import com.cuckooy.ocpp.server.promise.PromiseContextHolder;
 import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.slf4j.Logger;
@@ -41,6 +43,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
     private final OcppJsonWriter ocppJsonWriter;
     private final UniqueIdRepository uniqueIdRepository;
     private final CentralSystemService centralSystemService;
+    private final MessageBridgingService messageBridgingService;
 
     /**
      * Instantiates a new Abstract server transport.
@@ -60,6 +63,22 @@ public abstract class AbstractServerTransport implements ServerTransport {
         this.ocppJsonWriter = ocppJsonWriter;
         this.uniqueIdRepository = uniqueIdRepository;
         this.centralSystemService = centralSystemService;
+        this.messageBridgingService = new NoopMessageBridgingService();
+    }
+
+    public AbstractServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
+                                   UniqueIdRepository uniqueIdRepository, CentralSystemService centralSystemService,
+                                   MessageBridgingService messageBridgingService) {
+        Assert.notNull(ocppJsonParser, "ocppJsonParser cannot be null");
+        Assert.notNull(ocppJsonWriter, "ocppJsonWriter cannot be null");
+        Assert.notNull(uniqueIdRepository, "uniqueIdRepository cannot be null");
+        Assert.notNull(centralSystemService, "centralSystemService cannot be null");
+        Assert.notNull(centralSystemService, "messageBridgingService cannot be null");
+        this.ocppJsonParser = ocppJsonParser;
+        this.ocppJsonWriter = ocppJsonWriter;
+        this.uniqueIdRepository = uniqueIdRepository;
+        this.centralSystemService = centralSystemService;
+        this.messageBridgingService = messageBridgingService;
     }
 
     @Override
@@ -69,6 +88,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
         }
 
         loggerOcppMessage(session, message);
+        messageBridgingService.onMessage(session, message);
 
         OcppMessage ocppMessage;
         try {
@@ -108,10 +128,10 @@ public abstract class AbstractServerTransport implements ServerTransport {
         OcppCallMessage message = new OcppCallMessage(uniqueId, request.action(), request);
         String serialized = ocppJsonWriter.writeJson(message);
 
-        loggerOcppMessage(session, serialized);
-
         try {
+            loggerOcppMessage(session, serialized);
             session.sendMessage(new TextMessage(serialized));
+            messageBridgingService.onMessage(session, serialized);
             if (logger.isDebugEnabled()) {
                 logger.debug("Send message, session: {}, message: {}", session.getId(), serialized);
             }
@@ -148,7 +168,8 @@ public abstract class AbstractServerTransport implements ServerTransport {
         if (future.isPresent()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Promise found, CompletableFuture handle result response, session: {}, message: {}",
-                    session.getId(), message);
+                    session.getId(),
+                    message);
             }
             future.get().complete(callResult.getPayload());
             PromiseContextHolder.remove(callResult.getUniqueId());
@@ -165,14 +186,16 @@ public abstract class AbstractServerTransport implements ServerTransport {
         if (future.isPresent()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Promise found, CompletableFuture handle error response, session: {}, message: {}",
-                    session.getId(), message);
+                    session.getId(),
+                    message);
             }
             PromiseContextHolder.remove(callError.getUniqueId());
         } else {
             if (logger.isDebugEnabled()) {
                 logger.debug(
                     "Promise not found, CentralSystemOperations handle error response, session: {}, message:" + " {}",
-                    session.getId(), message);
+                    session.getId(),
+                    message);
             }
         }
     }
@@ -185,6 +208,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
         try {
             loggerOcppMessage(session, serialized);
             session.sendMessage(new TextMessage(serialized));
+            messageBridgingService.onMessage(session, serialized);
         } catch (IOException e) {
             logger.error("Send websocket text message failed.", e);
         }
@@ -198,6 +222,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
         try {
             loggerOcppMessage(session, serialized);
             session.sendMessage(new TextMessage(serialized));
+            messageBridgingService.onMessage(session, serialized);
         } catch (IOException e) {
             logger.error("Send websocket text message failed.", e);
         }
@@ -206,7 +231,11 @@ public abstract class AbstractServerTransport implements ServerTransport {
     private void loggerOcppMessage(WebSocketSession session, String message) {
         Object identity = session.getAttributes().get(SessionAttributeHelper.CHARGE_POINT_IDENTITY);
         Object protocol = session.getAttributes().get(SessionAttributeHelper.CHARGE_POINT_PROTOCOL);
-        ocppLogger.info("Identity:\t{},\nSession:\t{},\nEndpoint:\t{},\nProtocol:\t{},\nMessage:\t{}", identity,
-            session.getId(), session.getUri(), protocol, message);
+        ocppLogger.info("Identity:\t{},\nSession:\t{},\nEndpoint:\t{},\nProtocol:\t{},\nMessage:\t{}",
+            identity,
+            session.getId(),
+            session.getUri(),
+            protocol,
+            message);
     }
 }
