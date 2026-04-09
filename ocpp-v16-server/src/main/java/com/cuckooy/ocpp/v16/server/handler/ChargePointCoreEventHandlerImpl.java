@@ -44,53 +44,49 @@ public class ChargePointCoreEventHandlerImpl extends AbstractChargePointEventHan
     }
 
     @Override
-    public ChangeAvailabilityResponse handleChangeAvailability(String sessionId, String identity,
-                                                               ChangeAvailabilityRequest request) {
-        return (ChangeAvailabilityResponse) invoke(sessionId, identity, request);
+    public ChangeAvailabilityResponse handleChangeAvailability(String identity, ChangeAvailabilityRequest request) {
+        return (ChangeAvailabilityResponse) invoke(identity, request);
     }
 
     @Override
-    public GetConfigurationResponse handleGetConfiguration(String sessionId, String identity,
-                                                           GetConfigurationRequest request) {
-        return (GetConfigurationResponse) invoke(sessionId, identity, request);
+    public GetConfigurationResponse handleGetConfiguration(String identity, GetConfigurationRequest request) {
+        return (GetConfigurationResponse) invoke(identity, request);
     }
 
     @Override
-    public ChangeConfigurationResponse handleChangeConfiguration(String sessionId, String identity,
-                                                                 ChangeConfigurationRequest request) {
-        return (ChangeConfigurationResponse) invoke(sessionId, identity, request);
+    public ChangeConfigurationResponse handleChangeConfiguration(String identity, ChangeConfigurationRequest request) {
+        return (ChangeConfigurationResponse) invoke(identity, request);
     }
 
     @Override
-    public ClearCacheResponse handleClearCache(String sessionId, String identity, ClearCacheRequest request) {
-        return (ClearCacheResponse) invoke(sessionId, identity, request);
+    public ClearCacheResponse handleClearCache(String identity, ClearCacheRequest request) {
+        return (ClearCacheResponse) invoke(identity, request);
     }
 
     @Override
-    public DataTransferResponse handleDataTransfer(String sessionId, String identity, DataTransferRequest request) {
-        return (DataTransferResponse) invoke(sessionId, identity, request);
+    public DataTransferResponse handleDataTransfer(String identity, DataTransferRequest request) {
+        return (DataTransferResponse) invoke(identity, request);
     }
 
     @Override
-    public RemoteStartTransactionResponse handleRemoteStartTransaction(String sessionId, String identity,
+    public RemoteStartTransactionResponse handleRemoteStartTransaction(String identity,
                                                                        RemoteStartTransactionRequest request) {
-        return (RemoteStartTransactionResponse) invoke(sessionId, identity, request);
+        return (RemoteStartTransactionResponse) invoke(identity, request);
     }
 
     @Override
-    public RemoteStopTransactionResponse handleRemoteStopTransaction(String sessionId, String identity,
+    public RemoteStopTransactionResponse handleRemoteStopTransaction(String identity,
                                                                      RemoteStopTransactionRequest request) {
-        return (RemoteStopTransactionResponse) invoke(sessionId, identity, request);
+        return (RemoteStopTransactionResponse) invoke(identity, request);
     }
 
     @Override
-    public ResetResponse handleReset(String sessionId, String identity, ResetRequest request) {
-        return (ResetResponse) invoke(sessionId, identity, request);
+    public ResetResponse handleReset(String identity, ResetRequest request) {
+        return (ResetResponse) invoke(identity, request);
     }
 
     @Override
-    public UnlockConnectorResponse handleUnlockConnector(String sessionId, String identity,
-                                                         UnlockConnectorRequest request) {
-        return (UnlockConnectorResponse) invoke(sessionId, identity, request);
+    public UnlockConnectorResponse handleUnlockConnector(String identity, UnlockConnectorRequest request) {
+        return (UnlockConnectorResponse) invoke(identity, request);
     }
 }

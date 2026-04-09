@@ -15,32 +15,28 @@ public interface CentralSystemAvailabilityEventHandler {
     /**
      * Handle heartbeat heartbeat response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the heartbeat response
      */
-    HeartbeatResponse handleHeartbeat(String sessionId, String identity, HeartbeatRequest request);
+    HeartbeatResponse handleHeartbeat(String identity, HeartbeatRequest request);
 
     /**
      * Handle notify event notify event response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the notify event response
      */
-    NotifyEventResponse handleNotifyEvent(String sessionId, String identity, NotifyEventRequest request);
+    NotifyEventResponse handleNotifyEvent(String identity, NotifyEventRequest request);
 
     /**
      * Handle status notification status notification response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the status notification response
      */
-    StatusNotificationResponse handleStatusNotification(String sessionId, String identity,
-                                                        StatusNotificationRequest request);
+    StatusNotificationResponse handleStatusNotification(String identity, StatusNotificationRequest request);
 }
 

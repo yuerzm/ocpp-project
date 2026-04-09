@@ -25,7 +25,7 @@ public class ChargePointTariffAndCostEventHandlerImpl extends AbstractChargePoin
     }
 
     @Override
-    public CostUpdatedResponse handleCostUpdated(String sessionId, String identity, CostUpdatedRequest request) {
-        return (CostUpdatedResponse) invoke(sessionId, identity, request);
+    public CostUpdatedResponse handleCostUpdated(String identity, CostUpdatedRequest request) {
+        return (CostUpdatedResponse) invoke(identity, request);
     }
 }

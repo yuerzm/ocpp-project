@@ -13,23 +13,20 @@ public interface ChargePointReservationEventHandler {
     /**
      * Handle cancel reservation cancel reservation response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the cancel reservation response
      */
-    CancelReservationResponse handleCancelReservation(String sessionId, String identity,
-                                                      CancelReservationRequest request);
+    CancelReservationResponse handleCancelReservation(String identity, CancelReservationRequest request);
 
     /**
      * Handle reserve now reserve now response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the reserve now response
      */
-    ReserveNowResponse handleReserveNow(String sessionId, String identity, ReserveNowRequest request);
+    ReserveNowResponse handleReserveNow(String identity, ReserveNowRequest request);
 
 }
 

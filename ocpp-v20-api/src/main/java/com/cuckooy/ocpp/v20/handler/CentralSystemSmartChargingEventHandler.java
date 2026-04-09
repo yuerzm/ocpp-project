@@ -19,57 +19,48 @@ public interface CentralSystemSmartChargingEventHandler {
     /**
      * Handle cleared charging limit cleared charging limit response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the cleared charging limit response
      */
-    ClearedChargingLimitResponse handleClearedChargingLimit(String sessionId, String identity,
-                                                            ClearedChargingLimitRequest request);
+    ClearedChargingLimitResponse handleClearedChargingLimit(String identity, ClearedChargingLimitRequest request);
 
     /**
      * Handle notify charging limit notify charging limit response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the notify charging limit response
      */
-    NotifyChargingLimitResponse handleNotifyChargingLimit(String sessionId, String identity,
-                                                          NotifyChargingLimitRequest request);
+    NotifyChargingLimitResponse handleNotifyChargingLimit(String identity, NotifyChargingLimitRequest request);
 
 
     /**
      * Handle notify ev charging needs notify ev charging needs response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the notify ev charging needs response
      */
-    NotifyEVChargingNeedsResponse handleNotifyEVChargingNeeds(String sessionId, String identity,
-                                                              NotifyEVChargingNeedsRequest request);
+    NotifyEVChargingNeedsResponse handleNotifyEVChargingNeeds(String identity, NotifyEVChargingNeedsRequest request);
 
     /**
      * Handle notify ev charging schedule notify ev charging schedule response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the notify ev charging schedule response
      */
-    NotifyEVChargingScheduleResponse handleNotifyEVChargingSchedule(String sessionId, String identity,
+    NotifyEVChargingScheduleResponse handleNotifyEVChargingSchedule(String identity,
                                                                     NotifyEVChargingScheduleRequest request);
 
     /**
      * Handle report charging profiles report charging profiles response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the report charging profiles response
      */
-    ReportChargingProfilesResponse handleReportChargingProfiles(String sessionId, String identity,
-                                                                ReportChargingProfilesRequest request);
+    ReportChargingProfilesResponse handleReportChargingProfiles(String identity, ReportChargingProfilesRequest request);
 }
 

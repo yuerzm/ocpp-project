@@ -13,22 +13,20 @@ public interface CentralSystemSecurityEventHandler {
     /**
      * Handle sign certificate sign certificate response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the sign certificate response
      */
-    SignCertificateResponse handleSignCertificate(String sessionId, String identity, SignCertificateRequest request);
+    SignCertificateResponse handleSignCertificate(String identity, SignCertificateRequest request);
 
     /**
      * Handle security event notification security event notification response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the security event notification response
      */
-    SecurityEventNotificationResponse handleSecurityEventNotification(String sessionId, String identity,
+    SecurityEventNotificationResponse handleSecurityEventNotification(String identity,
                                                                       SecurityEventNotificationRequest request);
 
 }

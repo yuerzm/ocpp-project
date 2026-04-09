@@ -11,10 +11,9 @@ public interface ChargePointDataTransferEventHandler {
     /**
      * Handle data transfer data transfer response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the data transfer response
      */
-    DataTransferResponse handleDataTransfer(String sessionId, String identity, DataTransferRequest request);
+    DataTransferResponse handleDataTransfer(String identity, DataTransferRequest request);
 }

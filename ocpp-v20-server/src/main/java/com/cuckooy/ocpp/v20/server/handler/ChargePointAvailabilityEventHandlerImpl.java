@@ -25,8 +25,7 @@ public class ChargePointAvailabilityEventHandlerImpl extends AbstractChargePoint
     }
 
     @Override
-    public ChangeAvailabilityResponse handleChangeAvailability(String sessionId, String identity,
-                                                               ChangeAvailabilityRequest request) {
-        return (ChangeAvailabilityResponse) invoke(sessionId, identity, request);
+    public ChangeAvailabilityResponse handleChangeAvailability(String identity, ChangeAvailabilityRequest request) {
+        return (ChangeAvailabilityResponse) invoke(identity, request);
     }
 }

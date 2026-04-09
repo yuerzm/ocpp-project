@@ -29,20 +29,17 @@ public class ChargePointFirmwareManagementManagementEventHandlerImpl extends Abs
     }
 
     @Override
-    public PublishFirmwareResponse handlePublishFirmware(String sessionId, String identity,
-                                                         PublishFirmwareRequest request) {
-        return (PublishFirmwareResponse) invoke(sessionId, identity, request);
+    public PublishFirmwareResponse handlePublishFirmware(String identity, PublishFirmwareRequest request) {
+        return (PublishFirmwareResponse) invoke(identity, request);
     }
 
     @Override
-    public UpdateFirmwareResponse handleUpdateFirmware(String sessionId, String identity,
-                                                       UpdateFirmwareRequest request) {
-        return (UpdateFirmwareResponse) invoke(sessionId, identity, request);
+    public UpdateFirmwareResponse handleUpdateFirmware(String identity, UpdateFirmwareRequest request) {
+        return (UpdateFirmwareResponse) invoke(identity, request);
     }
 
     @Override
-    public UnpublishFirmwareResponse handleUnpublishFirmware(String sessionId, String identity,
-                                                             UnpublishFirmwareRequest request) {
-        return (UnpublishFirmwareResponse) invoke(sessionId, identity, request);
+    public UnpublishFirmwareResponse handleUnpublishFirmware(String identity, UnpublishFirmwareRequest request) {
+        return (UnpublishFirmwareResponse) invoke(identity, request);
     }
 }

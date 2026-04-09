@@ -13,20 +13,18 @@ public interface ChargePointFirmwareManagementEventHandler {
     /**
      * Handle get diagnostics get diagnostics response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get diagnostics response
      */
-    GetDiagnosticsResponse handleGetDiagnostics(String sessionId, String identity, GetDiagnosticsRequest request);
+    GetDiagnosticsResponse handleGetDiagnostics(String identity, GetDiagnosticsRequest request);
 
     /**
      * Handle update firmware update firmware response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the update firmware response
      */
-    UpdateFirmwareResponse handleUpdateFirmware(String sessionId, String identity, UpdateFirmwareRequest request);
+    UpdateFirmwareResponse handleUpdateFirmware(String identity, UpdateFirmwareRequest request);
 }

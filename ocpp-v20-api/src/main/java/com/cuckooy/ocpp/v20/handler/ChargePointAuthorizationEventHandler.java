@@ -11,11 +11,10 @@ public interface ChargePointAuthorizationEventHandler {
     /**
      * Handle clear cache clear cache response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the clear cache response
      */
-    ClearCacheResponse handleClearCache(String sessionId, String identity, ClearCacheRequest request);
+    ClearCacheResponse handleClearCache(String identity, ClearCacheRequest request);
 }
 

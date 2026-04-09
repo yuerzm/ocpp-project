@@ -31,26 +31,24 @@ public class ChargePointRemoteControlEventHandlerImpl extends AbstractChargePoin
     }
 
     @Override
-    public RequestStartTransactionResponse handleRequestStartTransaction(String sessionId, String identity,
+    public RequestStartTransactionResponse handleRequestStartTransaction(String identity,
                                                                          RequestStartTransactionRequest request) {
-        return (RequestStartTransactionResponse) invoke(sessionId, identity, request);
+        return (RequestStartTransactionResponse) invoke(identity, request);
     }
 
     @Override
-    public RequestStopTransactionResponse handleRequestStopTransaction(String sessionId, String identity,
+    public RequestStopTransactionResponse handleRequestStopTransaction(String identity,
                                                                        RequestStopTransactionRequest request) {
-        return (RequestStopTransactionResponse) invoke(sessionId, identity, request);
+        return (RequestStopTransactionResponse) invoke(identity, request);
     }
 
     @Override
-    public TriggerMessageResponse handleTriggerMessage(String sessionId, String identity,
-                                                       TriggerMessageRequest request) {
-        return (TriggerMessageResponse) invoke(sessionId, identity, request);
+    public TriggerMessageResponse handleTriggerMessage(String identity, TriggerMessageRequest request) {
+        return (TriggerMessageResponse) invoke(identity, request);
     }
 
     @Override
-    public UnlockConnectorResponse handleUnlockConnector(String sessionId, String identity,
-                                                         UnlockConnectorRequest request) {
-        return (UnlockConnectorResponse) invoke(sessionId, identity, request);
+    public UnlockConnectorResponse handleUnlockConnector(String identity, UnlockConnectorRequest request) {
+        return (UnlockConnectorResponse) invoke(identity, request);
     }
 }

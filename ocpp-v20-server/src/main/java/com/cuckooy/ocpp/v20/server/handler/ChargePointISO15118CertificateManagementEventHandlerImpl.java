@@ -29,20 +29,18 @@ public class ChargePointISO15118CertificateManagementEventHandlerImpl extends Ab
     }
 
     @Override
-    public DeleteCertificateResponse handleDeleteCertificate(String sessionId, String identity,
-                                                             DeleteCertificateRequest request) {
-        return (DeleteCertificateResponse) invoke(sessionId, identity, request);
+    public DeleteCertificateResponse handleDeleteCertificate(String identity, DeleteCertificateRequest request) {
+        return (DeleteCertificateResponse) invoke(identity, request);
     }
 
     @Override
-    public GetInstalledCertificateIdsResponse handleGetInstalledCertificateIds(String sessionId, String identity,
+    public GetInstalledCertificateIdsResponse handleGetInstalledCertificateIds(String identity,
                                                                                GetInstalledCertificateIdsRequest request) {
-        return (GetInstalledCertificateIdsResponse) invoke(sessionId, identity, request);
+        return (GetInstalledCertificateIdsResponse) invoke(identity, request);
     }
 
     @Override
-    public InstallCertificateResponse handleInstallCertificate(String sessionId, String identity,
-                                                               InstallCertificateRequest request) {
-        return (InstallCertificateResponse) invoke(sessionId, identity, request);
+    public InstallCertificateResponse handleInstallCertificate(String identity, InstallCertificateRequest request) {
+        return (InstallCertificateResponse) invoke(identity, request);
     }
 }

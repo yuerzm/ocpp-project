@@ -29,20 +29,17 @@ public class ChargePointDisplayMessageEventHandlerImpl extends AbstractChargePoi
     }
 
     @Override
-    public SetDisplayMessageResponse handleSetDisplayMessage(String sessionId, String identity,
-                                                             SetDisplayMessageRequest request) {
-        return (SetDisplayMessageResponse) invoke(sessionId, identity, request);
+    public SetDisplayMessageResponse handleSetDisplayMessage(String identity, SetDisplayMessageRequest request) {
+        return (SetDisplayMessageResponse) invoke(identity, request);
     }
 
     @Override
-    public GetDisplayMessagesResponse handleGetDisplayMessages(String sessionId, String identity,
-                                                               GetDisplayMessagesRequest request) {
-        return (GetDisplayMessagesResponse) invoke(sessionId, identity, request);
+    public GetDisplayMessagesResponse handleGetDisplayMessages(String identity, GetDisplayMessagesRequest request) {
+        return (GetDisplayMessagesResponse) invoke(identity, request);
     }
 
     @Override
-    public ClearDisplayMessageResponse handleClearDisplayMessage(String sessionId, String identity,
-                                                                 ClearDisplayMessageRequest request) {
-        return (ClearDisplayMessageResponse) invoke(sessionId, identity, request);
+    public ClearDisplayMessageResponse handleClearDisplayMessage(String identity, ClearDisplayMessageRequest request) {
+        return (ClearDisplayMessageResponse) invoke(identity, request);
     }
 }

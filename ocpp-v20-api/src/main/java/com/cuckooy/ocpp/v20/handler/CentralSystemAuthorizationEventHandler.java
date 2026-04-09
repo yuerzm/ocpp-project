@@ -11,12 +11,11 @@ public interface CentralSystemAuthorizationEventHandler {
     /**
      * Handle authorize authorize response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the authorize response
      */
-    AuthorizeResponse handleAuthorize(String sessionId, String identity, AuthorizeRequest request);
+    AuthorizeResponse handleAuthorize(String identity, AuthorizeRequest request);
 
 }
 

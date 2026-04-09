@@ -25,81 +25,72 @@ public interface CentralSystemCoreEventHandler {
     /**
      * Handle authorize authorize response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the authorize response
      */
-    AuthorizeResponse handleAuthorize(String sessionId, String identity, AuthorizeRequest request);
+    AuthorizeResponse handleAuthorize(String identity, AuthorizeRequest request);
 
     /**
      * Handle boot notification boot notification response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the boot notification response
      */
-    BootNotificationResponse handleBootNotification(String sessionId, String identity, BootNotificationRequest request);
+    BootNotificationResponse handleBootNotification(String identity, BootNotificationRequest request);
 
     /**
      * Handle data transfer data transfer response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the data transfer response
      */
-    DataTransferResponse handleDataTransfer(String sessionId, String identity, DataTransferRequest request);
+    DataTransferResponse handleDataTransfer(String identity, DataTransferRequest request);
 
     /**
      * Handle heartbeat heartbeat response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the heartbeat response
      */
-    HeartbeatResponse handleHeartbeat(String sessionId, String identity, HeartbeatRequest request);
+    HeartbeatResponse handleHeartbeat(String identity, HeartbeatRequest request);
 
     /**
      * Handle meter values meter values response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the meter values response
      */
-    MeterValuesResponse handleMeterValues(String sessionId, String identity, MeterValuesRequest request);
+    MeterValuesResponse handleMeterValues(String identity, MeterValuesRequest request);
 
     /**
      * Handle status notification status notification response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the status notification response
      */
-    StatusNotificationResponse handleStatusNotification(String sessionId, String identity,
-                                                        StatusNotificationRequest request);
+    StatusNotificationResponse handleStatusNotification(String identity, StatusNotificationRequest request);
 
     /**
      * Handle start transaction start transaction response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the start transaction response
      */
-    StartTransactionResponse handleStartTransaction(String sessionId, String identity, StartTransactionRequest request);
+    StartTransactionResponse handleStartTransaction(String identity, StartTransactionRequest request);
 
     /**
      * Handle stop transaction stop transaction response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the stop transaction response
      */
-    StopTransactionResponse handleStopTransaction(String sessionId, String identity, StopTransactionRequest request);
+    StopTransactionResponse handleStopTransaction(String identity, StopTransactionRequest request);
 }

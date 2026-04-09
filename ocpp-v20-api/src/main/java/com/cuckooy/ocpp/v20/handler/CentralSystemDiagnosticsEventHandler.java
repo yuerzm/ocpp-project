@@ -13,23 +13,20 @@ public interface CentralSystemDiagnosticsEventHandler {
     /**
      * Handle log status notification log status notification response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the log status notification response
      */
-    LogStatusNotificationResponse handleLogStatusNotification(String sessionId, String identity,
-                                                              LogStatusNotificationRequest request);
+    LogStatusNotificationResponse handleLogStatusNotification(String identity, LogStatusNotificationRequest request);
 
     /**
      * Handle notify customer information notify customer information response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the notify customer information response
      */
-    NotifyCustomerInformationResponse handleNotifyCustomerInformation(String sessionId, String identity,
+    NotifyCustomerInformationResponse handleNotifyCustomerInformation(String identity,
                                                                       NotifyCustomerInformationRequest request);
 
 }

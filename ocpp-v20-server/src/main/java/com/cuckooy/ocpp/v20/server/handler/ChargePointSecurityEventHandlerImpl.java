@@ -25,8 +25,7 @@ public class ChargePointSecurityEventHandlerImpl extends AbstractChargePointEven
     }
 
     @Override
-    public CertificateSignedResponse handleCertificateSigned(String sessionId, String identity,
-                                                             CertificateSignedRequest request) {
-        return (CertificateSignedResponse) invoke(sessionId, identity, request);
+    public CertificateSignedResponse handleCertificateSigned(String identity, CertificateSignedRequest request) {
+        return (CertificateSignedResponse) invoke(identity, request);
     }
 }

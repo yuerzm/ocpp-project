@@ -27,94 +27,81 @@ public interface ChargePointCoreEventHandler {
     /**
      * Handle change availability change availability response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the change availability response
      */
-    ChangeAvailabilityResponse handleChangeAvailability(String sessionId, String identity,
-                                                        ChangeAvailabilityRequest request);
+    ChangeAvailabilityResponse handleChangeAvailability(String identity, ChangeAvailabilityRequest request);
 
     /**
      * Handle get configuration get configuration response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get configuration response
      */
-    GetConfigurationResponse handleGetConfiguration(String sessionId, String identity, GetConfigurationRequest request);
+    GetConfigurationResponse handleGetConfiguration(String identity, GetConfigurationRequest request);
 
     /**
      * Handle change configuration change configuration response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the change configuration response
      */
-    ChangeConfigurationResponse handleChangeConfiguration(String sessionId, String identity,
-                                                          ChangeConfigurationRequest request);
+    ChangeConfigurationResponse handleChangeConfiguration(String identity, ChangeConfigurationRequest request);
 
     /**
      * Handle clear cache clear cache response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the clear cache response
      */
-    ClearCacheResponse handleClearCache(String sessionId, String identity, ClearCacheRequest request);
+    ClearCacheResponse handleClearCache(String identity, ClearCacheRequest request);
 
     /**
      * Handle data transfer data transfer response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the data transfer response
      */
-    DataTransferResponse handleDataTransfer(String sessionId, String identity, DataTransferRequest request);
+    DataTransferResponse handleDataTransfer(String identity, DataTransferRequest request);
 
     /**
      * Handle remote start transaction remote start transaction response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the remote start transaction response
      */
-    RemoteStartTransactionResponse handleRemoteStartTransaction(String sessionId, String identity,
-                                                                RemoteStartTransactionRequest request);
+    RemoteStartTransactionResponse handleRemoteStartTransaction(String identity, RemoteStartTransactionRequest request);
 
     /**
      * Handle remote stop transaction remote stop transaction response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the remote stop transaction response
      */
-    RemoteStopTransactionResponse handleRemoteStopTransaction(String sessionId, String identity,
-                                                              RemoteStopTransactionRequest request);
+    RemoteStopTransactionResponse handleRemoteStopTransaction(String identity, RemoteStopTransactionRequest request);
 
     /**
      * Handle reset reset response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the reset response
      */
-    ResetResponse handleReset(String sessionId, String identity, ResetRequest request);
+    ResetResponse handleReset(String identity, ResetRequest request);
 
     /**
      * Handle unlock connector unlock connector response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the unlock connector response
      */
-    UnlockConnectorResponse handleUnlockConnector(String sessionId, String identity, UnlockConnectorRequest request);
+    UnlockConnectorResponse handleUnlockConnector(String identity, UnlockConnectorRequest request);
 }

@@ -11,10 +11,9 @@ public interface CentralSystemSimulator {
     /**
      * Handle response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the response
      */
-    Response handle(String sessionId, String identity, Request request);
+    Response handle(String identity, Request request);
 }

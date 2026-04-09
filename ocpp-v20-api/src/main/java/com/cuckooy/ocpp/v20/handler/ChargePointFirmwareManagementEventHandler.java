@@ -15,32 +15,28 @@ public interface ChargePointFirmwareManagementEventHandler {
     /**
      * Handle publish firmware publish firmware response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the publish firmware response
      */
-    PublishFirmwareResponse handlePublishFirmware(String sessionId, String identity, PublishFirmwareRequest request);
+    PublishFirmwareResponse handlePublishFirmware(String identity, PublishFirmwareRequest request);
 
     /**
      * Handle update firmware update firmware response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the update firmware response
      */
-    UpdateFirmwareResponse handleUpdateFirmware(String sessionId, String identity, UpdateFirmwareRequest request);
+    UpdateFirmwareResponse handleUpdateFirmware(String identity, UpdateFirmwareRequest request);
 
     /**
      * Handle unpublish firmware unpublish firmware response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the unpublish firmware response
      */
-    UnpublishFirmwareResponse handleUnpublishFirmware(String sessionId, String identity,
-                                                      UnpublishFirmwareRequest request);
+    UnpublishFirmwareResponse handleUnpublishFirmware(String identity, UnpublishFirmwareRequest request);
 }
 

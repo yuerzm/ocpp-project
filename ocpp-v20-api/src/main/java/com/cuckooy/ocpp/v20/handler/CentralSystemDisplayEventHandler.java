@@ -11,13 +11,11 @@ public interface CentralSystemDisplayEventHandler {
     /**
      * Handle notify display messages notify display messages response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the notify display messages response
      */
-    NotifyDisplayMessagesResponse handleNotifyDisplayMessages(String sessionId, String identity,
-                                                              NotifyDisplayMessagesRequest request);
+    NotifyDisplayMessagesResponse handleNotifyDisplayMessages(String identity, NotifyDisplayMessagesRequest request);
 
 }
 

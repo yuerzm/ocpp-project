@@ -11,12 +11,10 @@ public interface ChargePointAvailabilityEventHandler {
     /**
      * Handle change availability change availability response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the change availability response
      */
-    ChangeAvailabilityResponse handleChangeAvailability(String sessionId, String identity,
-                                                        ChangeAvailabilityRequest request);
+    ChangeAvailabilityResponse handleChangeAvailability(String identity, ChangeAvailabilityRequest request);
 }
 

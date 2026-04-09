@@ -13,22 +13,19 @@ public interface ChargePointLocalAuthorizationListEventHandler {
     /**
      * Handle send local list send local list response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the send local list response
      */
-    SendLocalListResponse handleSendLocalList(String sessionId, String identity, SendLocalListRequest request);
+    SendLocalListResponse handleSendLocalList(String identity, SendLocalListRequest request);
 
     /**
      * Handle get local list version get local list version response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get local list version response
      */
-    GetLocalListVersionResponse handleGetLocalListVersion(String sessionId, String identity,
-                                                          GetLocalListVersionRequest request);
+    GetLocalListVersionResponse handleGetLocalListVersion(String identity, GetLocalListVersionRequest request);
 }
 

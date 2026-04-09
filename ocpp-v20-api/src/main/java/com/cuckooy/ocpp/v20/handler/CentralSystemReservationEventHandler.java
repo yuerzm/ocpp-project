@@ -11,12 +11,11 @@ public interface CentralSystemReservationEventHandler {
     /**
      * Handle reservation status update reservation status update response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the reservation status update response
      */
-    ReservationStatusUpdateResponse handleReservationStatusUpdate(String sessionId, String identity,
+    ReservationStatusUpdateResponse handleReservationStatusUpdate(String identity,
                                                                   ReservationStatusUpdateRequest request);
 }
 

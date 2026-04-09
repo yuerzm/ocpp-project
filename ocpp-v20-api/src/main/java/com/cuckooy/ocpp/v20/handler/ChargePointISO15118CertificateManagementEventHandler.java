@@ -15,35 +15,30 @@ public interface ChargePointISO15118CertificateManagementEventHandler {
     /**
      * Handle delete certificate delete certificate response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the delete certificate response
      */
-    DeleteCertificateResponse handleDeleteCertificate(String sessionId, String identity,
-                                                      DeleteCertificateRequest request);
+    DeleteCertificateResponse handleDeleteCertificate(String identity, DeleteCertificateRequest request);
 
     /**
      * Handle get installed certificate ids get installed certificate ids response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get installed certificate ids response
      */
-    GetInstalledCertificateIdsResponse handleGetInstalledCertificateIds(String sessionId, String identity,
+    GetInstalledCertificateIdsResponse handleGetInstalledCertificateIds(String identity,
                                                                         GetInstalledCertificateIdsRequest request);
 
     /**
      * Handle install certificate install certificate response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the install certificate response
      */
-    InstallCertificateResponse handleInstallCertificate(String sessionId, String identity,
-                                                        InstallCertificateRequest request);
+    InstallCertificateResponse handleInstallCertificate(String identity, InstallCertificateRequest request);
 
 }
 

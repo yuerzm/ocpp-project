@@ -15,34 +15,28 @@ public interface ChargePointDisplayMessageEventHandler {
     /**
      * Handle set display message set display message response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the set display message response
      */
-    SetDisplayMessageResponse handleSetDisplayMessage(String sessionId, String identity,
-                                                      SetDisplayMessageRequest request);
+    SetDisplayMessageResponse handleSetDisplayMessage(String identity, SetDisplayMessageRequest request);
 
     /**
      * Handle get display messages get display messages response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get display messages response
      */
-    GetDisplayMessagesResponse handleGetDisplayMessages(String sessionId, String identity,
-                                                        GetDisplayMessagesRequest request);
+    GetDisplayMessagesResponse handleGetDisplayMessages(String identity, GetDisplayMessagesRequest request);
 
     /**
      * Handle clear display message clear display message response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the clear display message response
      */
-    ClearDisplayMessageResponse handleClearDisplayMessage(String sessionId, String identity,
-                                                          ClearDisplayMessageRequest request);
+    ClearDisplayMessageResponse handleClearDisplayMessage(String identity, ClearDisplayMessageRequest request);
 }
 

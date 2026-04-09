@@ -34,16 +34,15 @@ public class AbstractChargePointEventHandler {
     /**
      * Invoke response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the response
      */
-    public Response invoke(String sessionId, String identity, Request request) {
-        Optional<WebSocketSession> optional = sessionRepository.get(sessionId, identity);
+    public Response invoke(String identity, Request request) {
+        Optional<WebSocketSession> optional = sessionRepository.get(identity);
         if (optional.isEmpty()) {
-            logger.warn("Session not connected, session: {}, identity: {}", sessionId, identity);
-            throw new UnsupportedOperationException("Session with id " + sessionId + " not connected.");
+            logger.warn("Charge Point not connected, identity: {}", identity);
+            throw new UnsupportedOperationException("Charge Point with identity " + identity + " not connected.");
         }
         return serverTransport.send(optional.get(), request);
     }

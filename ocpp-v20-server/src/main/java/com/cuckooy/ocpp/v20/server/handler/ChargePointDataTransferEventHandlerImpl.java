@@ -25,7 +25,7 @@ public class ChargePointDataTransferEventHandlerImpl extends AbstractChargePoint
     }
 
     @Override
-    public DataTransferResponse handleDataTransfer(String sessionId, String identity, DataTransferRequest request) {
-        return (DataTransferResponse) invoke(sessionId, identity, request);
+    public DataTransferResponse handleDataTransfer(String identity, DataTransferRequest request) {
+        return (DataTransferResponse) invoke(identity, request);
     }
 }

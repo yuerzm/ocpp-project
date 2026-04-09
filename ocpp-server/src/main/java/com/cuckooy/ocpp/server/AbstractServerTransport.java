@@ -152,9 +152,9 @@ public abstract class AbstractServerTransport implements ServerTransport {
         if (logger.isDebugEnabled()) {
             logger.debug("Handle Call, session: {}, message: {}", session.getId(), message);
         }
-        String identity = session.getAttributes().get(SessionAttributeHelper.CHARGE_POINT_IDENTITY).toString();
+        String identity = SessionAttributeHelper.getIdentity(session);
         Request request = call.getPayload();
-        Response response = centralSystemService.handle(session.getId(), identity, request);
+        Response response = centralSystemService.handle(identity, request);
         OcppCallResultMessage callResult = new OcppCallResultMessage(call.getUniqueId(), response);
         onSuccess(session, callResult);
     }
@@ -229,8 +229,8 @@ public abstract class AbstractServerTransport implements ServerTransport {
     }
 
     private void loggerOcppMessage(WebSocketSession session, String message) {
-        Object identity = session.getAttributes().get(SessionAttributeHelper.CHARGE_POINT_IDENTITY);
-        Object protocol = session.getAttributes().get(SessionAttributeHelper.CHARGE_POINT_PROTOCOL);
+        String identity = SessionAttributeHelper.getIdentity(session);
+        Object protocol = SessionAttributeHelper.getProtocol(session);
         ocppLogger.info("Identity:\t{},\nSession:\t{},\nEndpoint:\t{},\nProtocol:\t{},\nMessage:\t{}",
             identity,
             session.getId(),

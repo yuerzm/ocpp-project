@@ -32,7 +32,6 @@ public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandl
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final ServerTransport serverTransport;
-    private final SessionRepository sessionRepository;
     private final SessionEventHandler sessionEventHandler;
 
     /**
@@ -44,11 +43,10 @@ public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandl
      */
     public AbstractWebSocketEndpoint(ServerTransport serverTransport, SessionRepository sessionRepository,
                                      SessionEventHandler sessionEventHandler) {
+        super(sessionRepository);
         Assert.notNull(serverTransport, "serverTransport must not be null");
-        Assert.notNull(sessionRepository, "sessionRepository must not be null");
         Assert.notNull(sessionEventHandler, "SessionEventHandler must not be null");
         this.serverTransport = serverTransport;
-        this.sessionRepository = sessionRepository;
         this.sessionEventHandler = sessionEventHandler;
     }
 

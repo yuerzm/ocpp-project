@@ -13,24 +13,21 @@ public interface CentralSystemRemoteEventHandler {
     /**
      * Handle request start transaction request start transaction response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the request start transaction response
      */
-    RequestStartTransactionResponse handleRequestStartTransaction(String sessionId, String identity,
+    RequestStartTransactionResponse handleRequestStartTransaction(String identity,
                                                                   RequestStartTransactionRequest request);
 
     /**
      * Handle request stop transaction request stop transaction response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the request stop transaction response
      */
-    RequestStopTransactionResponse handleRequestStopTransaction(String sessionId, String identity,
-                                                                RequestStopTransactionRequest request);
+    RequestStopTransactionResponse handleRequestStopTransaction(String identity, RequestStopTransactionRequest request);
 
 }
 

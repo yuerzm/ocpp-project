@@ -32,13 +32,12 @@ public class ChargePointReservationEventHandlerImpl extends AbstractChargePointE
 
 
     @Override
-    public ReserveNowResponse handleReserveNow(String sessionId, String identity, ReserveNowRequest request) {
-        return (ReserveNowResponse) invoke(sessionId, identity, request);
+    public ReserveNowResponse handleReserveNow(String identity, ReserveNowRequest request) {
+        return (ReserveNowResponse) invoke(identity, request);
     }
 
     @Override
-    public CancelReservationResponse handleCancelReservation(String sessionId, String identity,
-                                                             CancelReservationRequest request) {
-        return (CancelReservationResponse) invoke(sessionId, identity, request);
+    public CancelReservationResponse handleCancelReservation(String identity, CancelReservationRequest request) {
+        return (CancelReservationResponse) invoke(identity, request);
     }
 }

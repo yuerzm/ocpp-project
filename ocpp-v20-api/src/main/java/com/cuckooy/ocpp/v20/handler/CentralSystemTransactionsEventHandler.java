@@ -11,12 +11,11 @@ public interface CentralSystemTransactionsEventHandler {
     /**
      * Handle transaction event transaction event response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the transaction event response
      */
-    TransactionEventResponse handleTransactionEvent(String sessionId, String identity, TransactionEventRequest request);
+    TransactionEventResponse handleTransactionEvent(String identity, TransactionEventRequest request);
 
 }
 

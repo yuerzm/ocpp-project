@@ -41,41 +41,41 @@ public class Ocpp16CentralSystemServiceImpl implements Ocpp16CentralSystemServic
     }
 
     @Override
-    public Response handle(String sessionId, String identity, Request request) {
+    public Response handle(String identity, Request request) {
 
         if (logger.isDebugEnabled()) {
-            logger.info("Handle session: {}, identity: {}, request: {}", sessionId, identity, request);
+            logger.info("Handle identity: {}, request: {}", identity, request);
         }
 
         if (request instanceof AuthorizeRequest req) {
-            return coreEventHandler.handleAuthorize(sessionId, identity, req);
+            return coreEventHandler.handleAuthorize(identity, req);
 
         } else if (request instanceof BootNotificationRequest req) {
-            return coreEventHandler.handleBootNotification(sessionId, identity, req);
+            return coreEventHandler.handleBootNotification(identity, req);
 
         } else if (request instanceof DataTransferRequest req) {
-            return coreEventHandler.handleDataTransfer(sessionId, identity, req);
+            return coreEventHandler.handleDataTransfer(identity, req);
 
         } else if (request instanceof HeartbeatRequest req) {
-            return coreEventHandler.handleHeartbeat(sessionId, identity, req);
+            return coreEventHandler.handleHeartbeat(identity, req);
 
         } else if (request instanceof MeterValuesRequest req) {
-            return coreEventHandler.handleMeterValues(sessionId, identity, req);
+            return coreEventHandler.handleMeterValues(identity, req);
 
         } else if (request instanceof StartTransactionRequest req) {
-            return coreEventHandler.handleStartTransaction(sessionId, identity, req);
+            return coreEventHandler.handleStartTransaction(identity, req);
 
         } else if (request instanceof StatusNotificationRequest req) {
-            return coreEventHandler.handleStatusNotification(sessionId, identity, req);
+            return coreEventHandler.handleStatusNotification(identity, req);
 
         } else if (request instanceof StopTransactionRequest req) {
-            return coreEventHandler.handleStopTransaction(sessionId, identity, req);
+            return coreEventHandler.handleStopTransaction(identity, req);
 
         } else if (request instanceof DiagnosticsStatusNotificationRequest req) {
-            return firmwareEventHandler.handleDiagnosticsStatusNotification(sessionId, identity, req);
+            return firmwareEventHandler.handleDiagnosticsStatusNotification(identity, req);
 
         } else if (request instanceof FirmwareStatusNotificationRequest req) {
-            return firmwareEventHandler.handleFirmwareStatusNotification(sessionId, identity, req);
+            return firmwareEventHandler.handleFirmwareStatusNotification(identity, req);
 
         } else {
             throw new UnsupportedOperationException("Unsupported request type: " + request.getClass());

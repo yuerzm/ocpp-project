@@ -25,8 +25,8 @@ public class ChargePointTransactionsEventHandlerImpl extends AbstractChargePoint
     }
 
     @Override
-    public GetTransactionStatusResponse handleGetTransactionStatus(String sessionId, String identity,
+    public GetTransactionStatusResponse handleGetTransactionStatus(String identity,
                                                                    GetTransactionStatusRequest request) {
-        return (GetTransactionStatusResponse) invoke(sessionId, identity, request);
+        return (GetTransactionStatusResponse) invoke(identity, request);
     }
 }

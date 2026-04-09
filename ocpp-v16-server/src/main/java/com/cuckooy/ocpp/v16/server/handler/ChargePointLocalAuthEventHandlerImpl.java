@@ -32,13 +32,12 @@ public class ChargePointLocalAuthEventHandlerImpl extends AbstractChargePointEve
 
 
     @Override
-    public GetLocalListVersionResponse handleGetLocalListVersion(String sessionId, String identity,
-                                                                 GetLocalListVersionRequest request) {
-        return (GetLocalListVersionResponse) invoke(sessionId, identity, request);
+    public GetLocalListVersionResponse handleGetLocalListVersion(String identity, GetLocalListVersionRequest request) {
+        return (GetLocalListVersionResponse) invoke(identity, request);
     }
 
     @Override
-    public SendLocalListResponse handleSendLocalList(String sessionId, String identity, SendLocalListRequest request) {
-        return (SendLocalListResponse) invoke(sessionId, identity, request);
+    public SendLocalListResponse handleSendLocalList(String identity, SendLocalListRequest request) {
+        return (SendLocalListResponse) invoke(identity, request);
     }
 }

@@ -11,12 +11,10 @@ public interface ChargePointSecurityEventHandler {
     /**
      * Handle certificate signed certificate signed response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the certificate signed response
      */
-    CertificateSignedResponse handleCertificateSigned(String sessionId, String identity,
-                                                      CertificateSignedRequest request);
+    CertificateSignedResponse handleCertificateSigned(String identity, CertificateSignedRequest request);
 }
 

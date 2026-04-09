@@ -29,8 +29,7 @@ public class ChargePointRemoteTriggerEventHandlerImpl extends AbstractChargePoin
     }
 
     @Override
-    public TriggerMessageResponse handleTriggerMessage(String sessionId, String identity,
-                                                       TriggerMessageRequest request) {
-        return (TriggerMessageResponse) invoke(sessionId, identity, request);
+    public TriggerMessageResponse handleTriggerMessage(String identity, TriggerMessageRequest request) {
+        return (TriggerMessageResponse) invoke(identity, request);
     }
 }

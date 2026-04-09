@@ -110,81 +110,81 @@ public class Ocpp20CentralSystemServiceImpl implements Ocpp20CentralSystemServic
     }
 
     @Override
-    public Response handle(String sessionId, String identity, Request request) {
+    public Response handle(String identity, Request request) {
 
-        logger.info("Handle session: {}, request {}", sessionId, request);
+        logger.info("Handle identity: {}, request {}", identity, request);
 
         if (request instanceof AuthorizeRequest req) {
-            return authorizationEventHandler.handleAuthorize(sessionId, identity, req);
+            return authorizationEventHandler.handleAuthorize(identity, req);
 
         } else if (request instanceof HeartbeatRequest req) {
-            return availabilityEventHandler.handleHeartbeat(sessionId, identity, req);
+            return availabilityEventHandler.handleHeartbeat(identity, req);
 
         } else if (request instanceof NotifyEventRequest req) {
-            return availabilityEventHandler.handleNotifyEvent(sessionId, identity, req);
+            return availabilityEventHandler.handleNotifyEvent(identity, req);
 
         } else if (request instanceof StatusNotificationRequest req) {
-            return availabilityEventHandler.handleStatusNotification(sessionId, identity, req);
+            return availabilityEventHandler.handleStatusNotification(identity, req);
 
         } else if (request instanceof DataTransferRequest req) {
-            return dataTransferEventHandler.handleDataTransfer(sessionId, identity, req);
+            return dataTransferEventHandler.handleDataTransfer(identity, req);
 
         } else if (request instanceof LogStatusNotificationRequest req) {
-            return diagnosticsEventHandler.handleLogStatusNotification(sessionId, identity, req);
+            return diagnosticsEventHandler.handleLogStatusNotification(identity, req);
 
         } else if (request instanceof NotifyCustomerInformationRequest req) {
-            return diagnosticsEventHandler.handleNotifyCustomerInformation(sessionId, identity, req);
+            return diagnosticsEventHandler.handleNotifyCustomerInformation(identity, req);
 
         } else if (request instanceof NotifyDisplayMessagesRequest req) {
-            return displayEventHandler.handleNotifyDisplayMessages(sessionId, identity, req);
+            return displayEventHandler.handleNotifyDisplayMessages(identity, req);
 
         } else if (request instanceof FirmwareStatusNotificationRequest req) {
-            return firmwareEventHandler.handleFirmwareStatusNotification(sessionId, identity, req);
+            return firmwareEventHandler.handleFirmwareStatusNotification(identity, req);
 
         } else if (request instanceof PublishFirmwareStatusNotificationRequest req) {
-            return firmwareEventHandler.handlePublishFirmwareStatusNotification(sessionId, identity, req);
+            return firmwareEventHandler.handlePublishFirmwareStatusNotification(identity, req);
 
         } else if (request instanceof GetCertificateStatusRequest req) {
-            return iso15118EventHandler.handleGetCertificateStatus(sessionId, identity, req);
+            return iso15118EventHandler.handleGetCertificateStatus(identity, req);
 
         } else if (request instanceof Get15118EVCertificateRequest req) {
-            return iso15118EventHandler.handleGet15118EVCertificate(sessionId, identity, req);
+            return iso15118EventHandler.handleGet15118EVCertificate(identity, req);
 
         } else if (request instanceof MeterValuesRequest req) {
-            return meterValuesEventHandler.handleMeterValues(sessionId, identity, req);
+            return meterValuesEventHandler.handleMeterValues(identity, req);
 
         } else if (request instanceof BootNotificationRequest req) {
-            return provisioningEventHandler.handleBootNotification(sessionId, identity, req);
+            return provisioningEventHandler.handleBootNotification(identity, req);
 
         } else if (request instanceof NotifyReportRequest req) {
-            return provisioningEventHandler.handleNotifyReport(sessionId, identity, req);
+            return provisioningEventHandler.handleNotifyReport(identity, req);
 
         } else if (request instanceof ReservationStatusUpdateRequest req) {
-            return reservationEventHandler.handleReservationStatusUpdate(sessionId, identity, req);
+            return reservationEventHandler.handleReservationStatusUpdate(identity, req);
 
         } else if (request instanceof SignCertificateRequest req) {
-            return securityEventHandler.handleSignCertificate(sessionId, identity, req);
+            return securityEventHandler.handleSignCertificate(identity, req);
 
         } else if (request instanceof SecurityEventNotificationRequest req) {
-            return securityEventHandler.handleSecurityEventNotification(sessionId, identity, req);
+            return securityEventHandler.handleSecurityEventNotification(identity, req);
 
         } else if (request instanceof ClearedChargingLimitRequest req) {
-            return smartChargingEventHandler.handleClearedChargingLimit(sessionId, identity, req);
+            return smartChargingEventHandler.handleClearedChargingLimit(identity, req);
 
         } else if (request instanceof NotifyChargingLimitRequest req) {
-            return smartChargingEventHandler.handleNotifyChargingLimit(sessionId, identity, req);
+            return smartChargingEventHandler.handleNotifyChargingLimit(identity, req);
 
         } else if (request instanceof NotifyEVChargingNeedsRequest req) {
-            return smartChargingEventHandler.handleNotifyEVChargingNeeds(sessionId, identity, req);
+            return smartChargingEventHandler.handleNotifyEVChargingNeeds(identity, req);
 
         } else if (request instanceof NotifyEVChargingScheduleRequest req) {
-            return smartChargingEventHandler.handleNotifyEVChargingSchedule(sessionId, identity, req);
+            return smartChargingEventHandler.handleNotifyEVChargingSchedule(identity, req);
 
         } else if (request instanceof ReportChargingProfilesRequest req) {
-            return smartChargingEventHandler.handleReportChargingProfiles(sessionId, identity, req);
+            return smartChargingEventHandler.handleReportChargingProfiles(identity, req);
 
         } else if (request instanceof TransactionEventRequest req) {
-            return transactionsEventHandler.handleTransactionEvent(sessionId, identity, req);
+            return transactionsEventHandler.handleTransactionEvent(identity, req);
 
         } else {
             throw new UnsupportedOperationException("Unsupported request type: " + request.getClass());

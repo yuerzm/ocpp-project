@@ -12,11 +12,10 @@ public interface SessionRepository {
     /**
      * Get optional.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
+     * @param identity the identity
      * @return the optional
      */
-    Optional<WebSocketSession> get(String sessionId, String identity);
+    Optional<WebSocketSession> get(String identity);
 
     /**
      * Put.

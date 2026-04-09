@@ -13,23 +13,21 @@ public interface CentralSystemFirmwareEventHandler {
     /**
      * Handle firmware status notification firmware status notification response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the firmware status notification response
      */
-    FirmwareStatusNotificationResponse handleFirmwareStatusNotification(String sessionId, String identity,
+    FirmwareStatusNotificationResponse handleFirmwareStatusNotification(String identity,
                                                                         FirmwareStatusNotificationRequest request);
 
     /**
      * Handle publish firmware status notification publish firmware status notification response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the publish firmware status notification response
      */
-    PublishFirmwareStatusNotificationResponse handlePublishFirmwareStatusNotification(String sessionId, String identity,
+    PublishFirmwareStatusNotificationResponse handlePublishFirmwareStatusNotification(String identity,
                                                                                       PublishFirmwareStatusNotificationRequest request);
 }
 

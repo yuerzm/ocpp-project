@@ -13,21 +13,19 @@ public interface CentralSystemProvisioningEventHandler {
     /**
      * Handle boot notification boot notification response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the boot notification response
      */
-    BootNotificationResponse handleBootNotification(String sessionId, String identity, BootNotificationRequest request);
+    BootNotificationResponse handleBootNotification(String identity, BootNotificationRequest request);
 
     /**
      * Handle notify report notify report response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the notify report response
      */
-    NotifyReportResponse handleNotifyReport(String sessionId, String identity, NotifyReportRequest request);
+    NotifyReportResponse handleNotifyReport(String identity, NotifyReportRequest request);
 }
 

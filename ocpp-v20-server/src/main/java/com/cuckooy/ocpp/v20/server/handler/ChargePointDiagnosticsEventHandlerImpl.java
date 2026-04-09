@@ -39,49 +39,45 @@ public class ChargePointDiagnosticsEventHandlerImpl extends AbstractChargePointE
     }
 
     @Override
-    public ClearVariableMonitoringResponse handleClearVariableMonitoring(String sessionId, String identity,
+    public ClearVariableMonitoringResponse handleClearVariableMonitoring(String identity,
                                                                          ClearVariableMonitoringRequest request) {
-        return (ClearVariableMonitoringResponse) invoke(sessionId, identity, request);
+        return (ClearVariableMonitoringResponse) invoke(identity, request);
     }
 
     @Override
-    public CustomerInformationResponse handleCustomerInformation(String sessionId, String identity,
-                                                                 CustomerInformationRequest request) {
-        return (CustomerInformationResponse) invoke(sessionId, identity, request);
+    public CustomerInformationResponse handleCustomerInformation(String identity, CustomerInformationRequest request) {
+        return (CustomerInformationResponse) invoke(identity, request);
     }
 
     @Override
-    public GetLogResponse handleGetLog(String sessionId, String identity, GetLogRequest request) {
-        return (GetLogResponse) invoke(sessionId, identity, request);
+    public GetLogResponse handleGetLog(String identity, GetLogRequest request) {
+        return (GetLogResponse) invoke(identity, request);
     }
 
     @Override
-    public GetMonitoringReportResponse handleGetMonitoringReport(String sessionId, String identity,
-                                                                 GetMonitoringReportRequest request) {
-        return (GetMonitoringReportResponse) invoke(sessionId, identity, request);
+    public GetMonitoringReportResponse handleGetMonitoringReport(String identity, GetMonitoringReportRequest request) {
+        return (GetMonitoringReportResponse) invoke(identity, request);
     }
 
     @Override
-    public NotifyMonitoringReportResponse handleNotifyMonitoringReport(String sessionId, String identity,
+    public NotifyMonitoringReportResponse handleNotifyMonitoringReport(String identity,
                                                                        NotifyMonitoringReportRequest request) {
-        return (NotifyMonitoringReportResponse) invoke(sessionId, identity, request);
+        return (NotifyMonitoringReportResponse) invoke(identity, request);
     }
 
     @Override
-    public SetMonitoringBaseResponse handleSetMonitoringBase(String sessionId, String identity,
-                                                             SetMonitoringBaseRequest request) {
-        return (SetMonitoringBaseResponse) invoke(sessionId, identity, request);
+    public SetMonitoringBaseResponse handleSetMonitoringBase(String identity, SetMonitoringBaseRequest request) {
+        return (SetMonitoringBaseResponse) invoke(identity, request);
     }
 
     @Override
-    public SetMonitoringLevelResponse handleSetMonitoringLevel(String sessionId, String identity,
-                                                               SetMonitoringLevelRequest request) {
-        return (SetMonitoringLevelResponse) invoke(sessionId, identity, request);
+    public SetMonitoringLevelResponse handleSetMonitoringLevel(String identity, SetMonitoringLevelRequest request) {
+        return (SetMonitoringLevelResponse) invoke(identity, request);
     }
 
     @Override
-    public SetVariableMonitoringResponse handleSetVariableMonitoring(String sessionId, String identity,
+    public SetVariableMonitoringResponse handleSetVariableMonitoring(String identity,
                                                                      SetVariableMonitoringRequest request) {
-        return (SetVariableMonitoringResponse) invoke(sessionId, identity, request);
+        return (SetVariableMonitoringResponse) invoke(identity, request);
     }
 }

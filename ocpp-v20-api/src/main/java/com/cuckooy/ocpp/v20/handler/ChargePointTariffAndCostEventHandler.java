@@ -11,10 +11,9 @@ public interface ChargePointTariffAndCostEventHandler {
     /**
      * Handle cost updated cost updated response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the cost updated response
      */
-    CostUpdatedResponse handleCostUpdated(String sessionId, String identity, CostUpdatedRequest request);
+    CostUpdatedResponse handleCostUpdated(String identity, CostUpdatedRequest request);
 }

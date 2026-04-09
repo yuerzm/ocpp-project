@@ -11,11 +11,10 @@ public interface CentralSystemMeterValuesEventHandler {
     /**
      * Handle meter values meter values response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the meter values response
      */
-    MeterValuesResponse handleMeterValues(String sessionId, String identity, MeterValuesRequest request);
+    MeterValuesResponse handleMeterValues(String identity, MeterValuesRequest request);
 }
 

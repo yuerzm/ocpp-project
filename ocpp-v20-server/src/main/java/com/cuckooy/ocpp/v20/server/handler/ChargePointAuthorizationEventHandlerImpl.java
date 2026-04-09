@@ -29,7 +29,7 @@ public class ChargePointAuthorizationEventHandlerImpl extends AbstractChargePoin
     }
 
     @Override
-    public ClearCacheResponse handleClearCache(String sessionId, String identity, ClearCacheRequest request) {
-        return (ClearCacheResponse) invoke(sessionId, identity, request);
+    public ClearCacheResponse handleClearCache(String identity, ClearCacheRequest request) {
+        return (ClearCacheResponse) invoke(identity, request);
     }
 }

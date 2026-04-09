@@ -11,11 +11,9 @@ public interface ChargePointTransactionsEventHandler {
     /**
      * Handle get transaction status get transaction status response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get transaction status response
      */
-    GetTransactionStatusResponse handleGetTransactionStatus(String sessionId, String identity,
-                                                            GetTransactionStatusRequest request);
+    GetTransactionStatusResponse handleGetTransactionStatus(String identity, GetTransactionStatusRequest request);
 }

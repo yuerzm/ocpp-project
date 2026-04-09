@@ -35,38 +35,37 @@ public class ChargePointProvisioningEventHandlerImpl extends AbstractChargePoint
     }
 
     @Override
-    public GetVariablesResponse handleGetVariables(String sessionId, String identity, GetVariablesRequest request) {
-        return (GetVariablesResponse) invoke(sessionId, identity, request);
+    public GetVariablesResponse handleGetVariables(String identity, GetVariablesRequest request) {
+        return (GetVariablesResponse) invoke(identity, request);
     }
 
     @Override
-    public SetVariablesResponse handleSetVariables(String sessionId, String identity, SetVariablesRequest request) {
-        return (SetVariablesResponse) invoke(sessionId, identity, request);
+    public SetVariablesResponse handleSetVariables(String identity, SetVariablesRequest request) {
+        return (SetVariablesResponse) invoke(identity, request);
     }
 
     @Override
-    public GetBaseReportResponse handleGetBaseReport(String sessionId, String identity, GetBaseReportRequest request) {
-        return (GetBaseReportResponse) invoke(sessionId, identity, request);
+    public GetBaseReportResponse handleGetBaseReport(String identity, GetBaseReportRequest request) {
+        return (GetBaseReportResponse) invoke(identity, request);
     }
 
     // @Override
-    // public NotifyReportResponse handleNotifyReport(String sessionId, String identity, NotifyReportRequest request) {
-    //     return (NotifyReportResponse) invoke(sessionId, identity, request);
+    // public NotifyReportResponse handleNotifyReport( String identity, NotifyReportRequest request) {
+    //     return (NotifyReportResponse) invoke( identity, request);
     // }
 
     @Override
-    public GetReportResponse handleGetReport(String sessionId, String identity, GetReportRequest request) {
-        return (GetReportResponse) invoke(sessionId, identity, request);
+    public GetReportResponse handleGetReport(String identity, GetReportRequest request) {
+        return (GetReportResponse) invoke(identity, request);
     }
 
     @Override
-    public SetNetworkProfileResponse handleSetNetworkProfile(String sessionId, String identity,
-                                                             SetNetworkProfileRequest request) {
-        return (SetNetworkProfileResponse) invoke(sessionId, identity, request);
+    public SetNetworkProfileResponse handleSetNetworkProfile(String identity, SetNetworkProfileRequest request) {
+        return (SetNetworkProfileResponse) invoke(identity, request);
     }
 
     @Override
-    public ResetResponse handleReset(String sessionId, String identity, ResetRequest request) {
-        return (ResetResponse) invoke(sessionId, identity, request);
+    public ResetResponse handleReset(String identity, ResetRequest request) {
+        return (ResetResponse) invoke(identity, request);
     }
 }

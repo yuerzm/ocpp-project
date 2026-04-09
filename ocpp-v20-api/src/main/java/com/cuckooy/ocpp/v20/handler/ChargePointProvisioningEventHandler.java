@@ -21,65 +21,58 @@ public interface ChargePointProvisioningEventHandler {
     /**
      * Handle get variables get variables response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get variables response
      */
-    GetVariablesResponse handleGetVariables(String sessionId, String identity, GetVariablesRequest request);
+    GetVariablesResponse handleGetVariables(String identity, GetVariablesRequest request);
 
     /**
      * Handle set variables set variables response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the set variables response
      */
-    SetVariablesResponse handleSetVariables(String sessionId, String identity, SetVariablesRequest request);
+    SetVariablesResponse handleSetVariables(String identity, SetVariablesRequest request);
 
     /**
      * Handle get base report get base report response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get base report response
      */
-    GetBaseReportResponse handleGetBaseReport(String sessionId, String identity, GetBaseReportRequest request);
+    GetBaseReportResponse handleGetBaseReport(String identity, GetBaseReportRequest request);
 
-    // NotifyReportResponse handleNotifyReport(String sessionId, String identity, NotifyReportRequest request);
+    // NotifyReportResponse handleNotifyReport( String identity, NotifyReportRequest request);
 
     /**
      * Handle get report get report response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get report response
      */
-    GetReportResponse handleGetReport(String sessionId, String identity, GetReportRequest request);
+    GetReportResponse handleGetReport(String identity, GetReportRequest request);
 
     /**
      * Handle set network profile set network profile response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the set network profile response
      */
-    SetNetworkProfileResponse handleSetNetworkProfile(String sessionId, String identity,
-                                                      SetNetworkProfileRequest request);
+    SetNetworkProfileResponse handleSetNetworkProfile(String identity, SetNetworkProfileRequest request);
 
     /**
      * Handle reset reset response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the reset response
      */
-    ResetResponse handleReset(String sessionId, String identity, ResetRequest request);
+    ResetResponse handleReset(String identity, ResetRequest request);
 
 }
 

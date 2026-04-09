@@ -25,88 +25,74 @@ public interface ChargePointDiagnosticsEventHandler {
     /**
      * Handle clear variable monitoring clear variable monitoring response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the clear variable monitoring response
      */
-    ClearVariableMonitoringResponse handleClearVariableMonitoring(String sessionId, String identity,
+    ClearVariableMonitoringResponse handleClearVariableMonitoring(String identity,
                                                                   ClearVariableMonitoringRequest request);
 
     /**
      * Handle customer information customer information response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the customer information response
      */
-    CustomerInformationResponse handleCustomerInformation(String sessionId, String identity,
-                                                          CustomerInformationRequest request);
+    CustomerInformationResponse handleCustomerInformation(String identity, CustomerInformationRequest request);
 
     /**
      * Handle get log get log response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get log response
      */
-    GetLogResponse handleGetLog(String sessionId, String identity, GetLogRequest request);
+    GetLogResponse handleGetLog(String identity, GetLogRequest request);
 
     /**
      * Handle get monitoring report get monitoring report response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the get monitoring report response
      */
-    GetMonitoringReportResponse handleGetMonitoringReport(String sessionId, String identity,
-                                                          GetMonitoringReportRequest request);
+    GetMonitoringReportResponse handleGetMonitoringReport(String identity, GetMonitoringReportRequest request);
 
     /**
      * Handle notify monitoring report notify monitoring report response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the notify monitoring report response
      */
-    NotifyMonitoringReportResponse handleNotifyMonitoringReport(String sessionId, String identity,
-                                                                NotifyMonitoringReportRequest request);
+    NotifyMonitoringReportResponse handleNotifyMonitoringReport(String identity, NotifyMonitoringReportRequest request);
 
     /**
      * Handle set monitoring base set monitoring base response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the set monitoring base response
      */
-    SetMonitoringBaseResponse handleSetMonitoringBase(String sessionId, String identity,
-                                                      SetMonitoringBaseRequest request);
+    SetMonitoringBaseResponse handleSetMonitoringBase(String identity, SetMonitoringBaseRequest request);
 
     /**
      * Handle set monitoring level set monitoring level response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the set monitoring level response
      */
-    SetMonitoringLevelResponse handleSetMonitoringLevel(String sessionId, String identity,
-                                                        SetMonitoringLevelRequest request);
+    SetMonitoringLevelResponse handleSetMonitoringLevel(String identity, SetMonitoringLevelRequest request);
 
     /**
      * Handle set variable monitoring set variable monitoring response.
      *
-     * @param sessionId the session id
-     * @param identity  the identity
-     * @param request   the request
+     * @param identity the identity
+     * @param request  the request
      * @return the set variable monitoring response
      */
-    SetVariableMonitoringResponse handleSetVariableMonitoring(String sessionId, String identity,
-                                                              SetVariableMonitoringRequest request);
+    SetVariableMonitoringResponse handleSetVariableMonitoring(String identity, SetVariableMonitoringRequest request);
 }
 

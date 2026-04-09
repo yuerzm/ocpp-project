@@ -114,193 +114,170 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
      */
     public Ocpp20ChargePointServiceImpl(Ocpp20ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
-        this.authorizationEventHandler =
-            new ChargePointAuthorizationEventHandlerImpl(serverTransport, sessionRepository);
+        this.authorizationEventHandler = new ChargePointAuthorizationEventHandlerImpl(serverTransport,
+            sessionRepository);
         this.availabilityEventHandler = new ChargePointAvailabilityEventHandlerImpl(serverTransport, sessionRepository);
-        this.tariffAndCostEventHandler =
-            new ChargePointTariffAndCostEventHandlerImpl(serverTransport, sessionRepository);
+        this.tariffAndCostEventHandler = new ChargePointTariffAndCostEventHandlerImpl(serverTransport,
+            sessionRepository);
         this.dataTransferEventHandler = new ChargePointDataTransferEventHandlerImpl(serverTransport, sessionRepository);
         this.diagnosticsEventHandler = new ChargePointDiagnosticsEventHandlerImpl(serverTransport, sessionRepository);
-        this.displayMessageEventHandler =
-            new ChargePointDisplayMessageEventHandlerImpl(serverTransport, sessionRepository);
-        this.firmwareManagementEventHandler =
-            new ChargePointFirmwareManagementManagementEventHandlerImpl(serverTransport, sessionRepository);
-        this.iso15118CertificateManagementEventHandler =
-            new ChargePointISO15118CertificateManagementEventHandlerImpl(serverTransport, sessionRepository);
-        this.localAuthorizationListEventHandler =
-            new ChargePointLocalAuthorizationListEventHandlerImpl(serverTransport, sessionRepository);
+        this.displayMessageEventHandler = new ChargePointDisplayMessageEventHandlerImpl(serverTransport,
+            sessionRepository);
+        this.firmwareManagementEventHandler = new ChargePointFirmwareManagementManagementEventHandlerImpl(
+            serverTransport,
+            sessionRepository);
+        this.iso15118CertificateManagementEventHandler = new ChargePointISO15118CertificateManagementEventHandlerImpl(
+            serverTransport,
+            sessionRepository);
+        this.localAuthorizationListEventHandler = new ChargePointLocalAuthorizationListEventHandlerImpl(serverTransport,
+            sessionRepository);
         this.provisioningEventHandler = new ChargePointProvisioningEventHandlerImpl(serverTransport, sessionRepository);
-        this.remoteControlEventHandler =
-            new ChargePointRemoteControlEventHandlerImpl(serverTransport, sessionRepository);
+        this.remoteControlEventHandler = new ChargePointRemoteControlEventHandlerImpl(serverTransport,
+            sessionRepository);
         this.reservationEventHandler = new ChargePointReservationEventHandlerImpl(serverTransport, sessionRepository);
         this.securityEventHandler = new ChargePointSecurityEventHandlerImpl(serverTransport, sessionRepository);
-        this.smartChargingEventHandler =
-            new ChargePointSmartChargingEventHandlerImpl(serverTransport, sessionRepository);
+        this.smartChargingEventHandler = new ChargePointSmartChargingEventHandlerImpl(serverTransport,
+            sessionRepository);
         this.transactionsEventHandler = new ChargePointTransactionsEventHandlerImpl(serverTransport, sessionRepository);
     }
 
     @Override
-    public Response handle(String sessionId, String identity, Request request) {
+    public Response handle(String identity, Request request) {
 
-        Optional<WebSocketSession> optional = sessionRepository.get(sessionId, identity);
+        Optional<WebSocketSession> optional = sessionRepository.get(identity);
         if (optional.isEmpty()) {
-            logger.warn("Session not connected, session: {}, identity {}", sessionId, identity);
-            throw new UnsupportedOperationException("Session with id " + sessionId + " not connected.");
+            logger.warn("Charge Point not connected, identity {}", identity);
+            throw new UnsupportedOperationException("Charge Point with identity " + identity + " not connected.");
         }
 
         if (request instanceof ClearCacheRequest clearCacheRequest) {
-            return authorizationEventHandler.handleClearCache(sessionId, identity, clearCacheRequest);
+            return authorizationEventHandler.handleClearCache(identity, clearCacheRequest);
 
         } else if (request instanceof ChangeAvailabilityRequest changeAvailabilityRequest) {
-            return availabilityEventHandler.handleChangeAvailability(sessionId, identity, changeAvailabilityRequest);
+            return availabilityEventHandler.handleChangeAvailability(identity, changeAvailabilityRequest);
 
         } else if (request instanceof CostUpdatedRequest costUpdatedRequest) {
-            return tariffAndCostEventHandler.handleCostUpdated(sessionId, identity, costUpdatedRequest);
+            return tariffAndCostEventHandler.handleCostUpdated(identity, costUpdatedRequest);
 
         } else if (request instanceof DataTransferRequest dataTransferRequest) {
-            return dataTransferEventHandler.handleDataTransfer(sessionId, identity, dataTransferRequest);
+            return dataTransferEventHandler.handleDataTransfer(identity, dataTransferRequest);
 
         } else if (request instanceof ClearVariableMonitoringRequest clearVariableMonitoringRequest) {
-            return diagnosticsEventHandler.handleClearVariableMonitoring(sessionId,
-                identity,
-                clearVariableMonitoringRequest);
+            return diagnosticsEventHandler.handleClearVariableMonitoring(identity, clearVariableMonitoringRequest);
 
         } else if (request instanceof CustomerInformationRequest customerInformationRequest) {
-            return diagnosticsEventHandler.handleCustomerInformation(sessionId, identity, customerInformationRequest);
+            return diagnosticsEventHandler.handleCustomerInformation(identity, customerInformationRequest);
 
         } else if (request instanceof GetLogRequest getLogRequest) {
-            return diagnosticsEventHandler.handleGetLog(sessionId, identity, getLogRequest);
+            return diagnosticsEventHandler.handleGetLog(identity, getLogRequest);
 
         } else if (request instanceof GetMonitoringReportRequest getMonitoringReportRequest) {
-            return diagnosticsEventHandler.handleGetMonitoringReport(sessionId, identity, getMonitoringReportRequest);
+            return diagnosticsEventHandler.handleGetMonitoringReport(identity, getMonitoringReportRequest);
 
         } else if (request instanceof NotifyMonitoringReportRequest getMonitoringReportRequest) {
-            return diagnosticsEventHandler.handleNotifyMonitoringReport(sessionId,
-                identity,
-                getMonitoringReportRequest);
+            return diagnosticsEventHandler.handleNotifyMonitoringReport(identity, getMonitoringReportRequest);
 
         } else if (request instanceof SetMonitoringBaseRequest setMonitoringBaseRequest) {
-            return diagnosticsEventHandler.handleSetMonitoringBase(sessionId, identity, setMonitoringBaseRequest);
+            return diagnosticsEventHandler.handleSetMonitoringBase(identity, setMonitoringBaseRequest);
 
         } else if (request instanceof SetMonitoringLevelRequest setMonitoringLevelRequest) {
-            return diagnosticsEventHandler.handleSetMonitoringLevel(sessionId, identity, setMonitoringLevelRequest);
+            return diagnosticsEventHandler.handleSetMonitoringLevel(identity, setMonitoringLevelRequest);
 
         } else if (request instanceof SetVariableMonitoringRequest setVariableMonitoringRequest) {
-            return diagnosticsEventHandler.handleSetVariableMonitoring(sessionId,
-                identity,
-                setVariableMonitoringRequest);
+            return diagnosticsEventHandler.handleSetVariableMonitoring(identity, setVariableMonitoringRequest);
 
         } else if (request instanceof ClearDisplayMessageRequest clearDisplayMessageRequest) {
-            return displayMessageEventHandler.handleClearDisplayMessage(sessionId,
-                identity,
-                clearDisplayMessageRequest);
+            return displayMessageEventHandler.handleClearDisplayMessage(identity, clearDisplayMessageRequest);
 
         } else if (request instanceof GetDisplayMessagesRequest getDisplayMessagesRequest) {
-            return displayMessageEventHandler.handleGetDisplayMessages(sessionId, identity, getDisplayMessagesRequest);
+            return displayMessageEventHandler.handleGetDisplayMessages(identity, getDisplayMessagesRequest);
 
         } else if (request instanceof SetDisplayMessageRequest setDisplayMessageRequest) {
-            return displayMessageEventHandler.handleSetDisplayMessage(sessionId, identity, setDisplayMessageRequest);
+            return displayMessageEventHandler.handleSetDisplayMessage(identity, setDisplayMessageRequest);
 
         } else if (request instanceof PublishFirmwareRequest publishFirmwareRequest) {
-            return firmwareManagementEventHandler.handlePublishFirmware(sessionId, identity, publishFirmwareRequest);
+            return firmwareManagementEventHandler.handlePublishFirmware(identity, publishFirmwareRequest);
 
         } else if (request instanceof UnpublishFirmwareRequest unpublishFirmwareRequest) {
-            return firmwareManagementEventHandler.handleUnpublishFirmware(sessionId,
-                identity,
-                unpublishFirmwareRequest);
+            return firmwareManagementEventHandler.handleUnpublishFirmware(identity, unpublishFirmwareRequest);
 
         } else if (request instanceof UpdateFirmwareRequest updateFirmwareRequest) {
-            return firmwareManagementEventHandler.handleUpdateFirmware(sessionId, identity, updateFirmwareRequest);
+            return firmwareManagementEventHandler.handleUpdateFirmware(identity, updateFirmwareRequest);
 
         } else if (request instanceof DeleteCertificateRequest deleteCertificateRequest) {
-            return iso15118CertificateManagementEventHandler.handleDeleteCertificate(sessionId,
-                identity,
+            return iso15118CertificateManagementEventHandler.handleDeleteCertificate(identity,
                 deleteCertificateRequest);
 
         } else if (request instanceof InstallCertificateRequest installCertificateRequest) {
-            return iso15118CertificateManagementEventHandler.handleInstallCertificate(sessionId,
-                identity,
+            return iso15118CertificateManagementEventHandler.handleInstallCertificate(identity,
                 installCertificateRequest);
 
         } else if (request instanceof GetInstalledCertificateIdsRequest getInstalledCertificateIdsRequest) {
-            return iso15118CertificateManagementEventHandler.handleGetInstalledCertificateIds(sessionId,
-                identity,
+            return iso15118CertificateManagementEventHandler.handleGetInstalledCertificateIds(identity,
                 getInstalledCertificateIdsRequest);
 
         } else if (request instanceof SendLocalListRequest sendLocalListRequest) {
-            return localAuthorizationListEventHandler.handleSendLocalList(sessionId, identity, sendLocalListRequest);
+            return localAuthorizationListEventHandler.handleSendLocalList(identity, sendLocalListRequest);
 
         } else if (request instanceof GetLocalListVersionRequest getLocalListVersionRequest) {
-            return localAuthorizationListEventHandler.handleGetLocalListVersion(sessionId,
-                identity,
-                getLocalListVersionRequest);
+            return localAuthorizationListEventHandler.handleGetLocalListVersion(identity, getLocalListVersionRequest);
 
         } else if (request instanceof GetBaseReportRequest getBaseReportRequest) {
-            return provisioningEventHandler.handleGetBaseReport(sessionId, identity, getBaseReportRequest);
+            return provisioningEventHandler.handleGetBaseReport(identity, getBaseReportRequest);
 
         } else if (request instanceof GetReportRequest getReportRequest) {
-            return provisioningEventHandler.handleGetReport(sessionId, identity, getReportRequest);
+            return provisioningEventHandler.handleGetReport(identity, getReportRequest);
 
         } else if (request instanceof GetVariablesRequest getVariablesRequest) {
-            return provisioningEventHandler.handleGetVariables(sessionId, identity, getVariablesRequest);
+            return provisioningEventHandler.handleGetVariables(identity, getVariablesRequest);
 
         } else if (request instanceof SetVariablesRequest setVariablesRequest) {
-            return provisioningEventHandler.handleSetVariables(sessionId, identity, setVariablesRequest);
+            return provisioningEventHandler.handleSetVariables(identity, setVariablesRequest);
 
         } else if (request instanceof ResetRequest resetRequest) {
-            return provisioningEventHandler.handleReset(sessionId, identity, resetRequest);
+            return provisioningEventHandler.handleReset(identity, resetRequest);
 
             // } else if (request instanceof NotifyReportRequest notifyReportRequest) {
-            //     return provisioningEventHandler.handleNotifyReport(sessionId, identity, notifyReportRequest);
+            //     return provisioningEventHandler.handleNotifyReport( identity, notifyReportRequest);
 
         } else if (request instanceof SetNetworkProfileRequest setNetworkProfileRequest) {
-            return provisioningEventHandler.handleSetNetworkProfile(sessionId, identity, setNetworkProfileRequest);
+            return provisioningEventHandler.handleSetNetworkProfile(identity, setNetworkProfileRequest);
 
         } else if (request instanceof RequestStartTransactionRequest requestStartTransactionRequest) {
-            return remoteControlEventHandler.handleRequestStartTransaction(sessionId,
-                identity,
-                requestStartTransactionRequest);
+            return remoteControlEventHandler.handleRequestStartTransaction(identity, requestStartTransactionRequest);
 
         } else if (request instanceof RequestStopTransactionRequest requestStopTransactionRequest) {
-            return remoteControlEventHandler.handleRequestStopTransaction(sessionId,
-                identity,
-                requestStopTransactionRequest);
+            return remoteControlEventHandler.handleRequestStopTransaction(identity, requestStopTransactionRequest);
 
         } else if (request instanceof TriggerMessageRequest triggerMessageRequest) {
-            return remoteControlEventHandler.handleTriggerMessage(sessionId, identity, triggerMessageRequest);
+            return remoteControlEventHandler.handleTriggerMessage(identity, triggerMessageRequest);
 
         } else if (request instanceof UnlockConnectorRequest unlockConnectorRequest) {
-            return remoteControlEventHandler.handleUnlockConnector(sessionId, identity, unlockConnectorRequest);
+            return remoteControlEventHandler.handleUnlockConnector(identity, unlockConnectorRequest);
 
         } else if (request instanceof ReserveNowRequest reserveNowRequest) {
-            return reservationEventHandler.handleReserveNow(sessionId, identity, reserveNowRequest);
+            return reservationEventHandler.handleReserveNow(identity, reserveNowRequest);
 
         } else if (request instanceof CancelReservationRequest cancelReservationRequest) {
-            return reservationEventHandler.handleCancelReservation(sessionId, identity, cancelReservationRequest);
+            return reservationEventHandler.handleCancelReservation(identity, cancelReservationRequest);
 
         } else if (request instanceof CertificateSignedRequest certificateSignedRequest) {
-            return securityEventHandler.handleCertificateSigned(sessionId, identity, certificateSignedRequest);
+            return securityEventHandler.handleCertificateSigned(identity, certificateSignedRequest);
 
         } else if (request instanceof ClearChargingProfileRequest clearChargingProfileRequest) {
-            return smartChargingEventHandler.handleClearChargingProfile(sessionId,
-                identity,
-                clearChargingProfileRequest);
+            return smartChargingEventHandler.handleClearChargingProfile(identity, clearChargingProfileRequest);
 
         } else if (request instanceof GetChargingProfilesRequest getChargingProfilesRequest) {
-            return smartChargingEventHandler.handleGetChargingProfiles(sessionId, identity, getChargingProfilesRequest);
+            return smartChargingEventHandler.handleGetChargingProfiles(identity, getChargingProfilesRequest);
 
         } else if (request instanceof GetCompositeScheduleRequest getCompositeScheduleRequest) {
-            return smartChargingEventHandler.handleGetCompositeSchedule(sessionId,
-                identity,
-                getCompositeScheduleRequest);
+            return smartChargingEventHandler.handleGetCompositeSchedule(identity, getCompositeScheduleRequest);
 
         } else if (request instanceof SetChargingProfileRequest setChargingProfileRequest) {
-            return smartChargingEventHandler.handleSetChargingProfile(sessionId, identity, setChargingProfileRequest);
+            return smartChargingEventHandler.handleSetChargingProfile(identity, setChargingProfileRequest);
 
         } else if (request instanceof GetTransactionStatusRequest getTransactionStatusRequest) {
-            return transactionsEventHandler.handleGetTransactionStatus(sessionId,
-                identity,
-                getTransactionStatusRequest);
+            return transactionsEventHandler.handleGetTransactionStatus(identity, getTransactionStatusRequest);
 
         } else {
             throw new UnsupportedOperationException("Unsupported request type: " + request.getClass());

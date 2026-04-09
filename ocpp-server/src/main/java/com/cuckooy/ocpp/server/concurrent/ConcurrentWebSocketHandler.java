@@ -1,17 +1,15 @@
 package com.cuckooy.ocpp.server.concurrent;
 
+import com.cuckooy.ocpp.server.session.SessionRepository;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 /**
  * The type Concurrent web socket handler.
@@ -20,17 +18,25 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static final int SEND_TIME_LIMIT = (int) TimeUnit.SECONDS.toMillis(10);
-    private static final int BUFFER_SIZE_LIMIT = 5 * 8388608;
+    private static final int SEND_TIME_LIMIT = 3000;
+    private static final int BUFFER_SIZE_LIMIT = 1024 * 1024;
 
-    private final Map<String, ConcurrentWebSocketSessionDecorator> sessions = new ConcurrentHashMap<>();
+    protected final SessionRepository sessionRepository;
+
+    protected ConcurrentWebSocketHandler(SessionRepository sessionRepository) {
+        Assert.notNull(sessionRepository, "sessionRepository must not be null");
+        this.sessionRepository = sessionRepository;
+    }
 
     @Override
     public void afterConnectionEstablished(@NonNull WebSocketSession session) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("After connection established session: {}", session.getId());
         }
-        this.onConnect(getConcurrentSession(session));
+
+        WebSocketSession wrapped = wrapSession(session);
+
+        this.onConnect(wrapped);
     }
 
     @Override
@@ -39,7 +45,8 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
         if (logger.isDebugEnabled()) {
             logger.debug("Handle session: {}, message: {}", session.getId(), message.getPayload());
         }
-        this.onMessage(getConcurrentSession(session), message);
+
+        this.onMessage(session, message);
     }
 
     @Override
@@ -47,7 +54,8 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
         if (logger.isDebugEnabled()) {
             logger.debug("Handle session {}, transport error: ", session.getId(), exception);
         }
-        this.onException(getConcurrentSession(session), exception);
+
+        this.onException(session, exception);
     }
 
     @Override
@@ -56,7 +64,10 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
         if (logger.isDebugEnabled()) {
             logger.debug("After connection closed session: {}, status: {}", session.getId(), closeStatus);
         }
-        this.onDisconnect(sessions.remove(session.getId()), closeStatus);
+
+        sessionRepository.remove(session);
+
+        this.onDisconnect(session, closeStatus);
     }
 
     @Override
@@ -64,9 +75,10 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
         return false;
     }
 
-    private ConcurrentWebSocketSessionDecorator getConcurrentSession(WebSocketSession session) {
-        return sessions.computeIfAbsent(session.getId(),
-            sessionId -> new ConcurrentWebSocketSessionDecorator(session, SEND_TIME_LIMIT, BUFFER_SIZE_LIMIT));
+    private WebSocketSession wrapSession(WebSocketSession session) {
+        WebSocketSession wrapped = new ConcurrentWebSocketSessionDecorator(session, SEND_TIME_LIMIT, BUFFER_SIZE_LIMIT);
+        sessionRepository.put(wrapped);
+        return wrapped;
     }
 
     /**

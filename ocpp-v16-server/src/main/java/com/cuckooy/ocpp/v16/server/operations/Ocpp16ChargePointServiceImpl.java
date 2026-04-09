@@ -66,85 +66,81 @@ public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
     public Ocpp16ChargePointServiceImpl(Ocpp16ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
         this.coreEventHandler = new ChargePointCoreEventHandlerImpl(serverTransport, sessionRepository);
-        this.firmwareManagementEventHandler =
-            new ChargePointFirmwareManagementEventHandlerImpl(serverTransport, sessionRepository);
+        this.firmwareManagementEventHandler = new ChargePointFirmwareManagementEventHandlerImpl(serverTransport,
+            sessionRepository);
         this.localAuthEventHandler = new ChargePointLocalAuthEventHandlerImpl(serverTransport, sessionRepository);
-        this.remoteTriggerEventHandler =
-            new ChargePointRemoteTriggerEventHandlerImpl(serverTransport, sessionRepository);
+        this.remoteTriggerEventHandler = new ChargePointRemoteTriggerEventHandlerImpl(serverTransport,
+            sessionRepository);
         this.reservationEventHandler = new ChargePointReservationEventHandlerImpl(serverTransport, sessionRepository);
-        this.smartChargingEventHandler =
-            new ChargePointSmartChargingEventHandlerImpl(serverTransport, sessionRepository);
+        this.smartChargingEventHandler = new ChargePointSmartChargingEventHandlerImpl(serverTransport,
+            sessionRepository);
     }
 
     @Override
-    public Response handle(String sessionId, String identity, Request request) {
+    public Response handle(String identity, Request request) {
 
-        Optional<WebSocketSession> optional = sessionRepository.get(sessionId, identity);
+        Optional<WebSocketSession> optional = sessionRepository.get(identity);
         if (optional.isEmpty()) {
-            logger.warn("Session not connected, session: {}, identity {}", sessionId, identity);
-            throw new UnsupportedOperationException("Session with id " + sessionId + " not connected.");
+            logger.warn("Charge Point not connected, identity {}", identity);
+            throw new UnsupportedOperationException("Charge Point with identity " + identity + " not connected.");
         }
 
         if (request instanceof ChangeAvailabilityRequest changeAvailabilityRequest) {
-            return coreEventHandler.handleChangeAvailability(sessionId, identity, changeAvailabilityRequest);
+            return coreEventHandler.handleChangeAvailability(identity, changeAvailabilityRequest);
 
         } else if (request instanceof ChangeConfigurationRequest changeConfigurationRequest) {
-            return coreEventHandler.handleChangeConfiguration(sessionId, identity, changeConfigurationRequest);
+            return coreEventHandler.handleChangeConfiguration(identity, changeConfigurationRequest);
 
         } else if (request instanceof ClearCacheRequest clearCacheRequest) {
-            return coreEventHandler.handleClearCache(sessionId, identity, clearCacheRequest);
+            return coreEventHandler.handleClearCache(identity, clearCacheRequest);
 
         } else if (request instanceof DataTransferRequest dataTransferRequest) {
-            return coreEventHandler.handleDataTransfer(sessionId, identity, dataTransferRequest);
+            return coreEventHandler.handleDataTransfer(identity, dataTransferRequest);
 
         } else if (request instanceof GetConfigurationRequest getConfigurationRequest) {
-            return coreEventHandler.handleGetConfiguration(sessionId, identity, getConfigurationRequest);
+            return coreEventHandler.handleGetConfiguration(identity, getConfigurationRequest);
 
         } else if (request instanceof RemoteStartTransactionRequest remoteStartTransactionRequest) {
-            return coreEventHandler.handleRemoteStartTransaction(sessionId, identity, remoteStartTransactionRequest);
+            return coreEventHandler.handleRemoteStartTransaction(identity, remoteStartTransactionRequest);
 
         } else if (request instanceof RemoteStopTransactionRequest remoteStopTransactionRequest) {
-            return coreEventHandler.handleRemoteStopTransaction(sessionId, identity, remoteStopTransactionRequest);
+            return coreEventHandler.handleRemoteStopTransaction(identity, remoteStopTransactionRequest);
 
         } else if (request instanceof ResetRequest resetRequest) {
-            return coreEventHandler.handleReset(sessionId, identity, resetRequest);
+            return coreEventHandler.handleReset(identity, resetRequest);
 
         } else if (request instanceof UnlockConnectorRequest unlockConnectorRequest) {
-            return coreEventHandler.handleUnlockConnector(sessionId, identity, unlockConnectorRequest);
+            return coreEventHandler.handleUnlockConnector(identity, unlockConnectorRequest);
 
         } else if (request instanceof GetDiagnosticsRequest getDiagnosticsRequest) {
-            return firmwareManagementEventHandler.handleGetDiagnostics(sessionId, identity, getDiagnosticsRequest);
+            return firmwareManagementEventHandler.handleGetDiagnostics(identity, getDiagnosticsRequest);
 
         } else if (request instanceof UpdateFirmwareRequest updateFirmwareRequest) {
-            return firmwareManagementEventHandler.handleUpdateFirmware(sessionId, identity, updateFirmwareRequest);
+            return firmwareManagementEventHandler.handleUpdateFirmware(identity, updateFirmwareRequest);
 
         } else if (request instanceof GetLocalListVersionRequest getLocalListVersionRequest) {
-            return localAuthEventHandler.handleGetLocalListVersion(sessionId, identity, getLocalListVersionRequest);
+            return localAuthEventHandler.handleGetLocalListVersion(identity, getLocalListVersionRequest);
 
         } else if (request instanceof SendLocalListRequest sendLocalListRequest) {
-            return localAuthEventHandler.handleSendLocalList(sessionId, identity, sendLocalListRequest);
+            return localAuthEventHandler.handleSendLocalList(identity, sendLocalListRequest);
 
         } else if (request instanceof TriggerMessageRequest triggerMessageRequest) {
-            return remoteTriggerEventHandler.handleTriggerMessage(sessionId, identity, triggerMessageRequest);
+            return remoteTriggerEventHandler.handleTriggerMessage(identity, triggerMessageRequest);
 
         } else if (request instanceof ReserveNowRequest reserveNowRequest) {
-            return reservationEventHandler.handleReserveNow(sessionId, identity, reserveNowRequest);
+            return reservationEventHandler.handleReserveNow(identity, reserveNowRequest);
 
         } else if (request instanceof CancelReservationRequest cancelReservationRequest) {
-            return reservationEventHandler.handleCancelReservation(sessionId, identity, cancelReservationRequest);
+            return reservationEventHandler.handleCancelReservation(identity, cancelReservationRequest);
 
         } else if (request instanceof SetChargingProfileRequest setChargingProfileRequest) {
-            return smartChargingEventHandler.handleSetChargingProfile(sessionId, identity, setChargingProfileRequest);
+            return smartChargingEventHandler.handleSetChargingProfile(identity, setChargingProfileRequest);
 
         } else if (request instanceof ClearChargingProfileRequest clearChargingProfileRequest) {
-            return smartChargingEventHandler.handleClearChargingProfile(sessionId,
-                identity,
-                clearChargingProfileRequest);
+            return smartChargingEventHandler.handleClearChargingProfile(identity, clearChargingProfileRequest);
 
         } else if (request instanceof GetCompositeScheduleRequest getCompositeScheduleRequest) {
-            return smartChargingEventHandler.handleGetCompositeSchedule(sessionId,
-                identity,
-                getCompositeScheduleRequest);
+            return smartChargingEventHandler.handleGetCompositeSchedule(identity, getCompositeScheduleRequest);
 
         } else {
             throw new UnsupportedOperationException("Unsupported request type: " + request.getClass());

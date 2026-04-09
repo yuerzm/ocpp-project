@@ -31,26 +31,24 @@ public class ChargePointSmartChargingEventHandlerImpl extends AbstractChargePoin
     }
 
     @Override
-    public ClearChargingProfileResponse handleClearChargingProfile(String sessionId, String identity,
+    public ClearChargingProfileResponse handleClearChargingProfile(String identity,
                                                                    ClearChargingProfileRequest request) {
-        return (ClearChargingProfileResponse) invoke(sessionId, identity, request);
+        return (ClearChargingProfileResponse) invoke(identity, request);
     }
 
     @Override
-    public GetChargingProfilesResponse handleGetChargingProfiles(String sessionId, String identity,
-                                                                 GetChargingProfilesRequest request) {
-        return (GetChargingProfilesResponse) invoke(sessionId, identity, request);
+    public GetChargingProfilesResponse handleGetChargingProfiles(String identity, GetChargingProfilesRequest request) {
+        return (GetChargingProfilesResponse) invoke(identity, request);
     }
 
     @Override
-    public GetCompositeScheduleResponse handleGetCompositeSchedule(String sessionId, String identity,
+    public GetCompositeScheduleResponse handleGetCompositeSchedule(String identity,
                                                                    GetCompositeScheduleRequest request) {
-        return (GetCompositeScheduleResponse) invoke(sessionId, identity, request);
+        return (GetCompositeScheduleResponse) invoke(identity, request);
     }
 
     @Override
-    public SetChargingProfileResponse handleSetChargingProfile(String sessionId, String identity,
-                                                               SetChargingProfileRequest request) {
-        return (SetChargingProfileResponse) invoke(sessionId, identity, request);
+    public SetChargingProfileResponse handleSetChargingProfile(String identity, SetChargingProfileRequest request) {
+        return (SetChargingProfileResponse) invoke(identity, request);
     }
 }
