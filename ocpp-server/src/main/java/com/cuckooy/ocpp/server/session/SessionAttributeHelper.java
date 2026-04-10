@@ -16,6 +16,12 @@ public final class SessionAttributeHelper {
      */
     public static final String CHARGE_POINT_PROTOCOL = "__CHARGE_POINT_PROTOCOL__";
 
+    /**
+     * Gets identity.
+     *
+     * @param session the session
+     * @return the identity
+     */
     public static String getIdentity(WebSocketSession session) {
         Object identity = session.getAttributes().get(SessionAttributeHelper.CHARGE_POINT_IDENTITY);
 
@@ -26,6 +32,12 @@ public final class SessionAttributeHelper {
         return identity.toString();
     }
 
+    /**
+     * Gets protocol.
+     *
+     * @param session the session
+     * @return the protocol
+     */
     public static Object getProtocol(WebSocketSession session) {
         return session.getAttributes().get(SessionAttributeHelper.CHARGE_POINT_PROTOCOL);
     }

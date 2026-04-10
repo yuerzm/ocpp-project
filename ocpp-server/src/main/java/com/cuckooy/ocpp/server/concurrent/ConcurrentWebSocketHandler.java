@@ -21,8 +21,16 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
     private static final int SEND_TIME_LIMIT = 3000;
     private static final int BUFFER_SIZE_LIMIT = 1024 * 1024;
 
+    /**
+     * The Session repository.
+     */
     protected final SessionRepository sessionRepository;
 
+    /**
+     * Instantiates a new Concurrent web socket handler.
+     *
+     * @param sessionRepository the session repository
+     */
     protected ConcurrentWebSocketHandler(SessionRepository sessionRepository) {
         Assert.notNull(sessionRepository, "sessionRepository must not be null");
         this.sessionRepository = sessionRepository;

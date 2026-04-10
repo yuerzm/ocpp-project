@@ -66,6 +66,15 @@ public abstract class AbstractServerTransport implements ServerTransport {
         this.messageBridgingService = new NoopMessageBridgingService();
     }
 
+    /**
+     * Instantiates a new Abstract server transport.
+     *
+     * @param ocppJsonParser         the ocpp json parser
+     * @param ocppJsonWriter         the ocpp json writer
+     * @param uniqueIdRepository     the unique id repository
+     * @param centralSystemService   the central system service
+     * @param messageBridgingService the message bridging service
+     */
     public AbstractServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
                                    UniqueIdRepository uniqueIdRepository, CentralSystemService centralSystemService,
                                    MessageBridgingService messageBridgingService) {

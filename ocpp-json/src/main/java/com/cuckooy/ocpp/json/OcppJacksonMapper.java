@@ -19,8 +19,7 @@ public class OcppJacksonMapper implements OcppJsonMapper {
      * Instantiates a new Ocpp jackson mapper.
      */
     public OcppJacksonMapper() {
-        jsonMapper = JsonMapper
-            .builder()
+        jsonMapper = JsonMapper.builder()
             .defaultTimeZone(TimeZone.getTimeZone("UTC"))
             .defaultLocale(Locale.ENGLISH)
             .changeDefaultPropertyInclusion(incl -> incl.withValueInclusion(JsonInclude.Include.NON_NULL))

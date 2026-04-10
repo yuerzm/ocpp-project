@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * The type In memory session repository.
+ */
 public class InMemorySessionRepositoryImpl implements SessionRepository {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

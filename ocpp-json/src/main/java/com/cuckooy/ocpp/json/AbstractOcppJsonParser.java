@@ -128,8 +128,8 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
         }
 
         if (messageTypeId == OcppMessageType.CALL_ERROR.getCode()) {
-            MessageErrorCode errorCode =
-                MessageErrorCode.fromName(jsonNode.get(OcppMessage.INDEX_ERROR_CODE).asString());
+            MessageErrorCode errorCode = MessageErrorCode.fromName(jsonNode.get(OcppMessage.INDEX_ERROR_CODE)
+                .asString());
             String errorDescription = jsonNode.get(OcppMessage.INDEX_ERROR_DESCRIPTION).asString();
             JsonNode errorDetails = jsonNode.get(OcppMessage.INDEX_ERROR_DETAILS);
             return JsonMessage.error(uniqueId, errorCode, errorDescription, errorDetails);
@@ -148,8 +148,7 @@ public abstract class AbstractOcppJsonParser implements OcppJsonParser {
     protected void validateJson(String uniqueId, String className, JsonNode payload) {
         List<Error> validate = ocppJsonValidator.validate(className, payload);
         if (!validate.isEmpty()) {
-            List<ErrorDetail> errorDetails = validate
-                .stream()
+            List<ErrorDetail> errorDetails = validate.stream()
                 .map(x -> new ErrorDetail(x.getKeyword(),
                     String.format("Validations error : message=%s, details=%s", x.getMessage(), x.getDetails())))
                 .toList();
