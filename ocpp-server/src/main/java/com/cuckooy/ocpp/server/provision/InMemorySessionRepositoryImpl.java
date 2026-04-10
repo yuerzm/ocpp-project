@@ -26,6 +26,12 @@ public class InMemorySessionRepositoryImpl implements SessionRepository {
     }
 
     @Override
+    public WebSocketSession get(WebSocketSession session) {
+        String identity = SessionAttributeHelper.getIdentity(session);
+        return sessions.get(identity);
+    }
+
+    @Override
     public void put(WebSocketSession session) {
         String identity = SessionAttributeHelper.getIdentity(session);
 
@@ -41,13 +47,11 @@ public class InMemorySessionRepositoryImpl implements SessionRepository {
     public void remove(WebSocketSession session) {
         String identity = SessionAttributeHelper.getIdentity(session);
 
-        sessions.computeIfPresent(identity, (key, currentSession) -> {
-            if (currentSession == session) {
-                closeQuietly(currentSession);
-                return null;
-            }
-            return currentSession;
-        });
+        WebSocketSession removed = sessions.remove(identity);
+
+        if (removed != null && removed.isOpen()) {
+            closeQuietly(removed);
+        }
     }
 
     private void closeQuietly(WebSocketSession session) {

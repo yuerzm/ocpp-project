@@ -6,25 +6,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.WebSocketMessage;
+import org.springframework.web.socket.PongMessage;
+import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 /**
  * The type Concurrent web socket handler.
  */
-public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
+public abstract class ConcurrentWebSocketHandler extends TextWebSocketHandler {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static final int SEND_TIME_LIMIT = 3000;
-    private static final int BUFFER_SIZE_LIMIT = 1024 * 1024;
+    private static final int SEND_TIME_LIMIT = 3 * 1000;
+    private static final int BUFFER_SIZE_LIMIT = 512 * 1024;
 
     /**
      * The Session repository.
      */
-    protected final SessionRepository sessionRepository;
+    private final SessionRepository sessionRepository;
 
     /**
      * Instantiates a new Concurrent web socket handler.
@@ -42,19 +43,35 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
             logger.debug("After connection established session: {}", session.getId());
         }
 
-        WebSocketSession wrapped = wrapSession(session);
+        ConcurrentWebSocketSessionDecorator wrapped = new ConcurrentWebSocketSessionDecorator(session,
+            SEND_TIME_LIMIT,
+            BUFFER_SIZE_LIMIT);
+
+        sessionRepository.put(wrapped);
 
         this.onConnect(wrapped);
     }
 
     @Override
-    public void handleMessage(@NonNull WebSocketSession session, @NonNull WebSocketMessage<?> message)
+    protected void handleTextMessage(@NonNull WebSocketSession session, @NonNull TextMessage textMessage)
         throws Exception {
         if (logger.isDebugEnabled()) {
-            logger.debug("Handle session: {}, message: {}", session.getId(), message.getPayload());
+            logger.debug("Handle session: {}, message: {}", session.getId(), textMessage);
         }
 
-        this.onMessage(session, message);
+        this.onMessage(sessionRepository.get(session), textMessage);
+    }
+
+    /**
+     * Handle pong message.
+     *
+     * @param session the session
+     * @param message the message
+     * @throws Exception the exception
+     */
+    @Override
+    protected void handlePongMessage(@NonNull WebSocketSession session, @NonNull PongMessage message) throws Exception {
+        logger.info("Handle pong message: {}", message);
     }
 
     @Override
@@ -63,7 +80,7 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
             logger.debug("Handle session {}, transport error: ", session.getId(), exception);
         }
 
-        this.onException(session, exception);
+        this.onException(sessionRepository.get(session), exception);
     }
 
     @Override
@@ -76,17 +93,6 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
         sessionRepository.remove(session);
 
         this.onDisconnect(session, closeStatus);
-    }
-
-    @Override
-    public boolean supportsPartialMessages() {
-        return false;
-    }
-
-    private WebSocketSession wrapSession(WebSocketSession session) {
-        WebSocketSession wrapped = new ConcurrentWebSocketSessionDecorator(session, SEND_TIME_LIMIT, BUFFER_SIZE_LIMIT);
-        sessionRepository.put(wrapped);
-        return wrapped;
     }
 
     /**
@@ -113,7 +119,7 @@ public abstract class ConcurrentWebSocketHandler implements WebSocketHandler {
      * @param message the message
      * @throws Exception the exception
      */
-    protected abstract void onMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception;
+    protected abstract void onMessage(WebSocketSession session, TextMessage message) throws Exception;
 
     /**
      * On exception.

@@ -18,6 +18,14 @@ public interface SessionRepository {
     Optional<WebSocketSession> get(String identity);
 
     /**
+     * Get web socket session.
+     *
+     * @param session the session
+     * @return the web socket session
+     */
+    WebSocketSession get(WebSocketSession session);
+
+    /**
      * Put.
      *
      * @param session the session
