@@ -68,15 +68,15 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
         ChargePointRetrieveRequest authenticateRequest = new ChargePointRetrieveRequest(identity);
         ChargePointRetrieveResponse authenticateResponse = authenticationEventHandler.retrieve(authenticateRequest);
 
-        if (Objects.isNull(authenticateResponse) || !authenticateResponse.isRegistered()) {
-            logger.error("ChargePoint identity '{}' is not recognized.", identity);
+        if (Objects.isNull(authenticateResponse) || !authenticateResponse.isRecognized()) {
+            logger.error("Charge Point identity '{}' is not recognized.", identity);
             response.setStatusCode(HttpStatus.NOT_FOUND);
             return false;
         }
 
         boolean authenticated = basicAuthenticationService.authenticate(identity, request, authenticateResponse);
         if (!authenticated) {
-            logger.error("ChargePoint identity '{}' is not authenticated.", identity);
+            logger.error("Charge Point identity '{}' is not authenticated.", identity);
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             return false;
         }

@@ -64,7 +64,7 @@ public class OcppHandshakeHandler implements HandshakeHandler {
 
         attributes.put(SessionAttributeHelper.CHARGE_POINT_PROTOCOL, protocols);
 
-        logger.debug("ChargePoint identity '{}' will be using {}", identity, endpoint.getClass().getSimpleName());
+        logger.debug("Charge Point identity '{}' will be using {}", identity, endpoint.getClass().getSimpleName());
         return delegate.doHandshake(request, response, endpoint, attributes);
     }
 

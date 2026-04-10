@@ -26,7 +26,7 @@ public final class SessionAttributeHelper {
         Object identity = session.getAttributes().get(SessionAttributeHelper.CHARGE_POINT_IDENTITY);
 
         if (identity == null) {
-            throw new IllegalStateException("Missing ChargePoint identity");
+            throw new IllegalStateException("Missing Charge Point identity");
         }
 
         return identity.toString();
