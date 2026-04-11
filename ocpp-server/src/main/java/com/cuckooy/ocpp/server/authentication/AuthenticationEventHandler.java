@@ -6,11 +6,11 @@ package com.cuckooy.ocpp.server.authentication;
 public interface AuthenticationEventHandler {
 
     /**
-     * Retrieve charge point retrieve response.
+     * Authenticate charge point authenticate response.
      *
      * @param request the request
-     * @return the charge point retrieve response
+     * @return the charge point authenticate response
      */
-    ChargePointRetrieveResponse retrieve(ChargePointRetrieveRequest request);
+    ChargePointAuthenticateResponse authenticate(ChargePointAuthenticateRequest request);
 
 }

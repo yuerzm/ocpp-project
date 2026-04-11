@@ -3,8 +3,8 @@ package com.cuckooy.ocpp.server.handshake;
 import com.cuckooy.ocpp.server.authentication.AuthenticationEventHandler;
 import com.cuckooy.ocpp.server.authentication.BasicAuthenticationService;
 import com.cuckooy.ocpp.server.authentication.BasicAuthenticationServiceImpl;
-import com.cuckooy.ocpp.server.authentication.ChargePointRetrieveRequest;
-import com.cuckooy.ocpp.server.authentication.ChargePointRetrieveResponse;
+import com.cuckooy.ocpp.server.authentication.ChargePointAuthenticateRequest;
+import com.cuckooy.ocpp.server.authentication.ChargePointAuthenticateResponse;
 import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.NonNull;
@@ -65,8 +65,9 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
 
         String identity = parseIdentity(request.getURI().getPath());
 
-        ChargePointRetrieveRequest authenticateRequest = new ChargePointRetrieveRequest(identity);
-        ChargePointRetrieveResponse authenticateResponse = authenticationEventHandler.retrieve(authenticateRequest);
+        ChargePointAuthenticateRequest authenticateRequest = new ChargePointAuthenticateRequest(identity);
+        ChargePointAuthenticateResponse authenticateResponse = authenticationEventHandler.authenticate(
+            authenticateRequest);
 
         if (Objects.isNull(authenticateResponse) || !authenticateResponse.isRecognized()) {
             logger.error("Charge Point identity '{}' is not recognized.", identity);

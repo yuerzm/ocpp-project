@@ -16,7 +16,7 @@ public class BasicAuthenticationServiceImpl implements BasicAuthenticationServic
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public boolean authenticate(String identity, ServerHttpRequest request, ChargePointRetrieveResponse retrieved) {
+    public boolean authenticate(String identity, ServerHttpRequest request, ChargePointAuthenticateResponse retrieved) {
 
         if (!retrieved.isRequired()) {
             if (logger.isDebugEnabled()) {

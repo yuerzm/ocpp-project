@@ -6,10 +6,10 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * The type Charge point retrieve request.
+ * The type Charge point authenticate request.
  */
 @Data
-public class ChargePointRetrieveRequest implements Serializable {
+public class ChargePointAuthenticateRequest implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -17,11 +17,11 @@ public class ChargePointRetrieveRequest implements Serializable {
     private String identity;
 
     /**
-     * Instantiates a new Charge point retrieve request.
+     * Instantiates a new Charge point authenticate request.
      *
      * @param identity the identity
      */
-    public ChargePointRetrieveRequest(String identity) {
+    public ChargePointAuthenticateRequest(String identity) {
         this.identity = identity;
     }
 }

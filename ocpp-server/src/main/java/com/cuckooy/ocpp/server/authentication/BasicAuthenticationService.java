@@ -15,6 +15,6 @@ public interface BasicAuthenticationService {
      * @param retrieved the retrieved
      * @return the boolean
      */
-    boolean authenticate(String identity, ServerHttpRequest request, ChargePointRetrieveResponse retrieved);
+    boolean authenticate(String identity, ServerHttpRequest request, ChargePointAuthenticateResponse retrieved);
 
 }
