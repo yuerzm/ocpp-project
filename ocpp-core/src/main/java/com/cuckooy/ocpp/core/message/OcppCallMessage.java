@@ -19,18 +19,6 @@ public class OcppCallMessage extends OcppMessage {
      * Instantiates a new Ocpp call message.
      *
      * @param uniqueId the unique id
-     * @param payload  the payload
-     */
-    public OcppCallMessage(String uniqueId, Request payload) {
-        super(OcppMessageType.CALL, uniqueId);
-        this.action = payload.getClass().getSimpleName().replace("Request", "");
-        this.payload = payload;
-    }
-
-    /**
-     * Instantiates a new Ocpp call message.
-     *
-     * @param uniqueId the unique id
      * @param action   the action
      * @param payload  the payload
      */

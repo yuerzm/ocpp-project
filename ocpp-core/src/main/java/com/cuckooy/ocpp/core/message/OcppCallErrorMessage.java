@@ -16,13 +16,6 @@ public class OcppCallErrorMessage extends OcppMessage {
     private String errorDescription;
     private Object errorDetails;
 
-    private OcppCallErrorMessage(String uniqueId, String errorCode, String errorDescription, String errorDetails) {
-        super(OcppMessageType.CALL_ERROR, uniqueId);
-        this.errorCode = MessageErrorCode.fromName(errorCode);
-        this.errorDescription = errorDescription;
-        this.errorDetails = errorDetails;
-    }
-
     /**
      * Instantiates a new Ocpp call error message.
      *
