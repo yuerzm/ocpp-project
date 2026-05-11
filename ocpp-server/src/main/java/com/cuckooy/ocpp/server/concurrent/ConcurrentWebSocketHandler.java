@@ -43,9 +43,8 @@ public abstract class ConcurrentWebSocketHandler extends TextWebSocketHandler {
             logger.debug("After connection established session: {}", session.getId());
         }
 
-        ConcurrentWebSocketSessionDecorator wrapped = new ConcurrentWebSocketSessionDecorator(session,
-            SEND_TIME_LIMIT,
-            BUFFER_SIZE_LIMIT);
+        ConcurrentWebSocketSessionDecorator wrapped =
+            new ConcurrentWebSocketSessionDecorator(session, SEND_TIME_LIMIT, BUFFER_SIZE_LIMIT);
 
         sessionRepository.put(wrapped);
 

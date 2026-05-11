@@ -66,8 +66,8 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
         String identity = parseIdentity(request.getURI().getPath());
 
         ChargePointAuthenticateRequest authenticateRequest = new ChargePointAuthenticateRequest(identity);
-        ChargePointAuthenticateResponse authenticateResponse = authenticationEventHandler.authenticate(
-            authenticateRequest);
+        ChargePointAuthenticateResponse authenticateResponse =
+            authenticationEventHandler.authenticate(authenticateRequest);
 
         if (Objects.isNull(authenticateResponse) || !authenticateResponse.isRecognized()) {
             logger.error("Charge Point identity '{}' is not recognized.", identity);

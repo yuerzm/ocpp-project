@@ -77,7 +77,7 @@ public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandl
 
         sessionEventHandler.exception(session, throwable);
     }
-    
+
     /**
      * Support boolean.
      *

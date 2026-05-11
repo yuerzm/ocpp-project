@@ -8,6 +8,7 @@ import com.cuckooy.ocpp.v16.handler.ChargePointFirmwareManagementEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointLocalAuthEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointRemoteTriggerEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointReservationEventHandler;
+import com.cuckooy.ocpp.v16.handler.ChargePointSecurityEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointSmartChargingEventHandler;
 import com.cuckooy.ocpp.v16.model.core.ChangeAvailabilityRequest;
 import com.cuckooy.ocpp.v16.model.core.ChangeConfigurationRequest;
@@ -25,6 +26,17 @@ import com.cuckooy.ocpp.v16.model.localauthlist.SendLocalListRequest;
 import com.cuckooy.ocpp.v16.model.remotetrigger.TriggerMessageRequest;
 import com.cuckooy.ocpp.v16.model.reservation.CancelReservationRequest;
 import com.cuckooy.ocpp.v16.model.reservation.ReserveNowRequest;
+import com.cuckooy.ocpp.v16.model.security.CertificateSignedRequest;
+import com.cuckooy.ocpp.v16.model.security.DeleteCertificateRequest;
+import com.cuckooy.ocpp.v16.model.security.ExtendedTriggerMessageRequest;
+import com.cuckooy.ocpp.v16.model.security.GetInstalledCertificateIdsRequest;
+import com.cuckooy.ocpp.v16.model.security.GetLogRequest;
+import com.cuckooy.ocpp.v16.model.security.InstallCertificateRequest;
+import com.cuckooy.ocpp.v16.model.security.LogStatusNotificationRequest;
+import com.cuckooy.ocpp.v16.model.security.SecurityEventNotificationRequest;
+import com.cuckooy.ocpp.v16.model.security.SignCertificateRequest;
+import com.cuckooy.ocpp.v16.model.security.SignedFirmwareStatusNotificationRequest;
+import com.cuckooy.ocpp.v16.model.security.SignedUpdateFirmwareRequest;
 import com.cuckooy.ocpp.v16.model.smartcharging.ClearChargingProfileRequest;
 import com.cuckooy.ocpp.v16.model.smartcharging.GetCompositeScheduleRequest;
 import com.cuckooy.ocpp.v16.model.smartcharging.SetChargingProfileRequest;
@@ -35,6 +47,7 @@ import com.cuckooy.ocpp.v16.server.handler.ChargePointFirmwareManagementEventHan
 import com.cuckooy.ocpp.v16.server.handler.ChargePointLocalAuthEventHandlerImpl;
 import com.cuckooy.ocpp.v16.server.handler.ChargePointRemoteTriggerEventHandlerImpl;
 import com.cuckooy.ocpp.v16.server.handler.ChargePointReservationEventHandlerImpl;
+import com.cuckooy.ocpp.v16.server.handler.ChargePointSecurityEventHandlerImpl;
 import com.cuckooy.ocpp.v16.server.handler.ChargePointSmartChargingEventHandlerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +69,7 @@ public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
     private final ChargePointRemoteTriggerEventHandler remoteTriggerEventHandler;
     private final ChargePointReservationEventHandler reservationEventHandler;
     private final ChargePointSmartChargingEventHandler smartChargingEventHandler;
+    private final ChargePointSecurityEventHandler securityEventHandler;
 
     /**
      * Instantiates a new Ocpp 16 charge point service.
@@ -66,14 +80,15 @@ public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
     public Ocpp16ChargePointServiceImpl(Ocpp16ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
         this.coreEventHandler = new ChargePointCoreEventHandlerImpl(serverTransport, sessionRepository);
-        this.firmwareManagementEventHandler = new ChargePointFirmwareManagementEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.firmwareManagementEventHandler =
+            new ChargePointFirmwareManagementEventHandlerImpl(serverTransport, sessionRepository);
         this.localAuthEventHandler = new ChargePointLocalAuthEventHandlerImpl(serverTransport, sessionRepository);
-        this.remoteTriggerEventHandler = new ChargePointRemoteTriggerEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.remoteTriggerEventHandler =
+            new ChargePointRemoteTriggerEventHandlerImpl(serverTransport, sessionRepository);
         this.reservationEventHandler = new ChargePointReservationEventHandlerImpl(serverTransport, sessionRepository);
-        this.smartChargingEventHandler = new ChargePointSmartChargingEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.smartChargingEventHandler =
+            new ChargePointSmartChargingEventHandlerImpl(serverTransport, sessionRepository);
+        this.securityEventHandler = new ChargePointSecurityEventHandlerImpl(serverTransport, sessionRepository);
     }
 
     @Override
@@ -141,6 +156,40 @@ public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
 
         } else if (request instanceof GetCompositeScheduleRequest getCompositeScheduleRequest) {
             return smartChargingEventHandler.handleGetCompositeSchedule(identity, getCompositeScheduleRequest);
+
+        } else if (request instanceof CertificateSignedRequest certificateSignedRequest) {
+            return securityEventHandler.handleCertificateSigned(identity, certificateSignedRequest);
+
+        } else if (request instanceof DeleteCertificateRequest deleteCertificateRequest) {
+            return securityEventHandler.handleDeleteCertificate(identity, deleteCertificateRequest);
+
+        } else if (request instanceof ExtendedTriggerMessageRequest extendedTriggerMessageRequest) {
+            return securityEventHandler.handleExtendedTriggerMessage(identity, extendedTriggerMessageRequest);
+
+        } else if (request instanceof GetInstalledCertificateIdsRequest getInstalledCertificateIdsRequest) {
+            return securityEventHandler.handleGetInstalledCertificateIds(identity, getInstalledCertificateIdsRequest);
+
+        } else if (request instanceof GetLogRequest getLogRequest) {
+            return securityEventHandler.handleGetLog(identity, getLogRequest);
+
+        } else if (request instanceof InstallCertificateRequest installCertificateRequest) {
+            return securityEventHandler.handleInstallCertificate(identity, installCertificateRequest);
+
+        } else if (request instanceof LogStatusNotificationRequest logStatusNotificationRequest) {
+            return securityEventHandler.handleLogStatusNotification(identity, logStatusNotificationRequest);
+
+        } else if (request instanceof SecurityEventNotificationRequest securityEventNotificationRequest) {
+            return securityEventHandler.handleSecurityEventNotification(identity, securityEventNotificationRequest);
+
+        } else if (request instanceof SignCertificateRequest signCertificateRequest) {
+            return securityEventHandler.handleSignCertificate(identity, signCertificateRequest);
+
+        } else if (request instanceof SignedFirmwareStatusNotificationRequest signedFirmwareStatusNotificationRequest) {
+            return securityEventHandler.handleSignedFirmwareStatusNotification(identity,
+                signedFirmwareStatusNotificationRequest);
+
+        } else if (request instanceof SignedUpdateFirmwareRequest signedUpdateFirmwareRequest) {
+            return securityEventHandler.handleSignedUpdateFirmware(identity, signedUpdateFirmwareRequest);
 
         } else {
             throw new UnsupportedOperationException("Unsupported request type: " + request.getClass());

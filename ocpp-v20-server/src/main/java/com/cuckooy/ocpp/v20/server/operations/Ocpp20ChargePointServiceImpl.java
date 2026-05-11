@@ -114,30 +114,28 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
      */
     public Ocpp20ChargePointServiceImpl(Ocpp20ServerTransport serverTransport, SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
-        this.authorizationEventHandler = new ChargePointAuthorizationEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.authorizationEventHandler =
+            new ChargePointAuthorizationEventHandlerImpl(serverTransport, sessionRepository);
         this.availabilityEventHandler = new ChargePointAvailabilityEventHandlerImpl(serverTransport, sessionRepository);
-        this.tariffAndCostEventHandler = new ChargePointTariffAndCostEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.tariffAndCostEventHandler =
+            new ChargePointTariffAndCostEventHandlerImpl(serverTransport, sessionRepository);
         this.dataTransferEventHandler = new ChargePointDataTransferEventHandlerImpl(serverTransport, sessionRepository);
         this.diagnosticsEventHandler = new ChargePointDiagnosticsEventHandlerImpl(serverTransport, sessionRepository);
-        this.displayMessageEventHandler = new ChargePointDisplayMessageEventHandlerImpl(serverTransport,
-            sessionRepository);
-        this.firmwareManagementEventHandler = new ChargePointFirmwareManagementManagementEventHandlerImpl(
-            serverTransport,
-            sessionRepository);
-        this.iso15118CertificateManagementEventHandler = new ChargePointISO15118CertificateManagementEventHandlerImpl(
-            serverTransport,
-            sessionRepository);
-        this.localAuthorizationListEventHandler = new ChargePointLocalAuthorizationListEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.displayMessageEventHandler =
+            new ChargePointDisplayMessageEventHandlerImpl(serverTransport, sessionRepository);
+        this.firmwareManagementEventHandler =
+            new ChargePointFirmwareManagementManagementEventHandlerImpl(serverTransport, sessionRepository);
+        this.iso15118CertificateManagementEventHandler =
+            new ChargePointISO15118CertificateManagementEventHandlerImpl(serverTransport, sessionRepository);
+        this.localAuthorizationListEventHandler =
+            new ChargePointLocalAuthorizationListEventHandlerImpl(serverTransport, sessionRepository);
         this.provisioningEventHandler = new ChargePointProvisioningEventHandlerImpl(serverTransport, sessionRepository);
-        this.remoteControlEventHandler = new ChargePointRemoteControlEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.remoteControlEventHandler =
+            new ChargePointRemoteControlEventHandlerImpl(serverTransport, sessionRepository);
         this.reservationEventHandler = new ChargePointReservationEventHandlerImpl(serverTransport, sessionRepository);
         this.securityEventHandler = new ChargePointSecurityEventHandlerImpl(serverTransport, sessionRepository);
-        this.smartChargingEventHandler = new ChargePointSmartChargingEventHandlerImpl(serverTransport,
-            sessionRepository);
+        this.smartChargingEventHandler =
+            new ChargePointSmartChargingEventHandlerImpl(serverTransport, sessionRepository);
         this.transactionsEventHandler = new ChargePointTransactionsEventHandlerImpl(serverTransport, sessionRepository);
     }
 
