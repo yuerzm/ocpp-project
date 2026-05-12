@@ -90,6 +90,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
         this.messageBridgingService = messageBridgingService;
     }
 
+
     @Override
     public void receive(WebSocketSession session, String message) {
         if (logger.isDebugEnabled()) {
