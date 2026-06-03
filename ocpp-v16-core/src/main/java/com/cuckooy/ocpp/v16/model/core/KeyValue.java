@@ -1,13 +1,13 @@
 package com.cuckooy.ocpp.v16.model.core;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * The type Key value.
  */
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public class KeyValue {
 
     private String key;
