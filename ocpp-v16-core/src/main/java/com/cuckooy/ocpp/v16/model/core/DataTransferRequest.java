@@ -15,7 +15,7 @@ public class DataTransferRequest implements Request {
 
     private String messageId;
 
-    private Object data;
+    private String data;
 
     /**
      * Instantiates a new Data transfer request.
