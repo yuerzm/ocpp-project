@@ -13,7 +13,7 @@ public class DataTransferResponse implements Response {
 
     private DataTransferStatus status;
 
-    private Object data;
+    private String data;
 
     /**
      * Instantiates a new Data transfer response.
@@ -21,7 +21,7 @@ public class DataTransferResponse implements Response {
      * @param status the status
      * @param data   the data
      */
-    public DataTransferResponse(DataTransferStatus status, Object data) {
+    public DataTransferResponse(DataTransferStatus status, String data) {
         this.status = status;
         this.data = data;
     }
