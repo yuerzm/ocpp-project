@@ -13,7 +13,8 @@ import com.cuckooy.ocpp.json.OcppJsonParser;
 import com.cuckooy.ocpp.json.OcppJsonWriter;
 import com.cuckooy.ocpp.server.bridge.MessageBridgingService;
 import com.cuckooy.ocpp.server.bridge.NoopMessageBridgingService;
-import com.cuckooy.ocpp.server.promise.PromiseContextHolder;
+import com.cuckooy.ocpp.server.promise.Promise;
+import com.cuckooy.ocpp.server.promise.PromiseRepository;
 import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,6 @@ import org.springframework.web.socket.WebSocketSession;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -41,6 +41,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
 
     private final OcppJsonParser ocppJsonParser;
     private final OcppJsonWriter ocppJsonWriter;
+    private final PromiseRepository promiseRepository;
     private final UniqueIdRepository uniqueIdRepository;
     private final CentralSystemService centralSystemService;
     private final MessageBridgingService messageBridgingService;
@@ -54,13 +55,16 @@ public abstract class AbstractServerTransport implements ServerTransport {
      * @param centralSystemService the central system service
      */
     public AbstractServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
-                                   UniqueIdRepository uniqueIdRepository, CentralSystemService centralSystemService) {
+                                   PromiseRepository promiseRepository, UniqueIdRepository uniqueIdRepository,
+                                   CentralSystemService centralSystemService) {
         Assert.notNull(ocppJsonParser, "ocppJsonParser cannot be null");
         Assert.notNull(ocppJsonWriter, "ocppJsonWriter cannot be null");
+        Assert.notNull(ocppJsonWriter, "promiseRepository cannot be null");
         Assert.notNull(uniqueIdRepository, "uniqueIdRepository cannot be null");
         Assert.notNull(centralSystemService, "centralSystemService cannot be null");
         this.ocppJsonParser = ocppJsonParser;
         this.ocppJsonWriter = ocppJsonWriter;
+        this.promiseRepository = promiseRepository;
         this.uniqueIdRepository = uniqueIdRepository;
         this.centralSystemService = centralSystemService;
         this.messageBridgingService = new NoopMessageBridgingService();
@@ -76,15 +80,18 @@ public abstract class AbstractServerTransport implements ServerTransport {
      * @param messageBridgingService the message bridging service
      */
     public AbstractServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
-                                   UniqueIdRepository uniqueIdRepository, CentralSystemService centralSystemService,
+                                   PromiseRepository promiseRepository, UniqueIdRepository uniqueIdRepository,
+                                   CentralSystemService centralSystemService,
                                    MessageBridgingService messageBridgingService) {
         Assert.notNull(ocppJsonParser, "ocppJsonParser cannot be null");
         Assert.notNull(ocppJsonWriter, "ocppJsonWriter cannot be null");
+        Assert.notNull(ocppJsonWriter, "promiseRepository cannot be null");
         Assert.notNull(uniqueIdRepository, "uniqueIdRepository cannot be null");
         Assert.notNull(centralSystemService, "centralSystemService cannot be null");
         Assert.notNull(centralSystemService, "messageBridgingService cannot be null");
         this.ocppJsonParser = ocppJsonParser;
         this.ocppJsonWriter = ocppJsonWriter;
+        this.promiseRepository = promiseRepository;
         this.uniqueIdRepository = uniqueIdRepository;
         this.centralSystemService = centralSystemService;
         this.messageBridgingService = messageBridgingService;
@@ -133,7 +140,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
         String uniqueId = UUID.randomUUID().toString();
         uniqueIdRepository.save(uniqueId, request.action());
 
-        CompletableFuture<Response> promise = PromiseContextHolder.prepare(uniqueId);
+        Promise promise = promiseRepository.put(uniqueId, request);
 
         OcppCallMessage message = new OcppCallMessage(uniqueId, request.action(), request);
         String serialized = ocppJsonWriter.writeJson(message);
@@ -147,14 +154,14 @@ public abstract class AbstractServerTransport implements ServerTransport {
             }
         } catch (IOException e) {
             logger.error("Send websocket text message failed.", e);
-            promise.completeExceptionally(e);
+            promise.getFuture().completeExceptionally(e);
         }
 
         try {
-            return promise.get(3000, TimeUnit.MILLISECONDS);
+            return promise.getFuture().get(3000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
-            PromiseContextHolder.remove(uniqueId);
-            throw new RuntimeException(e);
+            promiseRepository.remove(uniqueId);
+            throw new RuntimeException(e.getMessage(), e);
         }
     }
 
@@ -174,15 +181,15 @@ public abstract class AbstractServerTransport implements ServerTransport {
             logger.debug("Handle CallResult, session: {}, message: {}", session.getId(), message);
         }
 
-        Optional<CompletableFuture<Response>> future = PromiseContextHolder.get(callResult.getUniqueId());
-        if (future.isPresent()) {
+        Optional<Promise> promiseOptional = promiseRepository.get(callResult.getUniqueId());
+        if (promiseOptional.isPresent()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Promise found, CompletableFuture handle result response, session: {}, message: {}",
                     session.getId(),
                     message);
             }
-            future.get().complete(callResult.getPayload());
-            PromiseContextHolder.remove(callResult.getUniqueId());
+            promiseOptional.get().getFuture().complete(callResult.getPayload());
+            promiseRepository.remove(callResult.getUniqueId());
         } else {
             logger.warn("Promise not found, uniqueId: {}", callResult.getUniqueId());
         }
@@ -192,14 +199,14 @@ public abstract class AbstractServerTransport implements ServerTransport {
         if (logger.isDebugEnabled()) {
             logger.debug("Handle CallError, session: {}, message: {}", session.getId(), message);
         }
-        Optional<CompletableFuture<Response>> future = PromiseContextHolder.get(callError.getUniqueId());
-        if (future.isPresent()) {
+        Optional<Promise> promiseOptional = promiseRepository.get(callError.getUniqueId());
+        if (promiseOptional.isPresent()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Promise found, CompletableFuture handle error response, session: {}, message: {}",
                     session.getId(),
                     message);
             }
-            PromiseContextHolder.remove(callError.getUniqueId());
+            promiseRepository.remove(callError.getUniqueId());
         } else {
             if (logger.isDebugEnabled()) {
                 logger.debug(

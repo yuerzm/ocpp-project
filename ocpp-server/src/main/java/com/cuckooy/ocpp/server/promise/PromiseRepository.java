@@ -1,9 +1,8 @@
 package com.cuckooy.ocpp.server.promise;
 
-import com.cuckooy.ocpp.core.message.Response;
+import com.cuckooy.ocpp.core.message.Request;
 
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * The interface Promise repository.
@@ -16,7 +15,7 @@ public interface PromiseRepository {
      * @param uniqueId the unique id
      * @return the completable future
      */
-    CompletableFuture<Response> preparePromise(String uniqueId);
+    Promise put(String uniqueId, Request request);
 
     /**
      * Retrieve promise optional.
@@ -24,12 +23,12 @@ public interface PromiseRepository {
      * @param uniqueId the unique id
      * @return the optional
      */
-    Optional<CompletableFuture<Response>> retrievePromise(String uniqueId);
+    Optional<Promise> get(String uniqueId);
 
     /**
      * Delete promise.
      *
      * @param uniqueId the unique id
      */
-    void deletePromise(String uniqueId);
+    void remove(String uniqueId);
 }
