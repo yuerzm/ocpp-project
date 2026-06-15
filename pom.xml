@@ -51,15 +51,19 @@
         <module>ocpp-core</module>
         <module>ocpp-json</module>
         <module>ocpp-server</module>
+        <module>ocpp-server-netty</module>
 
         <module>ocpp-v16-core</module>
         <module>ocpp-v16-json</module>
         <module>ocpp-v16-api</module>
         <module>ocpp-v16-server</module>
+        <module>ocpp-v16-server-netty</module>
+        <module>ocpp-v16-server-netty-example</module>
 
         <module>ocpp-v20-core</module>
         <module>ocpp-v20-json</module>
         <module>ocpp-v20-server</module>
+        <module>ocpp-v20-server-netty</module>
         <module>ocpp-v20-api</module>
 
         <module>ocpp-v21-core</module>

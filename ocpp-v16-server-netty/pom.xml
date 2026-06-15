@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.cuckooy.ocpp</groupId>
+        <artifactId>ocpp-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../ocpp-parent</relativePath>
+    </parent>
+
+    <artifactId>ocpp-v16-server-netty</artifactId>
+    <packaging>jar</packaging>
+
+    <name>OCPP Library v1.6 Server Netty</name>
+    <description>OCPP Library v1.6 Server based on Netty WebSocket</description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.cuckooy.ocpp</groupId>
+            <artifactId>ocpp-v16-core</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cuckooy.ocpp</groupId>
+            <artifactId>ocpp-v16-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cuckooy.ocpp</groupId>
+            <artifactId>ocpp-v16-json</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cuckooy.ocpp</groupId>
+            <artifactId>ocpp-server-netty</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+</project>

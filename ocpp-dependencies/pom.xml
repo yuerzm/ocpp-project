@@ -20,6 +20,7 @@
     <properties>
         <spring-boot-dependencies.version>4.0.2</spring-boot-dependencies.version>
         <json-schema-validator.version>3.0.0</json-schema-validator.version>
+        <netty.version>4.2.15.Final</netty.version>
     </properties>
 
     <dependencyManagement>
@@ -36,6 +37,14 @@
                 <groupId>com.networknt</groupId>
                 <artifactId>json-schema-validator</artifactId>
                 <version>${json-schema-validator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>${netty.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
         </dependencies>

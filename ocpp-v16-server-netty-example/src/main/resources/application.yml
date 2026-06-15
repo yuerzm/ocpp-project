@@ -1,0 +1,22 @@
+server:
+  port: 8080  # Spring Boot management port
+
+ocpp:
+  netty:
+    port: 8887  # OCPP WebSocket server port
+    path: /ocpp  # WebSocket path
+    supported-versions: ocpp1.6
+    boss-threads: 1
+    worker-threads: 0  # 0 means CPU cores * 2
+    reader-idle-timeout: 60  # seconds
+
+logging:
+  level:
+    com.cuckooy.ocpp: DEBUG
+    io.netty: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+spring:
+  application:
+    name: ocpp-v16-server-netty-example
