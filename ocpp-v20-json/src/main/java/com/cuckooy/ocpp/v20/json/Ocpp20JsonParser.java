@@ -38,7 +38,7 @@ public class Ocpp20JsonParser extends AbstractOcppJsonParser {
     protected Class<? extends Response> retrieveResponseClass(String uniqueId) {
         Optional<String> retrieveOptional = uniqueIdRepository.retrieve(uniqueId);
         if (retrieveOptional.isEmpty()) {
-            throw new RuntimeException();
+            throw new RuntimeException("Invalid unique id: " + uniqueId);
         }
         Ocpp20Action ocpp20Action = Ocpp20Action.valueOf(retrieveOptional.get());
         return ocpp20Action.getResponseClass();
