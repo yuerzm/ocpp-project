@@ -2,12 +2,20 @@ package com.cuckooy.ocpp.server.session;
 
 import org.springframework.web.socket.WebSocketSession;
 
+import java.util.Collection;
 import java.util.Optional;
 
 /**
  * The interface Session repository.
  */
 public interface SessionRepository {
+
+    /**
+     * Gets sessions.
+     *
+     * @return the sessions
+     */
+    Collection<WebSocketSession> getSessions();
 
     /**
      * Get optional.
