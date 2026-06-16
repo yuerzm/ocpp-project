@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,6 +20,11 @@ public class InMemorySessionRepositoryImpl implements SessionRepository {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final Map<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
+
+    @Override
+    public Collection<WebSocketSession> getSessions() {
+        return sessions.values();
+    }
 
     @Override
     public Optional<WebSocketSession> get(String identity) {
