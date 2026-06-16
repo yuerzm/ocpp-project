@@ -30,7 +30,9 @@ public class DefaultSessionManagerImpl implements SessionManager {
     public void handle() {
         sessionRepository.getSessions().forEach(session -> {
             try {
-                session.sendMessage(new PingMessage());
+                PingMessage message = new PingMessage();
+                logger.info("Handle session {} ping message: {}", session.getId(), message);
+                session.sendMessage(message);
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
             }
