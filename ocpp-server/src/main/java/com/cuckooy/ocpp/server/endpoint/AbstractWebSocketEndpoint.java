@@ -15,6 +15,9 @@ import org.springframework.web.socket.SubProtocolCapable;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.io.EOFException;
+import java.net.SocketException;
+import java.nio.channels.ClosedChannelException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -73,8 +76,16 @@ public abstract class AbstractWebSocketEndpoint extends ConcurrentWebSocketHandl
 
     @Override
     protected void onException(WebSocketSession session, Throwable throwable) throws Exception {
-        logger.error("Occurred an exception: {}", throwable.getMessage(), throwable);
-
+        if (throwable instanceof EOFException || throwable instanceof ClosedChannelException ||
+            throwable instanceof SocketException) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Connection closed normally. session={}", session == null ? null : session.getId());
+                return;
+            }
+        }
+        if (logger.isDebugEnabled()) {
+            logger.warn("Occurred an exception: {}", throwable.getMessage(), throwable);
+        }
         sessionEventHandler.exception(session, throwable);
     }
 
