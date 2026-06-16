@@ -13,8 +13,6 @@ import java.io.IOException;
  */
 public class DefaultSessionManagerImpl implements SessionManager {
 
-    private static final long HEARTBEAT_INTERVAL_SECONDS = 20;
-
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final SessionRepository sessionRepository;
