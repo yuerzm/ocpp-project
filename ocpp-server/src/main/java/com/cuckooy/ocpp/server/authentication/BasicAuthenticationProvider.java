@@ -4,10 +4,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Objects;
 
+/**
+ * The type Basic authentication provider.
+ */
 public class BasicAuthenticationProvider implements AuthenticationProvider {
 
     private final ChargePointRegistryRepository chargePointRegistryRepository;
 
+    /**
+     * Instantiates a new Basic authentication provider.
+     *
+     * @param chargePointRegistryRepository the charge point registry repository
+     */
     public BasicAuthenticationProvider(ChargePointRegistryRepository chargePointRegistryRepository) {
         this.chargePointRegistryRepository = chargePointRegistryRepository;
     }

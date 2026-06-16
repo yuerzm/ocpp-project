@@ -51,6 +51,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
      *
      * @param ocppJsonParser       the ocpp json parser
      * @param ocppJsonWriter       the ocpp json writer
+     * @param promiseRepository    the promise repository
      * @param uniqueIdRepository   the unique id repository
      * @param centralSystemService the central system service
      */
@@ -75,6 +76,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
      *
      * @param ocppJsonParser         the ocpp json parser
      * @param ocppJsonWriter         the ocpp json writer
+     * @param promiseRepository      the promise repository
      * @param uniqueIdRepository     the unique id repository
      * @param centralSystemService   the central system service
      * @param messageBridgingService the message bridging service

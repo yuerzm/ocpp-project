@@ -32,11 +32,22 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
     private final String path;
     private final AuthenticationManager authenticateManager;
 
+    /**
+     * Instantiates a new Ocpp handshake interceptor.
+     *
+     * @param authenticateManager the authenticate manager
+     */
     public OcppHandshakeInterceptor(AuthenticationManager authenticateManager) {
         this.path = DEFAULT_PATH;
         this.authenticateManager = authenticateManager;
     }
 
+    /**
+     * Instantiates a new Ocpp handshake interceptor.
+     *
+     * @param path                the path
+     * @param authenticateManager the authenticate manager
+     */
     public OcppHandshakeInterceptor(String path, AuthenticationManager authenticateManager) {
         this.path = path;
         this.authenticateManager = authenticateManager;

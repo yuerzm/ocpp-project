@@ -22,9 +22,6 @@ public abstract class ConcurrentWebSocketHandler extends TextWebSocketHandler {
     private static final int SEND_TIME_LIMIT = 3 * 1000;
     private static final int BUFFER_SIZE_LIMIT = 512 * 1024;
 
-    /**
-     * The Session repository.
-     */
     private final SessionRepository sessionRepository;
 
     /**
@@ -61,13 +58,6 @@ public abstract class ConcurrentWebSocketHandler extends TextWebSocketHandler {
         this.onMessage(sessionRepository.get(session), textMessage);
     }
 
-    /**
-     * Handle pong message.
-     *
-     * @param session the session
-     * @param message the message
-     * @throws Exception the exception
-     */
     @Override
     protected void handlePongMessage(@NonNull WebSocketSession session, @NonNull PongMessage message) throws Exception {
         logger.info("Handle pong message: {}", message);

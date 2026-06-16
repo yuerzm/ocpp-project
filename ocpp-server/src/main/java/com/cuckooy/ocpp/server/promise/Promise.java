@@ -7,6 +7,9 @@ import lombok.Getter;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * The type Promise.
+ */
 @Getter
 @AllArgsConstructor
 public class Promise {

@@ -2,6 +2,9 @@ package com.cuckooy.ocpp.server.authentication;
 
 import lombok.Getter;
 
+/**
+ * The type Abstract authentication.
+ */
 @Getter
 public abstract class AbstractAuthentication implements Authentication {
 
@@ -13,6 +16,11 @@ public abstract class AbstractAuthentication implements Authentication {
         this.authenticated = authenticated;
     }
 
+    /**
+     * Sets details.
+     *
+     * @param details the details
+     */
     public void setDetails(Object details) {
         this.details = details;
     }

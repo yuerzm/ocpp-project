@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.PingMessage;
 
 import java.io.IOException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * The type Default session manager.
@@ -21,7 +18,6 @@ public class DefaultSessionManagerImpl implements SessionManager {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final SessionRepository sessionRepository;
-    private final ScheduledExecutorService executorService;
 
     /**
      * Instantiates a new Default session manager.
@@ -30,19 +26,10 @@ public class DefaultSessionManagerImpl implements SessionManager {
      */
     public DefaultSessionManagerImpl(SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
-        this.executorService = Executors.newSingleThreadScheduledExecutor(r -> {
-            Thread t = new Thread(r, "OCPP-IdleState");
-            t.setDaemon(true);
-            return t;
-        });
-        this.executorService.scheduleAtFixedRate(this::schedule,
-            HEARTBEAT_INTERVAL_SECONDS,
-            HEARTBEAT_INTERVAL_SECONDS,
-            TimeUnit.SECONDS);
     }
 
     @Override
-    public void schedule() {
+    public void handle() {
         sessionRepository.getSessions().forEach(session -> {
             try {
                 session.sendMessage(new PingMessage());
@@ -50,10 +37,5 @@ public class DefaultSessionManagerImpl implements SessionManager {
                 logger.error(e.getMessage(), e);
             }
         });
-    }
-
-    @Override
-    public void shutdown() {
-        executorService.shutdown();
     }
 }

@@ -10,15 +10,16 @@ import java.util.Optional;
 public interface PromiseRepository {
 
     /**
-     * Prepare promise completable future.
+     * Put promise.
      *
      * @param uniqueId the unique id
-     * @return the completable future
+     * @param request  the request
+     * @return the promise
      */
     Promise put(String uniqueId, Request request);
 
     /**
-     * Retrieve promise optional.
+     * Get optional.
      *
      * @param uniqueId the unique id
      * @return the optional
@@ -26,7 +27,7 @@ public interface PromiseRepository {
     Optional<Promise> get(String uniqueId);
 
     /**
-     * Delete promise.
+     * Remove.
      *
      * @param uniqueId the unique id
      */

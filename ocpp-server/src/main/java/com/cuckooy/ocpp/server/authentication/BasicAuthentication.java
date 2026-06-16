@@ -1,5 +1,8 @@
 package com.cuckooy.ocpp.server.authentication;
 
+/**
+ * The type Basic authentication.
+ */
 public class BasicAuthentication extends AbstractAuthentication {
 
     private final String identity;
@@ -11,10 +14,24 @@ public class BasicAuthentication extends AbstractAuthentication {
         setAuthenticated(authenticated);
     }
 
+    /**
+     * Unauthenticated basic authentication.
+     *
+     * @param identity the identity
+     * @param token    the token
+     * @return the basic authentication
+     */
     public static BasicAuthentication unauthenticated(String identity, String token) {
         return new BasicAuthentication(identity, token, false);
     }
 
+    /**
+     * Authenticated basic authentication.
+     *
+     * @param identity the identity
+     * @param token    the token
+     * @return the basic authentication
+     */
     public static BasicAuthentication authenticated(String identity, String token) {
         return new BasicAuthentication(identity, token, true);
     }

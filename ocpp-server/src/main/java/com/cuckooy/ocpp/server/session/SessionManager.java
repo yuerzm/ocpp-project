@@ -6,12 +6,7 @@ package com.cuckooy.ocpp.server.session;
 public interface SessionManager {
 
     /**
-     * Schedule.
+     * Handle.
      */
-    void schedule();
-
-    /**
-     * Shutdown.
-     */
-    void shutdown();
+    void handle();
 }
