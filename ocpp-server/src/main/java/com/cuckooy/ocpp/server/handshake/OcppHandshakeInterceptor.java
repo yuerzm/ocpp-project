@@ -1,10 +1,11 @@
 package com.cuckooy.ocpp.server.handshake;
 
-import com.cuckooy.ocpp.server.authentication.AuthenticationEventHandler;
-import com.cuckooy.ocpp.server.authentication.BasicAuthenticationService;
-import com.cuckooy.ocpp.server.authentication.BasicAuthenticationServiceImpl;
-import com.cuckooy.ocpp.server.authentication.ChargePointAuthenticateRequest;
-import com.cuckooy.ocpp.server.authentication.ChargePointAuthenticateResponse;
+import com.cuckooy.ocpp.server.authentication.Authentication;
+import com.cuckooy.ocpp.server.authentication.AuthenticationException;
+import com.cuckooy.ocpp.server.authentication.AuthenticationManager;
+import com.cuckooy.ocpp.server.authentication.BasicAuthentication;
+import com.cuckooy.ocpp.server.authentication.ChargePointBadCredentialException;
+import com.cuckooy.ocpp.server.authentication.ChargePointNotFoundException;
 import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.NonNull;
@@ -29,30 +30,16 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
     private static final String DEFAULT_PATH = "/websocket/";
 
     private final String path;
-    private final AuthenticationEventHandler authenticationEventHandler;
-    private final BasicAuthenticationService basicAuthenticationService;
+    private final AuthenticationManager authenticateManager;
 
-    /**
-     * Instantiates a new Ocpp handshake interceptor.
-     *
-     * @param authenticationEventHandler the authentication event handler
-     */
-    public OcppHandshakeInterceptor(AuthenticationEventHandler authenticationEventHandler) {
+    public OcppHandshakeInterceptor(AuthenticationManager authenticateManager) {
         this.path = DEFAULT_PATH;
-        this.authenticationEventHandler = authenticationEventHandler;
-        this.basicAuthenticationService = new BasicAuthenticationServiceImpl();
+        this.authenticateManager = authenticateManager;
     }
 
-    /**
-     * Instantiates a new Ocpp handshake interceptor.
-     *
-     * @param path                       the path
-     * @param authenticationEventHandler the authentication event handler
-     */
-    public OcppHandshakeInterceptor(String path, AuthenticationEventHandler authenticationEventHandler) {
+    public OcppHandshakeInterceptor(String path, AuthenticationManager authenticateManager) {
         this.path = path;
-        this.authenticationEventHandler = authenticationEventHandler;
-        this.basicAuthenticationService = new BasicAuthenticationServiceImpl();
+        this.authenticateManager = authenticateManager;
     }
 
     @Override
@@ -65,25 +52,42 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
 
         String identity = parseIdentity(request.getURI().getPath());
 
-        ChargePointAuthenticateRequest authenticateRequest = new ChargePointAuthenticateRequest(identity);
-        ChargePointAuthenticateResponse authenticateResponse =
-            authenticationEventHandler.authenticate(authenticateRequest);
-
-        if (Objects.isNull(authenticateResponse) || !authenticateResponse.isRecognized()) {
-            logger.error("Charge Point identity '{}' is not recognized.", identity);
-            response.setStatusCode(HttpStatus.NOT_FOUND);
-            return false;
+        if (logger.isDebugEnabled()) {
+            logger.debug("Charge Point {} Authentication is required.", identity);
         }
 
-        boolean authenticated = basicAuthenticationService.authenticate(identity, request, authenticateResponse);
-        if (!authenticated) {
-            logger.error("Charge Point identity '{}' is not authenticated.", identity);
-            response.setStatusCode(HttpStatus.UNAUTHORIZED);
+        String authorizationHeader = request.getHeaders().getFirst("Authorization");
+        authorizationHeader = Objects.nonNull(authorizationHeader) ? authorizationHeader : "";
+
+        Authentication authentication = BasicAuthentication.unauthenticated(identity, authorizationHeader);
+
+        try {
+            authenticateManager.authenticate(authentication);
+            logger.info("Charge Point identity '{}' authenticated succeed.", identity);
+
+            attributes.put(SessionAttributeHelper.CHARGE_POINT_IDENTITY, identity);
+            return true;
+
+        } catch (ChargePointNotFoundException e) {
+            missingAuthentication(identity, request, response, e);
+            return false;
+
+        } catch (ChargePointBadCredentialException e) {
+            unsuccessfulAuthentication(identity, request, response, e);
             return false;
         }
+    }
 
-        attributes.put(SessionAttributeHelper.CHARGE_POINT_IDENTITY, identity);
-        return true;
+    private void missingAuthentication(String identity, ServerHttpRequest request, ServerHttpResponse response,
+                                       AuthenticationException e) {
+        logger.error("Charge Point identity '{}' is not recognized.", identity);
+        response.setStatusCode(HttpStatus.NOT_FOUND);
+    }
+
+    private void unsuccessfulAuthentication(String identity, ServerHttpRequest request, ServerHttpResponse response,
+                                            AuthenticationException e) {
+        logger.error("Charge Point identity '{}' authenticated failed.", identity);
+        response.setStatusCode(HttpStatus.UNAUTHORIZED);
     }
 
     @Override
