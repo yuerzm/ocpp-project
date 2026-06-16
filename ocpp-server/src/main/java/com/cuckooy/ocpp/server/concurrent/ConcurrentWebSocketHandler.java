@@ -60,7 +60,9 @@ public abstract class ConcurrentWebSocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handlePongMessage(@NonNull WebSocketSession session, @NonNull PongMessage message) throws Exception {
-        logger.info("Handle session {}, pong message: {}", session.getId(), message);
+        if (logger.isDebugEnabled()) {
+            logger.debug("Handle session {}, pong message: {}", session.getId(), message.getPayload());
+        }
     }
 
     @Override
