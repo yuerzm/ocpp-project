@@ -15,15 +15,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 /**
- * The type Ocpp handshake interceptor.
+ * The type Abstract ocpp handshake interceptor.
  */
-public class OcppHandshakeInterceptor implements HandshakeInterceptor {
+public abstract class AbstractOcppHandshakeInterceptor implements HandshakeInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -33,35 +35,45 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
     private final AuthenticationManager authenticateManager;
 
     /**
-     * Instantiates a new Ocpp handshake interceptor.
+     * Instantiates a new Abstract ocpp handshake interceptor.
      *
      * @param authenticateManager the authenticate manager
      */
-    public OcppHandshakeInterceptor(AuthenticationManager authenticateManager) {
+    public AbstractOcppHandshakeInterceptor(AuthenticationManager authenticateManager) {
         this.path = DEFAULT_PATH;
         this.authenticateManager = authenticateManager;
     }
 
     /**
-     * Instantiates a new Ocpp handshake interceptor.
+     * Instantiates a new Abstract ocpp handshake interceptor.
      *
      * @param path                the path
      * @param authenticateManager the authenticate manager
      */
-    public OcppHandshakeInterceptor(String path, AuthenticationManager authenticateManager) {
+    public AbstractOcppHandshakeInterceptor(String path, AuthenticationManager authenticateManager) {
         this.path = path;
         this.authenticateManager = authenticateManager;
     }
 
     @Override
     public boolean beforeHandshake(@NonNull ServerHttpRequest request, @NonNull ServerHttpResponse response,
-                                   @NonNull WebSocketHandler handler, @NonNull Map<String, Object> attributes)
+                                   @NonNull WebSocketHandler wsHandler, @NonNull Map<String, Object> attributes)
         throws Exception {
         if (logger.isDebugEnabled()) {
             logger.info("Before Handshake   : {}", request.getURI());
         }
 
+        if (!doInternalBeforeHandshake(request, response, wsHandler, attributes)) {
+            if (logger.isDebugEnabled()) {
+                logger.info("Handshake failed before internal handshake : {}", request.getURI());
+            }
+            return false;
+        }
+
         String identity = parseIdentity(request.getURI().getPath());
+
+        WebSocketHttpHeaders webSocketHttpHeaders = new WebSocketHttpHeaders(request.getHeaders());
+        List<String> protocols = webSocketHttpHeaders.getSecWebSocketProtocol();
 
         if (logger.isDebugEnabled()) {
             logger.debug("Charge Point {} Authentication is required.", identity);
@@ -77,6 +89,7 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
             logger.info("Charge Point identity '{}' authenticated succeed.", identity);
 
             attributes.put(SessionAttributeHelper.CHARGE_POINT_IDENTITY, identity);
+            attributes.put(SessionAttributeHelper.CHARGE_POINT_PROTOCOL, protocols);
             return true;
 
         } catch (ChargePointNotFoundException e) {
@@ -88,6 +101,26 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
             return false;
         }
     }
+
+    @Override
+    public void afterHandshake(@NonNull ServerHttpRequest request, @NonNull ServerHttpResponse response,
+                               @NonNull WebSocketHandler wsHandler, Exception exception) {
+        if (logger.isDebugEnabled()) {
+            logger.info("After Handshake    : {}", request.getURI());
+        }
+
+        doInternalAfterHandshake(request, response, wsHandler, exception);
+
+    }
+
+    protected abstract boolean doInternalBeforeHandshake(@NonNull ServerHttpRequest request,
+                                                         @NonNull ServerHttpResponse response,
+                                                         @NonNull WebSocketHandler handler,
+                                                         @NonNull Map<String, Object> attributes) throws Exception;
+
+    protected abstract void doInternalAfterHandshake(@NonNull ServerHttpRequest request,
+                                                     @NonNull ServerHttpResponse response,
+                                                     @NonNull WebSocketHandler wsHandler, Exception exception);
 
     private void missingAuthentication(String identity, ServerHttpRequest request, ServerHttpResponse response,
                                        AuthenticationException e) {
@@ -101,13 +134,6 @@ public class OcppHandshakeInterceptor implements HandshakeInterceptor {
         response.setStatusCode(HttpStatus.UNAUTHORIZED);
     }
 
-    @Override
-    public void afterHandshake(@NonNull ServerHttpRequest request, @NonNull ServerHttpResponse response,
-                               @NonNull WebSocketHandler wsHandler, Exception exception) {
-        if (logger.isDebugEnabled()) {
-            logger.info("After Handshake    : {}", request.getURI());
-        }
-    }
 
     private String parseIdentity(final String input) {
         if (StringUtils.isBlank(input)) {
