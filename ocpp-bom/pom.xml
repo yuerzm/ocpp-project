@@ -56,6 +56,11 @@
             </dependency>
             <dependency>
                 <groupId>com.cuckooy.ocpp</groupId>
+                <artifactId>ocpp-v16-server-spring-boot-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cuckooy.ocpp</groupId>
                 <artifactId>ocpp-v20-core</artifactId>
                 <version>${revision}</version>
             </dependency>

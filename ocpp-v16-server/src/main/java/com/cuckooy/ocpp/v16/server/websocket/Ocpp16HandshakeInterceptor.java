@@ -11,10 +11,6 @@ import java.util.Map;
 
 public class Ocpp16HandshakeInterceptor extends AbstractOcppHandshakeInterceptor {
 
-    public Ocpp16HandshakeInterceptor(AuthenticationManager authenticateManager) {
-        super(authenticateManager);
-    }
-
     public Ocpp16HandshakeInterceptor(String path, AuthenticationManager authenticateManager) {
         super(path, authenticateManager);
     }

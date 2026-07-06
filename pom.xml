@@ -33,7 +33,7 @@
     </developers>
 
     <properties>
-        <revision>1.5.3</revision>
+        <revision>1.5.4-SNAPSHOT</revision>
 
         <java.version>21</java.version>
 
@@ -77,6 +77,7 @@
         <module>ocpp-v20-api</module>
 
         <module>ocpp-v21-core</module>
+        <module>ocpp-v16-server-spring-boot-starter</module>
 
     </modules>
 

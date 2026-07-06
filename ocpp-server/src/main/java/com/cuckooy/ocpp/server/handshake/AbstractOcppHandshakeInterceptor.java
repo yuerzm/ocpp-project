@@ -29,20 +29,8 @@ public abstract class AbstractOcppHandshakeInterceptor implements HandshakeInter
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static final String DEFAULT_PATH = "/websocket/";
-
     private final String path;
     private final AuthenticationManager authenticateManager;
-
-    /**
-     * Instantiates a new Abstract ocpp handshake interceptor.
-     *
-     * @param authenticateManager the authenticate manager
-     */
-    public AbstractOcppHandshakeInterceptor(AuthenticationManager authenticateManager) {
-        this.path = DEFAULT_PATH;
-        this.authenticateManager = authenticateManager;
-    }
 
     /**
      * Instantiates a new Abstract ocpp handshake interceptor.

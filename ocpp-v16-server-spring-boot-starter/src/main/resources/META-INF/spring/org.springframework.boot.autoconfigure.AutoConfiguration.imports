@@ -1,0 +1,3 @@
+com.cuckooy.ocpp.v16.server.starter.autoconfigure.Ocpp16AutoConfiguration
+com.cuckooy.ocpp.v16.server.starter.autoconfigure.ChargePointAutoConfiguration
+com.cuckooy.ocpp.v16.server.starter.autoconfigure.CentralSystemAutoConfiguration
