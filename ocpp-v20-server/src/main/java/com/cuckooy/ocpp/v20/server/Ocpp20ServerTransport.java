@@ -1,7 +1,11 @@
 package com.cuckooy.ocpp.v20.server;
 
 import com.cuckooy.ocpp.core.message.UniqueIdRepository;
+import com.cuckooy.ocpp.core.service.CentralSystemService;
+import com.cuckooy.ocpp.json.OcppJsonParser;
+import com.cuckooy.ocpp.json.OcppJsonWriter;
 import com.cuckooy.ocpp.server.AbstractServerTransport;
+import com.cuckooy.ocpp.server.bridge.MessageBridgingService;
 import com.cuckooy.ocpp.server.promise.PromiseRepository;
 import com.cuckooy.ocpp.v20.json.Ocpp20JsonParser;
 import com.cuckooy.ocpp.v20.json.Ocpp20JsonWriter;
@@ -25,5 +29,27 @@ public class Ocpp20ServerTransport extends AbstractServerTransport {
                                  PromiseRepository promiseRepository, UniqueIdRepository uniqueIdRepository,
                                  Ocpp20CentralSystemService ocpp20CentralSystemService) {
         super(ocpp20JsonParser, ocpp20JsonWriter, promiseRepository, uniqueIdRepository, ocpp20CentralSystemService);
+    }
+
+    /**
+     * Instantiates a new Ocpp 20 server transport.
+     *
+     * @param ocppJsonParser         the ocpp json parser
+     * @param ocppJsonWriter         the ocpp json writer
+     * @param promiseRepository      the promise repository
+     * @param uniqueIdRepository     the unique id repository
+     * @param centralSystemService   the central system service
+     * @param messageBridgingService the message bridging service
+     */
+    public Ocpp20ServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
+                                 PromiseRepository promiseRepository, UniqueIdRepository uniqueIdRepository,
+                                 CentralSystemService centralSystemService,
+                                 MessageBridgingService messageBridgingService) {
+        super(ocppJsonParser,
+            ocppJsonWriter,
+            promiseRepository,
+            uniqueIdRepository,
+            centralSystemService,
+            messageBridgingService);
     }
 }
