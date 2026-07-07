@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.v16.server.starter.interfaces.handler;
+package com.cuckooy.ocpp.v16.server.provision;
 
 import com.cuckooy.ocpp.v16.handler.CentralSystemCoreEventHandler;
 import com.cuckooy.ocpp.v16.model.core.AuthorizationStatus;
@@ -28,9 +28,9 @@ import org.slf4j.LoggerFactory;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
-public class DefaultCentralSystemCoreEventHandler implements CentralSystemCoreEventHandler {
+public class DefaultCoreEventHandler implements CentralSystemCoreEventHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(DefaultCentralSystemCoreEventHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(DefaultCoreEventHandler.class);
 
     @Override
     public AuthorizeResponse handleAuthorize(String identity, AuthorizeRequest request) {

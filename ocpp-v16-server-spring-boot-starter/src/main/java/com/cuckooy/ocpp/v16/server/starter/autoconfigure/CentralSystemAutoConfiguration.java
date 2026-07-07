@@ -7,13 +7,12 @@ import com.cuckooy.ocpp.server.authentication.BasicAuthenticationProvider;
 import com.cuckooy.ocpp.server.authentication.ChargePointRegistryRepository;
 import com.cuckooy.ocpp.server.authentication.ProviderManager;
 import com.cuckooy.ocpp.server.promise.PromiseRepository;
-import com.cuckooy.ocpp.server.provision.DefaultSessionManagerImpl;
+import com.cuckooy.ocpp.server.provision.DefaultScheduledSessionManager;
 import com.cuckooy.ocpp.server.provision.InMemoryPromiseRepositoryImpl;
 import com.cuckooy.ocpp.server.provision.InMemorySessionRepositoryImpl;
 import com.cuckooy.ocpp.server.provision.InMemoryUniqueIdRepositoryImpl;
 import com.cuckooy.ocpp.server.session.SessionManager;
 import com.cuckooy.ocpp.server.session.SessionRepository;
-import com.cuckooy.ocpp.v16.server.starter.provision.DefaultSessionManagerTask;
 import com.cuckooy.ocpp.v16.server.websocket.Ocpp16HandshakeHandler;
 import com.cuckooy.ocpp.v16.server.websocket.Ocpp16HandshakeInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -23,6 +22,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 @AutoConfiguration
 @EnableConfigurationProperties(CentralSystemProperties.class)
@@ -45,7 +46,7 @@ public class CentralSystemAutoConfiguration {
     @ConditionalOnClass(Ocpp16HandshakeInterceptor.class)
     @ConditionalOnMissingBean(Ocpp16HandshakeInterceptor.class)
     public Ocpp16HandshakeInterceptor ocpp16HandshakeInterceptor(AuthenticationManager authenticationManager) {
-        return new Ocpp16HandshakeInterceptor(centralSystemProperties.getPath(), authenticationManager);
+        return new Ocpp16HandshakeInterceptor(centralSystemProperties.getPrefix(), authenticationManager);
     }
 
     @Bean
@@ -56,32 +57,19 @@ public class CentralSystemAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnClass(SessionManager.class)
-    @ConditionalOnMissingBean(SessionManager.class)
-    public SessionManager sessionManager(SessionRepository sessionRepository) {
-        return new DefaultSessionManagerImpl(sessionRepository);
-    }
-
-    @Bean
-    @ConditionalOnClass(DefaultSessionManagerTask.class)
-    @ConditionalOnMissingBean(DefaultSessionManagerTask.class)
-    public DefaultSessionManagerTask sessionIdleStateHandler(SessionRepository sessionRepository) {
-        SessionManager sessionManager = new DefaultSessionManagerImpl(sessionRepository);
-        return new DefaultSessionManagerTask(sessionManager);
-    }
-
-    @Bean
     @ConditionalOnClass(UniqueIdRepository.class)
     @ConditionalOnMissingBean(UniqueIdRepository.class)
     public UniqueIdRepository uniqueIdRepository() {
-        return new InMemoryUniqueIdRepositoryImpl();
+        return new InMemoryUniqueIdRepositoryImpl(centralSystemProperties.getPromiseTimeout(),
+            centralSystemProperties.getPromiseTimeUnit());
     }
 
     @Bean
     @ConditionalOnClass(PromiseRepository.class)
     @ConditionalOnMissingBean(PromiseRepository.class)
     public PromiseRepository promiseRepository() {
-        return new InMemoryPromiseRepositoryImpl();
+        return new InMemoryPromiseRepositoryImpl(centralSystemProperties.getPromiseTimeout(),
+            centralSystemProperties.getPromiseTimeUnit());
     }
 
     @Bean
@@ -97,4 +85,26 @@ public class CentralSystemAutoConfiguration {
     public AuthenticationManager authenticationManager(List<AuthenticationProvider> providers) {
         return new ProviderManager(providers);
     }
+
+    @Bean(destroyMethod = "shutdown")
+    @ConditionalOnClass(ScheduledExecutorService.class)
+    public ScheduledExecutorService scheduledExecutorService() {
+        return Executors.newSingleThreadScheduledExecutor(r -> {
+            Thread t = new Thread(r, "ocpp-keepalive");
+            t.setDaemon(true);
+            return t;
+        });
+    }
+
+    @Bean
+    @ConditionalOnClass(SessionManager.class)
+    @ConditionalOnMissingBean(SessionManager.class)
+    public SessionManager sessionManager(SessionRepository repository,
+                                         ScheduledExecutorService scheduledExecutorService) {
+        return new DefaultScheduledSessionManager(centralSystemProperties.getKeepalive(),
+            centralSystemProperties.getKeepaliveTimeUnit(),
+            repository,
+            scheduledExecutorService);
+    }
+
 }

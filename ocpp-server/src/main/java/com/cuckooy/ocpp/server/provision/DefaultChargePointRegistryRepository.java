@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.v16.server.starter.provision;
+package com.cuckooy.ocpp.server.provision;
 
 import com.cuckooy.ocpp.server.authentication.ChargePointRegistry;
 import com.cuckooy.ocpp.server.authentication.ChargePointRegistryRepository;
@@ -30,8 +30,7 @@ public class DefaultChargePointRegistryRepository implements ChargePointRegistry
 
     public void put(Collection<ChargePointRegistry> chargePoints) {
         Assert.notNull(chargePoints, "args must not be null");
-        chargePoints.forEach(chargePointRegistry -> {
-            registry.put(chargePointRegistry.getIdentity(), chargePointRegistry);
-        });
+        chargePoints.forEach(chargePointRegistry -> registry.put(chargePointRegistry.getIdentity(),
+            chargePointRegistry));
     }
 }

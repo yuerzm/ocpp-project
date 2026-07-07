@@ -8,11 +8,6 @@ import java.util.Optional;
 public interface UniqueIdRepository {
 
     /**
-     * The constant DEFAULT_TIMEOUT.
-     */
-    int DEFAULT_TIMEOUT = 30000;
-
-    /**
      * Save.
      *
      * @param uniqueId the unique id

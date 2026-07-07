@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.v16.server.starter.interfaces.web;
+package com.cuckooy.ocpp.v16.server.web;
 
 import com.cuckooy.ocpp.core.message.Response;
 import com.cuckooy.ocpp.v16.model.core.ChangeAvailabilityRequest;

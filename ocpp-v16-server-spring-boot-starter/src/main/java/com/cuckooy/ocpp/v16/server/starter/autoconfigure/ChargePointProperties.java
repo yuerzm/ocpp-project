@@ -15,7 +15,7 @@ import java.util.Objects;
 @ConfigurationProperties(prefix = ChargePointProperties.PREFIX)
 public class ChargePointProperties {
 
-    public static final String PREFIX = "ocpp.v16.server.charge-point";
+    public static final String PREFIX = "ocpp.v16.charge-point";
 
     private List<ChargePoint> chargePoints = new ArrayList<>();
 

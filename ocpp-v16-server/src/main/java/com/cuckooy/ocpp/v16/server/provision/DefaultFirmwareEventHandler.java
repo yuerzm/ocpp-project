@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.v16.server.starter.interfaces.handler;
+package com.cuckooy.ocpp.v16.server.provision;
 
 import com.cuckooy.ocpp.v16.handler.CentralSystemFirmwareEventHandler;
 import com.cuckooy.ocpp.v16.model.firmware.DiagnosticsStatusNotificationRequest;
@@ -8,9 +8,9 @@ import com.cuckooy.ocpp.v16.model.firmware.FirmwareStatusNotificationResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DefaultCentralSystemFirmwareEventHandler implements CentralSystemFirmwareEventHandler {
+public class DefaultFirmwareEventHandler implements CentralSystemFirmwareEventHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(DefaultCentralSystemFirmwareEventHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(DefaultFirmwareEventHandler.class);
 
     @Override
     public DiagnosticsStatusNotificationResponse handleDiagnosticsStatusNotification(String identity,

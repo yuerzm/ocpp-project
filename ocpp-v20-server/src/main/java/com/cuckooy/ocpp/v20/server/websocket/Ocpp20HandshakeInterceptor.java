@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class Ocpp20HandshakeInterceptor extends AbstractOcppHandshakeInterceptor {
 
-    public Ocpp20HandshakeInterceptor(String path, AuthenticationManager authenticateManager) {
-        super(path, authenticateManager);
+    public Ocpp20HandshakeInterceptor(String prefix, AuthenticationManager authenticateManager) {
+        super(prefix, authenticateManager);
     }
 
     @Override

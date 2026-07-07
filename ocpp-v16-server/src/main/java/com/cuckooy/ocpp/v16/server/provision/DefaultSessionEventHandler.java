@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.v16.server.starter.interfaces.handler;
+package com.cuckooy.ocpp.v16.server.provision;
 
 import com.cuckooy.ocpp.server.SessionEventHandler;
 import com.cuckooy.ocpp.server.session.SessionAttributeHelper;

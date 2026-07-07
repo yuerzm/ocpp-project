@@ -1,3 +1,5 @@
 com.cuckooy.ocpp.v16.server.starter.autoconfigure.Ocpp16AutoConfiguration
+com.cuckooy.ocpp.v16.server.starter.autoconfigure.OcppWebAutoConfiguration
+com.cuckooy.ocpp.v16.server.starter.autoconfigure.WebSocketAutoConfiguration
 com.cuckooy.ocpp.v16.server.starter.autoconfigure.ChargePointAutoConfiguration
 com.cuckooy.ocpp.v16.server.starter.autoconfigure.CentralSystemAutoConfiguration

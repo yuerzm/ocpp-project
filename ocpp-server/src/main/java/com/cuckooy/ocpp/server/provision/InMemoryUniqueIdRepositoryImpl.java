@@ -23,7 +23,7 @@ public class InMemoryUniqueIdRepositoryImpl implements UniqueIdRepository {
      * Instantiates a new In memory unique id repository.
      */
     public InMemoryUniqueIdRepositoryImpl() {
-        this(30, TimeUnit.SECONDS);
+        this(60, TimeUnit.SECONDS);
     }
 
     /**

@@ -2,7 +2,7 @@ package com.cuckooy.ocpp.v16.server.starter.autoconfigure;
 
 import com.cuckooy.ocpp.server.authentication.ChargePointRegistry;
 import com.cuckooy.ocpp.server.authentication.ChargePointRegistryRepository;
-import com.cuckooy.ocpp.v16.server.starter.provision.DefaultChargePointRegistryRepository;
+import com.cuckooy.ocpp.server.provision.DefaultChargePointRegistryRepository;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

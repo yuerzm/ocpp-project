@@ -29,17 +29,17 @@ public abstract class AbstractOcppHandshakeInterceptor implements HandshakeInter
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final String path;
+    private final String prefix;
     private final AuthenticationManager authenticateManager;
 
     /**
      * Instantiates a new Abstract ocpp handshake interceptor.
      *
-     * @param path                the path
+     * @param prefix              the prefix
      * @param authenticateManager the authenticate manager
      */
-    public AbstractOcppHandshakeInterceptor(String path, AuthenticationManager authenticateManager) {
-        this.path = path;
+    public AbstractOcppHandshakeInterceptor(String prefix, AuthenticationManager authenticateManager) {
+        this.prefix = prefix;
         this.authenticateManager = authenticateManager;
     }
 
@@ -101,11 +101,29 @@ public abstract class AbstractOcppHandshakeInterceptor implements HandshakeInter
 
     }
 
+    /**
+     * Do internal before handshake boolean.
+     *
+     * @param request    the request
+     * @param response   the response
+     * @param handler    the handler
+     * @param attributes the attributes
+     * @return the boolean
+     * @throws Exception the exception
+     */
     protected abstract boolean doInternalBeforeHandshake(@NonNull ServerHttpRequest request,
                                                          @NonNull ServerHttpResponse response,
                                                          @NonNull WebSocketHandler handler,
                                                          @NonNull Map<String, Object> attributes) throws Exception;
 
+    /**
+     * Do internal after handshake.
+     *
+     * @param request   the request
+     * @param response  the response
+     * @param wsHandler the ws handler
+     * @param exception the exception
+     */
     protected abstract void doInternalAfterHandshake(@NonNull ServerHttpRequest request,
                                                      @NonNull ServerHttpResponse response,
                                                      @NonNull WebSocketHandler wsHandler, Exception exception);
@@ -127,11 +145,11 @@ public abstract class AbstractOcppHandshakeInterceptor implements HandshakeInter
         if (StringUtils.isBlank(input)) {
             return "";
         }
-        int index = input.indexOf(this.path);
+        int index = input.indexOf(this.prefix);
         if (index == -1) {
             return "";
         } else {
-            return input.substring(index + this.path.length());
+            return input.substring(index + this.prefix.length());
         }
     }
 }

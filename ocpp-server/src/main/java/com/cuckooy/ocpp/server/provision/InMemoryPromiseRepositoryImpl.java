@@ -28,7 +28,7 @@ public class InMemoryPromiseRepositoryImpl implements PromiseRepository {
      * Instantiates a new In memory promise repository.
      */
     public InMemoryPromiseRepositoryImpl() {
-        this(30, TimeUnit.SECONDS);
+        this(60, TimeUnit.SECONDS);
     }
 
     /**
