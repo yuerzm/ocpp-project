@@ -15,6 +15,7 @@ import com.cuckooy.ocpp.server.bridge.MessageBridgingService;
 import com.cuckooy.ocpp.server.bridge.NoopMessageBridgingService;
 import com.cuckooy.ocpp.server.promise.Promise;
 import com.cuckooy.ocpp.server.promise.PromiseRepository;
+import com.cuckooy.ocpp.server.promise.PromiseUnfulfilledException;
 import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -163,7 +164,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
             return promise.getFuture().get(3000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             promiseRepository.remove(uniqueId);
-            throw new RuntimeException(e.getMessage(), e);
+            throw new PromiseUnfulfilledException("Charge Point unfulfill promise response", e);
         }
     }
 

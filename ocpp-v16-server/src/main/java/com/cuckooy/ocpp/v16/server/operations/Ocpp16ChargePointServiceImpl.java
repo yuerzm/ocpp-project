@@ -3,6 +3,7 @@ package com.cuckooy.ocpp.v16.server.operations;
 import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.core.message.Response;
 import com.cuckooy.ocpp.server.session.SessionRepository;
+import com.cuckooy.ocpp.server.session.SessionUnconnectedException;
 import com.cuckooy.ocpp.v16.handler.ChargePointCoreEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointFirmwareManagementEventHandler;
 import com.cuckooy.ocpp.v16.handler.ChargePointLocalAuthEventHandler;
@@ -97,7 +98,7 @@ public class Ocpp16ChargePointServiceImpl implements Ocpp16ChargePointService {
         Optional<WebSocketSession> optional = sessionRepository.get(identity);
         if (optional.isEmpty()) {
             logger.warn("Charge Point not connected, identity {}", identity);
-            throw new UnsupportedOperationException("Charge Point with identity " + identity + " not connected.");
+            throw new SessionUnconnectedException("Charge Point with identity " + identity + " not connected.");
         }
 
         if (request instanceof ChangeAvailabilityRequest changeAvailabilityRequest) {

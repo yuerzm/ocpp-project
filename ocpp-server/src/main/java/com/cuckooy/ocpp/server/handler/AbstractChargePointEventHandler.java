@@ -4,6 +4,7 @@ import com.cuckooy.ocpp.core.message.Request;
 import com.cuckooy.ocpp.core.message.Response;
 import com.cuckooy.ocpp.server.ServerTransport;
 import com.cuckooy.ocpp.server.session.SessionRepository;
+import com.cuckooy.ocpp.server.session.SessionUnconnectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.WebSocketSession;
@@ -42,7 +43,7 @@ public class AbstractChargePointEventHandler {
         Optional<WebSocketSession> optional = sessionRepository.get(identity);
         if (optional.isEmpty()) {
             logger.warn("Charge Point not connected, identity: {}", identity);
-            throw new UnsupportedOperationException("Charge Point with identity " + identity + " not connected.");
+            throw new SessionUnconnectedException("Charge Point with identity " + identity + " not connected.");
         }
         return serverTransport.send(optional.get(), request);
     }
