@@ -42,7 +42,6 @@ public class AbstractChargePointEventHandler {
     public Response invoke(String identity, Request request) {
         Optional<WebSocketSession> optional = sessionRepository.get(identity);
         if (optional.isEmpty()) {
-            logger.warn("Charge Point not connected, identity: {}", identity);
             throw new SessionUnconnectedException("Charge Point with identity " + identity + " not connected.");
         }
         return serverTransport.send(optional.get(), request);

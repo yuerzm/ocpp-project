@@ -145,7 +145,6 @@ public class Ocpp20ChargePointServiceImpl implements Ocpp20ChargePointService {
 
         Optional<WebSocketSession> optional = sessionRepository.get(identity);
         if (optional.isEmpty()) {
-            logger.warn("Charge Point not connected, identity {}", identity);
             throw new SessionUnconnectedException("Charge Point with identity " + identity + " not connected.");
         }
 
