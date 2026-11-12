@@ -11,8 +11,8 @@ import com.cuckooy.ocpp.core.message.UniqueIdRepository;
 import com.cuckooy.ocpp.core.service.CentralSystemService;
 import com.cuckooy.ocpp.json.OcppJsonParser;
 import com.cuckooy.ocpp.json.OcppJsonWriter;
-import com.cuckooy.ocpp.server.bridge.MessageBridgingService;
-import com.cuckooy.ocpp.server.bridge.NoopMessageBridgingService;
+import com.cuckooy.ocpp.server.bridge.MessageLoggingService;
+import com.cuckooy.ocpp.server.bridge.StdioMessageLoggingService;
 import com.cuckooy.ocpp.server.promise.Promise;
 import com.cuckooy.ocpp.server.promise.PromiseRepository;
 import com.cuckooy.ocpp.server.promise.PromiseUnfulfilledException;
@@ -35,17 +35,15 @@ import java.util.concurrent.TimeoutException;
  */
 public abstract class AbstractServerTransport implements ServerTransport {
 
-    private static final String OCPP_LOGGER = "OCPP.Logger";
-
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    private final Logger ocppLogger = LoggerFactory.getLogger(OCPP_LOGGER);
+
 
     private final OcppJsonParser ocppJsonParser;
     private final OcppJsonWriter ocppJsonWriter;
     private final PromiseRepository promiseRepository;
     private final UniqueIdRepository uniqueIdRepository;
     private final CentralSystemService centralSystemService;
-    private final MessageBridgingService messageBridgingService;
+    private final MessageLoggingService messageLoggingService;
 
     /**
      * Instantiates a new Abstract server transport.
@@ -69,23 +67,23 @@ public abstract class AbstractServerTransport implements ServerTransport {
         this.promiseRepository = promiseRepository;
         this.uniqueIdRepository = uniqueIdRepository;
         this.centralSystemService = centralSystemService;
-        this.messageBridgingService = new NoopMessageBridgingService();
+        this.messageLoggingService = new StdioMessageLoggingService();
     }
 
     /**
      * Instantiates a new Abstract server transport.
      *
-     * @param ocppJsonParser         the ocpp json parser
-     * @param ocppJsonWriter         the ocpp json writer
-     * @param promiseRepository      the promise repository
-     * @param uniqueIdRepository     the unique id repository
-     * @param centralSystemService   the central system service
-     * @param messageBridgingService the message bridging service
+     * @param ocppJsonParser        the ocpp json parser
+     * @param ocppJsonWriter        the ocpp json writer
+     * @param promiseRepository     the promise repository
+     * @param uniqueIdRepository    the unique id repository
+     * @param centralSystemService  the central system service
+     * @param messageLoggingService the message bridging service
      */
     public AbstractServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
                                    PromiseRepository promiseRepository, UniqueIdRepository uniqueIdRepository,
                                    CentralSystemService centralSystemService,
-                                   MessageBridgingService messageBridgingService) {
+                                   MessageLoggingService messageLoggingService) {
         Assert.notNull(ocppJsonParser, "ocppJsonParser cannot be null");
         Assert.notNull(ocppJsonWriter, "ocppJsonWriter cannot be null");
         Assert.notNull(ocppJsonWriter, "promiseRepository cannot be null");
@@ -97,7 +95,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
         this.promiseRepository = promiseRepository;
         this.uniqueIdRepository = uniqueIdRepository;
         this.centralSystemService = centralSystemService;
-        this.messageBridgingService = messageBridgingService;
+        this.messageLoggingService = messageLoggingService;
     }
 
 
@@ -107,8 +105,7 @@ public abstract class AbstractServerTransport implements ServerTransport {
             logger.debug("Recv message, session: {}, message: {}", session.getId(), message);
         }
 
-        loggerOcppMessage(session, message);
-        messageBridgingService.onMessage(session, message);
+        messageLoggingService.log(session, message);
 
         OcppMessage ocppMessage;
         try {
@@ -122,16 +119,20 @@ public abstract class AbstractServerTransport implements ServerTransport {
 
         if (ocppMessage instanceof OcppCallMessage call) {
             handleCall(session, message, call);
-
-        } else if (ocppMessage instanceof OcppCallResultMessage result) {
-            handleCallResult(session, message, result);
-
-        } else if (ocppMessage instanceof OcppCallErrorMessage error) {
-            handleCallError(session, message, error);
-
-        } else {
-            throw new IllegalStateException("Unsupported ocpp message: " + message);
+            return;
         }
+
+        if (ocppMessage instanceof OcppCallResultMessage result) {
+            handleCallResult(session, message, result);
+            return;
+        }
+
+        if (ocppMessage instanceof OcppCallErrorMessage error) {
+            handleCallError(session, message, error);
+            return;
+        }
+
+        throw new IllegalStateException("Unsupported ocpp message: " + message);
     }
 
     @Override
@@ -149,9 +150,8 @@ public abstract class AbstractServerTransport implements ServerTransport {
         String serialized = ocppJsonWriter.writeJson(message);
 
         try {
-            loggerOcppMessage(session, serialized);
+            messageLoggingService.log(session, serialized);
             session.sendMessage(new TextMessage(serialized));
-            messageBridgingService.onMessage(session, serialized);
             if (logger.isDebugEnabled()) {
                 logger.debug("Send message, session: {}, message: {}", session.getId(), serialized);
             }
@@ -226,9 +226,8 @@ public abstract class AbstractServerTransport implements ServerTransport {
             logger.info("Send call result, session: {}, message: {}", session.getId(), serialized);
         }
         try {
-            loggerOcppMessage(session, serialized);
+            messageLoggingService.log(session, serialized);
             session.sendMessage(new TextMessage(serialized));
-            messageBridgingService.onMessage(session, serialized);
         } catch (IOException e) {
             logger.error("Send websocket text message failed.", e);
         }
@@ -240,22 +239,11 @@ public abstract class AbstractServerTransport implements ServerTransport {
             logger.debug("Send call error, session: {}, message: {}", session.getId(), serialized);
         }
         try {
-            loggerOcppMessage(session, serialized);
+            messageLoggingService.log(session, serialized);
             session.sendMessage(new TextMessage(serialized));
-            messageBridgingService.onMessage(session, serialized);
         } catch (IOException e) {
             logger.error("Send websocket text message failed.", e);
         }
     }
 
-    private void loggerOcppMessage(WebSocketSession session, String message) {
-        String identity = SessionAttributeHelper.getIdentity(session);
-        Object protocol = SessionAttributeHelper.getProtocol(session);
-        ocppLogger.info("Identity:\t{},\nSession:\t{},\nEndpoint:\t{},\nProtocol:\t{},\nMessage:\t{}",
-            identity,
-            session.getId(),
-            session.getUri(),
-            protocol,
-            message);
-    }
 }

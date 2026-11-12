@@ -5,7 +5,7 @@ import com.cuckooy.ocpp.core.service.CentralSystemService;
 import com.cuckooy.ocpp.json.OcppJsonParser;
 import com.cuckooy.ocpp.json.OcppJsonWriter;
 import com.cuckooy.ocpp.server.AbstractServerTransport;
-import com.cuckooy.ocpp.server.bridge.MessageBridgingService;
+import com.cuckooy.ocpp.server.bridge.MessageLoggingService;
 import com.cuckooy.ocpp.server.promise.PromiseRepository;
 import com.cuckooy.ocpp.v20.json.Ocpp20JsonParser;
 import com.cuckooy.ocpp.v20.json.Ocpp20JsonWriter;
@@ -39,17 +39,17 @@ public class Ocpp20ServerTransport extends AbstractServerTransport {
      * @param promiseRepository      the promise repository
      * @param uniqueIdRepository     the unique id repository
      * @param centralSystemService   the central system service
-     * @param messageBridgingService the message bridging service
+     * @param messageLoggingService the message bridging service
      */
     public Ocpp20ServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
                                  PromiseRepository promiseRepository, UniqueIdRepository uniqueIdRepository,
                                  CentralSystemService centralSystemService,
-                                 MessageBridgingService messageBridgingService) {
+                                 MessageLoggingService messageLoggingService) {
         super(ocppJsonParser,
             ocppJsonWriter,
             promiseRepository,
             uniqueIdRepository,
             centralSystemService,
-            messageBridgingService);
+                messageLoggingService);
     }
 }
