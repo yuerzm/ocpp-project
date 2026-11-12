@@ -3,12 +3,7 @@ package com.cuckooy.ocpp.v16.server.handler;
 import com.cuckooy.ocpp.server.handler.AbstractChargePointEventHandler;
 import com.cuckooy.ocpp.server.session.SessionRepository;
 import com.cuckooy.ocpp.v16.handler.ChargePointSmartChargingEventHandler;
-import com.cuckooy.ocpp.v16.model.smartcharging.ClearChargingProfileRequest;
-import com.cuckooy.ocpp.v16.model.smartcharging.ClearChargingProfileResponse;
-import com.cuckooy.ocpp.v16.model.smartcharging.GetCompositeScheduleRequest;
-import com.cuckooy.ocpp.v16.model.smartcharging.GetCompositeScheduleResponse;
-import com.cuckooy.ocpp.v16.model.smartcharging.SetChargingProfileRequest;
-import com.cuckooy.ocpp.v16.model.smartcharging.SetChargingProfileResponse;
+import com.cuckooy.ocpp.v16.model.smartcharging.*;
 import com.cuckooy.ocpp.v16.server.Ocpp16ServerTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,18 +29,21 @@ public class ChargePointSmartChargingEventHandlerImpl extends AbstractChargePoin
 
     @Override
     public SetChargingProfileResponse handleSetChargingProfile(String identity, SetChargingProfileRequest request) {
+        logger.info("Handle SetChargingProfile, identity: {}, request: {}", identity, request);
         return (SetChargingProfileResponse) invoke(identity, request);
     }
 
     @Override
     public ClearChargingProfileResponse handleClearChargingProfile(String identity,
                                                                    ClearChargingProfileRequest request) {
+        logger.info("Handle ClearChargingProfile, identity: {}, request: {}", identity, request);
         return (ClearChargingProfileResponse) invoke(identity, request);
     }
 
     @Override
     public GetCompositeScheduleResponse handleGetCompositeSchedule(String identity,
                                                                    GetCompositeScheduleRequest request) {
+        logger.info("Handle GetCompositeSchedule, identity: {}, request: {}", identity, request);
         return (GetCompositeScheduleResponse) invoke(identity, request);
     }
 }

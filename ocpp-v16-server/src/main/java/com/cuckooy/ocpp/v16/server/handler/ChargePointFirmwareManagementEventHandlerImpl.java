@@ -32,11 +32,13 @@ public class ChargePointFirmwareManagementEventHandlerImpl extends AbstractCharg
 
     @Override
     public GetDiagnosticsResponse handleGetDiagnostics(String identity, GetDiagnosticsRequest request) {
+        logger.info("Handle GetDiagnostics, identity: {}, request: {}", identity, request);
         return (GetDiagnosticsResponse) invoke(identity, request);
     }
 
     @Override
     public UpdateFirmwareResponse handleUpdateFirmware(String identity, UpdateFirmwareRequest request) {
+        logger.info("Handle UpdateFirmware, identity: {}, request: {}", identity, request);
         return (UpdateFirmwareResponse) invoke(identity, request);
     }
 }
