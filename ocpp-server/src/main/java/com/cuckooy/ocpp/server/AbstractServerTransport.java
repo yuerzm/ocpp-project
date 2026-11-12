@@ -1,18 +1,12 @@
 package com.cuckooy.ocpp.server;
 
 import com.cuckooy.ocpp.core.exception.OcppException;
-import com.cuckooy.ocpp.core.message.OcppCallErrorMessage;
-import com.cuckooy.ocpp.core.message.OcppCallMessage;
-import com.cuckooy.ocpp.core.message.OcppCallResultMessage;
-import com.cuckooy.ocpp.core.message.OcppMessage;
-import com.cuckooy.ocpp.core.message.Request;
-import com.cuckooy.ocpp.core.message.Response;
-import com.cuckooy.ocpp.core.message.UniqueIdRepository;
+import com.cuckooy.ocpp.core.message.*;
 import com.cuckooy.ocpp.core.service.CentralSystemService;
 import com.cuckooy.ocpp.json.OcppJsonParser;
 import com.cuckooy.ocpp.json.OcppJsonWriter;
-import com.cuckooy.ocpp.server.bridge.MessageLoggingService;
-import com.cuckooy.ocpp.server.bridge.StdioMessageLoggingService;
+import com.cuckooy.ocpp.server.logger.MessageLoggingService;
+import com.cuckooy.ocpp.server.logger.StdioMessageLoggingService;
 import com.cuckooy.ocpp.server.promise.Promise;
 import com.cuckooy.ocpp.server.promise.PromiseRepository;
 import com.cuckooy.ocpp.server.promise.PromiseUnfulfilledException;

@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.server.bridge;
+package com.cuckooy.ocpp.server.logger;
 
 import com.cuckooy.ocpp.server.session.SessionAttributeHelper;
 import org.slf4j.Logger;

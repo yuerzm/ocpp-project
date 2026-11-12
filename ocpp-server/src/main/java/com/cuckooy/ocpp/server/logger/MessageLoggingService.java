@@ -1,4 +1,4 @@
-package com.cuckooy.ocpp.server.bridge;
+package com.cuckooy.ocpp.server.logger;
 
 import org.springframework.web.socket.WebSocketSession;
 

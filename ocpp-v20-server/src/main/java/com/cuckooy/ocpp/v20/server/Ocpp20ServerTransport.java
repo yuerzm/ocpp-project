@@ -5,7 +5,7 @@ import com.cuckooy.ocpp.core.service.CentralSystemService;
 import com.cuckooy.ocpp.json.OcppJsonParser;
 import com.cuckooy.ocpp.json.OcppJsonWriter;
 import com.cuckooy.ocpp.server.AbstractServerTransport;
-import com.cuckooy.ocpp.server.bridge.MessageLoggingService;
+import com.cuckooy.ocpp.server.logger.MessageLoggingService;
 import com.cuckooy.ocpp.server.promise.PromiseRepository;
 import com.cuckooy.ocpp.v20.json.Ocpp20JsonParser;
 import com.cuckooy.ocpp.v20.json.Ocpp20JsonWriter;
