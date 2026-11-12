@@ -35,8 +35,8 @@ public class ChargePointProperties {
                 StringUtils.isNotBlank(username) ? username : RandomStringUtils.secureStrong().nextAlphanumeric(8);
             this.password =
                 StringUtils.isNotBlank(password) ? password : RandomStringUtils.secureStrong().nextAlphanumeric(8);
-            this.recognized = Objects.nonNull(recognized) ? recognized : false;
-            this.required = Objects.nonNull(required) ? recognized : false;
+            this.recognized = Objects.nonNull(recognized) && recognized;
+            this.required = Objects.nonNull(required) && recognized;
         }
     }
 }
