@@ -34,11 +34,11 @@ public class Ocpp20ServerTransport extends AbstractServerTransport {
     /**
      * Instantiates a new Ocpp 20 server transport.
      *
-     * @param ocppJsonParser         the ocpp json parser
-     * @param ocppJsonWriter         the ocpp json writer
-     * @param promiseRepository      the promise repository
-     * @param uniqueIdRepository     the unique id repository
-     * @param centralSystemService   the central system service
+     * @param ocppJsonParser        the ocpp json parser
+     * @param ocppJsonWriter        the ocpp json writer
+     * @param promiseRepository     the promise repository
+     * @param uniqueIdRepository    the unique id repository
+     * @param centralSystemService  the central system service
      * @param messageLoggingService the message bridging service
      */
     public Ocpp20ServerTransport(OcppJsonParser ocppJsonParser, OcppJsonWriter ocppJsonWriter,
@@ -50,6 +50,6 @@ public class Ocpp20ServerTransport extends AbstractServerTransport {
             promiseRepository,
             uniqueIdRepository,
             centralSystemService,
-                messageLoggingService);
+            messageLoggingService);
     }
 }
