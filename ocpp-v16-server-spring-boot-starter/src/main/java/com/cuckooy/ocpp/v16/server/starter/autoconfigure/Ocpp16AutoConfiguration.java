@@ -14,8 +14,8 @@ import com.cuckooy.ocpp.v16.operation.Ocpp16ChargePointService;
 import com.cuckooy.ocpp.v16.server.Ocpp16ServerTransport;
 import com.cuckooy.ocpp.v16.server.operations.Ocpp16CentralSystemServiceImpl;
 import com.cuckooy.ocpp.v16.server.operations.Ocpp16ChargePointServiceImpl;
-import com.cuckooy.ocpp.v16.server.provision.DefaultCoreEventHandler;
-import com.cuckooy.ocpp.v16.server.provision.DefaultFirmwareEventHandler;
+import com.cuckooy.ocpp.v16.server.provision.DefaultCentralSystemCoreEventHandler;
+import com.cuckooy.ocpp.v16.server.provision.DefaultCentralSystemFirmwareEventHandler;
 import com.cuckooy.ocpp.v16.server.provision.DefaultSessionEventHandler;
 import com.cuckooy.ocpp.v16.server.websocket.Ocpp16WebSocketEndpoint;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -91,14 +91,14 @@ public class Ocpp16AutoConfiguration {
     @ConditionalOnClass(Ocpp16ChargePointService.class)
     @ConditionalOnMissingBean(Ocpp16ChargePointService.class)
     public CentralSystemCoreEventHandler coreEventHandler() {
-        return new DefaultCoreEventHandler();
+        return new DefaultCentralSystemCoreEventHandler();
     }
 
     @Bean
     @ConditionalOnClass(CentralSystemFirmwareEventHandler.class)
     @ConditionalOnMissingBean(CentralSystemFirmwareEventHandler.class)
     public CentralSystemFirmwareEventHandler firmwareEventHandler() {
-        return new DefaultFirmwareEventHandler();
+        return new DefaultCentralSystemFirmwareEventHandler();
     }
 
     @Bean

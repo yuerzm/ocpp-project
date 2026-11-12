@@ -1,26 +1,7 @@
 package com.cuckooy.ocpp.v16.server.provision;
 
 import com.cuckooy.ocpp.v16.handler.CentralSystemCoreEventHandler;
-import com.cuckooy.ocpp.v16.model.core.AuthorizationStatus;
-import com.cuckooy.ocpp.v16.model.core.AuthorizeRequest;
-import com.cuckooy.ocpp.v16.model.core.AuthorizeResponse;
-import com.cuckooy.ocpp.v16.model.core.BootNotificationRequest;
-import com.cuckooy.ocpp.v16.model.core.BootNotificationResponse;
-import com.cuckooy.ocpp.v16.model.core.DataTransferRequest;
-import com.cuckooy.ocpp.v16.model.core.DataTransferResponse;
-import com.cuckooy.ocpp.v16.model.core.DataTransferStatus;
-import com.cuckooy.ocpp.v16.model.core.HeartbeatRequest;
-import com.cuckooy.ocpp.v16.model.core.HeartbeatResponse;
-import com.cuckooy.ocpp.v16.model.core.IdTagInfo;
-import com.cuckooy.ocpp.v16.model.core.MeterValuesRequest;
-import com.cuckooy.ocpp.v16.model.core.MeterValuesResponse;
-import com.cuckooy.ocpp.v16.model.core.RegistrationStatus;
-import com.cuckooy.ocpp.v16.model.core.StartTransactionRequest;
-import com.cuckooy.ocpp.v16.model.core.StartTransactionResponse;
-import com.cuckooy.ocpp.v16.model.core.StatusNotificationRequest;
-import com.cuckooy.ocpp.v16.model.core.StatusNotificationResponse;
-import com.cuckooy.ocpp.v16.model.core.StopTransactionRequest;
-import com.cuckooy.ocpp.v16.model.core.StopTransactionResponse;
+import com.cuckooy.ocpp.v16.model.core.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +9,9 @@ import org.slf4j.LoggerFactory;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
-public class DefaultCoreEventHandler implements CentralSystemCoreEventHandler {
+public class DefaultCentralSystemCoreEventHandler implements CentralSystemCoreEventHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(DefaultCoreEventHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public AuthorizeResponse handleAuthorize(String identity, AuthorizeRequest request) {

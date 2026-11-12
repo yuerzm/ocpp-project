@@ -8,7 +8,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 public class DefaultSessionEventHandler implements SessionEventHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(DefaultSessionEventHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public void connect(WebSocketSession session) {
